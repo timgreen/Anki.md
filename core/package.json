@@ -1,23 +1,33 @@
 {
-  "name": "@anki.md/core",
-  "version": "0.0.1",
-  "description": "Anki.md core library.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/timgreen/Anki.md.git"
-  },
-  "author": "@timgreen",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/timgreen/Anki.md/issues"
-  },
-  "homepage": "https://github.com/timgreen/Anki.md#readme",
-  "devDependencies": {
-    "tsup": "^6.4.0",
-    "typescript": "^4.8.4"
-  }
+	"name": "@anki.md/core",
+	"version": "0.0.1",
+	"description": "Anki.md core library.",
+	"main": "index.js",
+	"tsup": {
+		"entry": [
+			"src/index.ts"
+		],
+		"splitting": false,
+		"sourcemap": false,
+		"dts": true,
+		"clean": true
+	},
+	"scripts": {
+		"build": "tsup",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/timgreen/Anki.md.git"
+	},
+	"author": "@timgreen",
+	"license": "GPL-3.0",
+	"bugs": {
+		"url": "https://github.com/timgreen/Anki.md/issues"
+	},
+	"homepage": "https://github.com/timgreen/Anki.md#readme",
+	"devDependencies": {
+		"tsup": "^6.4.0",
+		"typescript": "^4.8.4"
+	}
 }
