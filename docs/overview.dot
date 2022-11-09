@@ -1,0 +1,24 @@
+digraph G {
+  rankdir=LR;
+
+  subgraph cluster_i {
+    label="Input";
+    style="dotted";
+    MD [label="<deck>.md", shape=note];
+  }
+  subgraph cluster_a {
+    label="Internal Representation";
+    style="dotted";
+    RP [label="Models", shape=cylinder];
+  }
+  subgraph cluster_o {
+    label="Output";
+    style="dotted";
+    AnkiPkg [label="<deck>.apkg", shape=note];
+    AnkiDesktop [label="\n\n\nAnki Desktop", image="Anki-icon.svg", shape=none];
+  }
+
+  MD -> RP [label="parse"];
+  RP -> AnkiPkg [label="generate"];
+  RP -> AnkiDesktop [label="via Anki Connect"];
+}
