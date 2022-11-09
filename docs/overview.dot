@@ -15,7 +15,7 @@ digraph G {
     label="Output";
     style="dotted";
     AnkiPkg [label="<deck>.apkg", shape=note];
-    AnkiDesktop [label="\n\n\nAnki Desktop", image="Anki-icon.svg", shape=none];
+    AnkiDesktop [label="", image="Anki-icon.png", shape=none];
   }
 
   MD -> RP [label="parse"];

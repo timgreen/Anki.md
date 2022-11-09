@@ -4,7 +4,7 @@ The markdown format for Anki cards.
 
 ## Overview
 
-![Overview Forward](docs/overview.svg)
+![Overview Forward](docs/overview.png)
 
 ## Features
 
