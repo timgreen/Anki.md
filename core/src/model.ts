@@ -7,6 +7,7 @@ export interface IDeck {
 export interface INote {
 	typeName: string;
 	fields: string[];
+	// field -> html string mapping
 	values: string[];
 }
 
