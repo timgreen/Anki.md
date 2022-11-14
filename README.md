@@ -9,6 +9,7 @@ The markdown format for Anki cards.
 ## Features
 
 - Tools
+
   - [ ] CLI: md -> deck apkg
   - [ ] CLI: md -> Anki Desktop (via [Anki Connect](https://ankiweb.net/shared/info/2055492159))
   - [ ] Obsidian Integration: md -> Anki Desktop
