@@ -2,22 +2,23 @@ import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
+import type { MdastRoot } from "remark-rehype/lib";
 
-function isH1(node) {
+function isH1(node: any): boolean {
   return node.type === "heading" && node.depth === 1;
 }
 
-async function toHtml(nodes) {
-  const mast = {
+async function toHtml(nodes: Array<any>): Promise<string> {
+  const mast: MdastRoot = {
     type: "root",
     children: nodes,
   };
 
-  const rehypeAst = await unified().use(remarkRehype).run(mast);
+  const rehypeAst: any = await unified().use(remarkRehype).run(mast);
   return await unified().use(rehypeStringify).stringify(rehypeAst);
 }
 
-async function toNote(nodes) {
+async function toNote(nodes: Array<any>): Promise<any> {
   const front = await toHtml(nodes[0].children);
   const back = await toHtml(nodes.slice(1));
 
@@ -28,11 +29,11 @@ async function toNote(nodes) {
   };
 }
 
-export async function parse(content) {
+export async function parse(content: string): Promise<any> {
   const mast = unified().use(remarkParse).parse(content);
 
   // Split note based on ATX Heading 1.
-  const noteMds = mast.children.reduce((output, node) => {
+  const noteMds = mast.children.reduce<Array<any>>((output, node) => {
     if (isH1(node)) {
       output.push([node]);
     } else if (output.length) {
