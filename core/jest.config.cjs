@@ -5,6 +5,7 @@ const esModules = [
   "character-entities",
   "comma-separated-tokens",
   "decode-named-character-reference",
+  "fault",
   "hast-util-.*",
   "html-void-elements",
   "is-plain-obj",
@@ -20,6 +21,7 @@ const esModules = [
   "unified",
   "unist-.*",
   "vfile",
+  "zwitch",
 ];
 
 module.exports = {

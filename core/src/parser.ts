@@ -1,20 +1,23 @@
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
+import YAML from "yaml";
 import rehypeStringify from "rehype-stringify";
-import type { MdastRoot } from "remark-rehype/lib";
+import remarkFrontmatter from "remark-frontmatter";
+import type { Root as MdastRoot } from "remark-frontmatter";
+import { select } from "unist-util-select";
 
 function isH1(node: any): boolean {
   return node.type === "heading" && node.depth === 1;
 }
 
 async function toHtml(nodes: Array<any>): Promise<string> {
-  const mast: MdastRoot = {
+  const mdast: MdastRoot = {
     type: "root",
     children: nodes,
   };
 
-  const rehypeAst: any = await unified().use(remarkRehype).run(mast);
+  const rehypeAst: any = await unified().use(remarkRehype).run(mdast);
   return await unified().use(rehypeStringify).stringify(rehypeAst);
 }
 
@@ -31,11 +34,26 @@ async function toNote(nodes: Array<any>): Promise<any> {
 
 const DEFAULT_DECK_NAME = "Default";
 
+interface FrontmatterConfig {
+  deckName?: string;
+}
+
+function parseFrontmatter(mdast: MdastRoot): FrontmatterConfig | undefined {
+  const yamlConfig = (select("yaml", mdast) as any)?.value;
+  if (yamlConfig) {
+    return YAML.parse(yamlConfig);
+  }
+}
+
 export async function parse(content: string): Promise<any> {
-  const mast = unified().use(remarkParse).parse(content);
+  const mdast = unified()
+    .use(remarkParse)
+    .use(remarkFrontmatter, ["yaml"])
+    .parse(content);
+  const frontmatterConfig = parseFrontmatter(mdast);
 
   // Split note based on ATX Heading 1.
-  const noteMds = mast.children.reduce<Array<any>>((output, node) => {
+  const noteMds = mdast.children.reduce<Array<any>>((output, node) => {
     if (isH1(node)) {
       output.push([node]);
     } else if (output.length) {
@@ -49,7 +67,7 @@ export async function parse(content: string): Promise<any> {
   const notes = await Promise.all(noteMds.map(toNote));
 
   return {
-    deckName: DEFAULT_DECK_NAME,
+    deckName: frontmatterConfig?.deckName || DEFAULT_DECK_NAME,
     notes,
   };
 }
