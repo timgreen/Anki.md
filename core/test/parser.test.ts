@@ -1,4 +1,5 @@
 import { parse } from "../src/parser";
+import * as fs from "fs";
 
 describe("Parser", () => {
   it("Simple", async () => {
@@ -29,4 +30,22 @@ n1 text
       ],
     });
   });
+});
+
+describe("Parser fixtures", () => {
+  const dir = "./test/fixtures";
+  const files = fs.readdirSync(dir);
+  files
+    .filter((f) => f.endsWith(".md"))
+    .forEach((mdInputFile) => {
+      it(mdInputFile, async () => {
+        const mdInput = String(fs.readFileSync(`${dir}/${mdInputFile}`));
+        const json = JSON.parse(
+          String(
+            fs.readFileSync(`${dir}/${mdInputFile.replace(/\.md$/, ".json")}`),
+          ),
+        );
+        expect(await parse(mdInput)).toEqual(json);
+      });
+    });
 });
