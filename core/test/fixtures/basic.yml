@@ -1,4 +1,4 @@
-name: "TODO"
+deckName: Default
 notes:
   - typeName: Basic
     fields: [Front, Back]

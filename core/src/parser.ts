@@ -29,6 +29,8 @@ async function toNote(nodes: Array<any>): Promise<any> {
   };
 }
 
+const DEFAULT_DECK_NAME = "Default";
+
 export async function parse(content: string): Promise<any> {
   const mast = unified().use(remarkParse).parse(content);
 
@@ -47,7 +49,7 @@ export async function parse(content: string): Promise<any> {
   const notes = await Promise.all(noteMds.map(toNote));
 
   return {
-    name: "TODO",
+    deckName: DEFAULT_DECK_NAME,
     notes,
   };
 }
