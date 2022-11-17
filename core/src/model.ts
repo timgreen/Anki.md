@@ -10,6 +10,7 @@ export interface INoteType {
 
 export interface INote extends INoteType {
   values: string[];
+  tags: string[];
 }
 
 export const BASIC_NOTE_TYPE: INoteType = {

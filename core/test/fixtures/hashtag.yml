@@ -3,9 +3,12 @@ notes:
   - typeName: Basic
     fields: [Front, Back]
     values:
-      - Note 1
-      - "<p>n1 text</p>\n<h2>n1 h2</h2>\n<p>n1 text</p>"
-    tags: []
+      - "Note 1 "
+      - "<p>n1 text </p>\n<h2>n1 h2</h2>\n<p>n1 text</p>"
+    tags:
+      - tag-in-header
+      - tag-inline
+      - tag
   - typeName: Basic
     fields: [Front, Back]
     values:
