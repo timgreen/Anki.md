@@ -1,8 +1,8 @@
-## Ignored
+# Ignored
 
 ignored
 
-# Note 1
+# Note 1 #card
 
 n1 text
 
@@ -10,6 +10,6 @@ n1 text
 
 n1 text
 
-# Note 2
+# #card Note 2
 
 ## n2 h2

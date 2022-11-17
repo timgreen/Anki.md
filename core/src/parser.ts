@@ -28,25 +28,38 @@ async function toHtml(nodes: Array<Content>): Promise<string> {
     children: nodes,
   };
 
+  // TODO: remove the surrounding spaces as well.
   remove(mdast, "tagLink");
 
   const rehypeAst: any = await unified().use(remarkRehype).run(mdast);
   return unified().use(rehypeStringify).stringify(rehypeAst);
 }
 
-async function toNote(nodes: Array<Content>): Promise<INote> {
-  const tags: Array<string> = [];
-  visit({ type: "root", children: nodes }, "tagLink", (node: TagLink) => {
-    tags.push(node.data.name);
+async function toNote(nodes: Array<Content>): Promise<INote | undefined> {
+  const heading = nodes[0] as Heading;
+  const headingTags = new Set<string>();
+  visit(heading, "tagLink", (node: TagLink) => {
+    headingTags.add(node.data.name);
   });
 
-  const front = await toHtml((nodes[0] as Heading).children);
+  if (!headingTags.has("card")) {
+    return;
+  }
+  // TODO: remove the surrounding spaces as well.
+  remove(heading, (n) => n.type === "tagLink" && n.data.name === "card");
+
+  const tags = new Set<string>();
+  visit({ type: "root", children: nodes }, "tagLink", (node: TagLink) => {
+    tags.add(node.data.name);
+  });
+
+  const front = await toHtml(heading.children);
   const back = await toHtml(nodes.slice(1));
 
   return {
     ...BASIC_NOTE_TYPE,
     values: [front, back],
-    tags: tags,
+    tags: Array.from(tags),
   };
 }
 
@@ -84,9 +97,9 @@ export async function parse(content: string): Promise<IDeck> {
     [],
   );
 
-  // TODO: filter the one without #card tag
-
-  const notes = await Promise.all(noteMds.map(toNote));
+  const notes = (await Promise.all(noteMds.map(toNote))).filter(
+    (n) => !!n,
+  ) as Array<INote>;
 
   return {
     deckName: frontmatterConfig?.deckName || DEFAULT_DECK_NAME,
