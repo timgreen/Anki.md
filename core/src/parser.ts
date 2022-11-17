@@ -1,51 +1,58 @@
-import { unified } from "unified";
-import remarkParse from "remark-parse";
-import remarkRehype from "remark-rehype";
-import YAML from "yaml";
 import rehypeStringify from "rehype-stringify";
 import remarkFrontmatter from "remark-frontmatter";
-import type { Root as MdastRoot } from "remark-frontmatter";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import { unified } from "unified";
 import { select } from "unist-util-select";
+import YAML from "yaml";
 
-function isH1(node: any): boolean {
+import { BASIC_NOTE_TYPE, IDeck, INote } from "./model";
+
+import type {
+  Content,
+  FrontmatterContent,
+  Heading,
+  Root as MdastRoot,
+} from "mdast";
+
+function isH1(node: Content): boolean {
   return node.type === "heading" && node.depth === 1;
 }
 
-async function toHtml(nodes: Array<any>): Promise<string> {
+async function toHtml(nodes: Array<Content>): Promise<string> {
   const mdast: MdastRoot = {
     type: "root",
     children: nodes,
   };
 
   const rehypeAst: any = await unified().use(remarkRehype).run(mdast);
-  return await unified().use(rehypeStringify).stringify(rehypeAst);
+  return unified().use(rehypeStringify).stringify(rehypeAst);
 }
 
-async function toNote(nodes: Array<any>): Promise<any> {
-  const front = await toHtml(nodes[0].children);
+async function toNote(nodes: Array<Content>): Promise<INote> {
+  const front = await toHtml((nodes[0] as Heading).children);
   const back = await toHtml(nodes.slice(1));
 
   return {
-    typeName: "Basic",
-    fields: ["Front", "Back"],
+    ...BASIC_NOTE_TYPE,
     values: [front, back],
   };
 }
 
 const DEFAULT_DECK_NAME = "Default";
 
-interface FrontmatterConfig {
+interface IFrontmatterConfig {
   deckName?: string;
 }
 
-function parseFrontmatter(mdast: MdastRoot): FrontmatterConfig | undefined {
-  const yamlConfig = (select("yaml", mdast) as any)?.value;
+function parseFrontmatter(mdast: MdastRoot): IFrontmatterConfig | undefined {
+  const yamlConfig = (select("yaml", mdast) as FrontmatterContent)?.value;
   if (yamlConfig) {
     return YAML.parse(yamlConfig);
   }
 }
 
-export async function parse(content: string): Promise<any> {
+export async function parse(content: string): Promise<IDeck> {
   const mdast = unified()
     .use(remarkParse)
     .use(remarkFrontmatter, ["yaml"])
@@ -53,14 +60,17 @@ export async function parse(content: string): Promise<any> {
   const frontmatterConfig = parseFrontmatter(mdast);
 
   // Split note based on ATX Heading 1.
-  const noteMds = mdast.children.reduce<Array<any>>((output, node) => {
-    if (isH1(node)) {
-      output.push([node]);
-    } else if (output.length) {
-      output[output.length - 1].push(node);
-    }
-    return output;
-  }, []);
+  const noteMds = mdast.children.reduce<Array<Array<Content>>>(
+    (output, node) => {
+      if (isH1(node)) {
+        output.push([node]);
+      } else if (output.length) {
+        output[output.length - 1].push(node);
+      }
+      return output;
+    },
+    [],
+  );
 
   // TODO: filter the one without #card tag
 
