@@ -3,13 +3,12 @@ import remarkFrontmatter from "remark-frontmatter";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
-import { select } from "unist-util-select";
-import YAML from "yaml";
-import { visit } from "unist-util-visit";
 import { remove } from "unist-util-remove";
+import { select, selectAll } from "unist-util-select";
+import YAML from "yaml";
 
-import { BASIC_NOTE_TYPE, IDeck, INote } from "./model";
 import { remarkTagLink, TagLink } from "./lib/remark-tag-link";
+import { BASIC_NOTE_TYPE, IDeck, INote } from "./model";
 
 import type {
   Content,
@@ -20,6 +19,10 @@ import type {
 
 function isH1(node: Content): boolean {
   return node.type === "heading" && node.depth === 1;
+}
+
+function isH2(node: Content): boolean {
+  return node.type === "heading" && node.depth === 2;
 }
 
 async function toHtml(nodes: Array<Content>): Promise<string> {
@@ -35,31 +38,84 @@ async function toHtml(nodes: Array<Content>): Promise<string> {
   return unified().use(rehypeStringify).stringify(rehypeAst);
 }
 
+function extractFieldName(node: Heading): string {
+  return (node.children.find((n) => n.type === "tagLink")!! as TagLink).data
+    .name;
+}
+
+const BASIC_CARD_TAG = "card";
+const CUSTOM_CARD_TAG_PREFIX = "card-";
+
+function isBasicCardTag(tag: string): boolean {
+  return tag === BASIC_CARD_TAG;
+}
+
+function extractCustomCardType(tag: string): string | undefined {
+  if (tag.startsWith(CUSTOM_CARD_TAG_PREFIX)) {
+    return tag.substring(CUSTOM_CARD_TAG_PREFIX.length);
+  }
+}
+
 async function toNote(nodes: Array<Content>): Promise<INote | undefined> {
   const heading = nodes[0] as Heading;
-  const headingTags = new Set<string>();
-  visit(heading, "tagLink", (node: TagLink) => {
-    headingTags.add(node.data.name);
-  });
-
-  if (!headingTags.has("card")) {
+  const headingTags = selectAll("tagLink", heading).map(
+    (n) => (n as TagLink).data.name,
+  );
+  if (
+    !headingTags.find(isBasicCardTag) &&
+    !headingTags.find(extractCustomCardType)
+  ) {
     return;
   }
+
   // TODO: remove the surrounding spaces as well.
-  remove(heading, (n) => n.type === "tagLink" && n.data.name === "card");
+  remove(heading, (n) => n.type === "tagLink");
 
-  const tags = new Set<string>();
-  visit({ type: "root", children: nodes }, "tagLink", (node: TagLink) => {
-    tags.add(node.data.name);
-  });
+  const tags = headingTags.filter(
+    (t) => !isBasicCardTag(t) && !extractCustomCardType(t),
+  );
 
-  const front = await toHtml(heading.children);
-  const back = await toHtml(nodes.slice(1));
+  if (headingTags.find(isBasicCardTag)) {
+    const front = await toHtml(heading.children);
+    const back = await toHtml(nodes.slice(1));
+
+    return {
+      ...BASIC_NOTE_TYPE,
+      values: [front, back],
+      tags,
+    };
+  }
+
+  // Custom card
+  const customNoteTypeName: string = headingTags
+    .map(extractCustomCardType)
+    .find((t) => !!t)!!;
+
+  // Split fields based on ATX Heading 2.
+  const fieldMds = nodes
+    .slice(1)
+    .reduce<Array<Array<Content>>>((output, node) => {
+      if (isH2(node)) {
+        output.push([node]);
+      } else if (output.length) {
+        output[output.length - 1].push(node);
+      }
+      return output;
+    }, []);
 
   return {
-    ...BASIC_NOTE_TYPE,
-    values: [front, back],
-    tags: Array.from(tags),
+    typeName: customNoteTypeName,
+    fields: fieldMds.map((fieldMd) => extractFieldName(fieldMd[0] as Heading)),
+    values: await Promise.all(
+      fieldMds.map((fieldMd) =>
+        toHtml(
+          ((fieldMd[0] as Heading).children as Content[]).concat(
+            fieldMd.slice(1),
+          ),
+        ),
+      ),
+    ),
+    tags,
   };
 }
 

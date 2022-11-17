@@ -2,15 +2,15 @@
 
 ignored
 
-# Note 1 #card #tag-in-header
+# Note 1 #card #tag-in-header-1 #tag-in-header-2
 
-n1 text #tag-inline
+n1 text #not-tag-inline
 
 ## n1 h2
 
 n1 text
 
-#tag
+#not-tag
 
 # #card Note 2
 
