@@ -61,21 +61,21 @@ async function toNote(nodes: Array<Content>): Promise<INote | undefined> {
   const headingTags = selectAll("tagLink", heading).map(
     (n) => (n as TagLink).data.name,
   );
-  if (
-    !headingTags.find(isBasicCardTag) &&
-    !headingTags.find(extractCustomCardType)
-  ) {
+
+  if (!headingTags.length) {
+    return;
+  }
+
+  const cardTag = headingTags[0]!!;
+  const tags = headingTags.slice(1);
+  if (!isBasicCardTag(cardTag) && !extractCustomCardType(cardTag)) {
     return;
   }
 
   // TODO: remove the surrounding spaces as well.
   remove(heading, (n) => n.type === "tagLink");
 
-  const tags = headingTags.filter(
-    (t) => !isBasicCardTag(t) && !extractCustomCardType(t),
-  );
-
-  if (headingTags.find(isBasicCardTag)) {
+  if (isBasicCardTag(cardTag)) {
     const front = await toHtml(heading.children);
     const back = await toHtml(nodes.slice(1));
 
@@ -87,9 +87,6 @@ async function toNote(nodes: Array<Content>): Promise<INote | undefined> {
   }
 
   // Custom card
-  const customNoteTypeName: string = headingTags
-    .map(extractCustomCardType)
-    .find((t) => !!t)!!;
 
   // Split fields based on ATX Heading 2.
   const fieldMds = nodes
@@ -104,7 +101,7 @@ async function toNote(nodes: Array<Content>): Promise<INote | undefined> {
     }, []);
 
   return {
-    typeName: customNoteTypeName,
+    typeName: extractCustomCardType(cardTag)!!,
     fields: fieldMds.map((fieldMd) => extractFieldName(fieldMd[0] as Heading)),
     values: await Promise.all(
       fieldMds.map((fieldMd) =>

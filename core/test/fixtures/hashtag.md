@@ -21,3 +21,7 @@ n1 text
 # #card Note 4 **#not-tag**
 
 # #card Note 5 `#not-tag`
+
+# #tag-in-header #card ignored
+
+`#card` must be the first tag.
