@@ -8,9 +8,31 @@ notes:
     tags:
       - tag-in-header-1
       - tag-in-header-2
+
   - typeName: Basic
     fields: [Front, Back]
     values:
       - " Note 2"
       - <h2>n2 h2</h2>
+    tags: []
+
+  - typeName: Basic
+    fields: [Front, Back]
+    values:
+      - " Note 3 \n<em>#not-tag</em>"
+      - ""
+    tags: []
+
+  - typeName: Basic
+    fields: [Front, Back]
+    values:
+      - " Note 4 \n<strong>#not-tag</strong>"
+      - ""
+    tags: []
+
+  - typeName: Basic
+    fields: [Front, Back]
+    values:
+      - " Note 5 \n<code>#not-tag</code>"
+      - ""
     tags: []

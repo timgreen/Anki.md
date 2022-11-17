@@ -15,3 +15,9 @@ n1 text
 # #card Note 2
 
 ## n2 h2
+
+# #card Note 3 _#not-tag_
+
+# #card Note 4 **#not-tag**
+
+# #card Note 5 `#not-tag`
