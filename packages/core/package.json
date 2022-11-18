@@ -1,26 +1,12 @@
 {
   "name": "@anki.md/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Anki.md core library.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "tsup": {
-    "entry": [
-      "src/index.ts"
-    ],
-    "format": [
-      "esm",
-      "cjs"
-    ],
-    "splitting": false,
-    "sourcemap": false,
-    "dts": true,
-    "clean": true,
-    "minify": true
-  },
   "type": "module",
   "sideEffects": false,
   "scripts": {
