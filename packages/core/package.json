@@ -14,7 +14,8 @@
     "splitting": false,
     "sourcemap": false,
     "dts": true,
-    "clean": true
+    "clean": true,
+    "minify": true
   },
   "type": "module",
   "sideEffects": false,
