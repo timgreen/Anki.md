@@ -1,4 +1,6 @@
 import { Command, Flags } from "@oclif/core";
+import { ankiConnectSync, parse } from "@anki.md/core";
+import * as fs from "fs";
 
 export default class Sync extends Command {
   static description = "Sync to Anki Desktop via AnkiConnect.";
@@ -17,6 +19,10 @@ export default class Sync extends Command {
   public async run(): Promise<void> {
     const { argv } = await this.parse(Sync);
 
-    this.log(argv.join(","));
+    for (const input of argv) {
+      this.log(input);
+      const deck = await parse(String(fs.readFileSync(input)));
+      await ankiConnectSync(deck);
+    }
   }
 }

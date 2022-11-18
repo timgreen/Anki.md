@@ -1,22 +1,24 @@
 {
   "name": "@anki.md/cli",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Anki.md CLI.",
   "author": " @timgreen",
   "bin": {
-    "ankimd": "./bin/run"
+    "ankimd": "./bin/run.js"
   },
   "homepage": "https://github.com/timgreen/Anki.md",
   "license": "MIT",
+  "type": "module",
   "main": "dist/index.js",
   "repository": "timgreen/Anki.md",
   "files": [
-    "/bin",
+    "/bin/run.js",
     "/dist",
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
   "dependencies": {
+    "@anki.md/core": "^0.1.2",
     "@oclif/core": "^1.19.1",
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-plugins": "^2.1.6"
@@ -47,8 +49,8 @@
     ],
     "topicSeparator": " ",
     "topics": {
-      "hello": {
-        "description": "Say hello to the world and others"
+      "sync": {
+        "description": "Sync to Anki Desktop via AnkiConnect."
       }
     }
   },
