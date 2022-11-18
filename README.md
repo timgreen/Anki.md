@@ -18,7 +18,12 @@ The markdown format for Anki cards.
   - [ ] Simple front/back card
   - [ ] Custom note types / fields
 
-## Related Projects
 
-- https://github.com/reuseman/flashcards-obsidian, highly inspired by it.
+## Inspired by
+
+- https://github.com/reuseman/flashcards-obsidian
 - https://github.com/lukesmurray/markdown-anki-decks
+
+## Similar Projects
+
+- https://github.com/chenlijun99/autoanki
