@@ -8,7 +8,7 @@ import { select, selectAll } from "unist-util-select";
 import YAML from "yaml";
 
 import { remarkTagLink, TagLink } from "./lib/remark-tag-link";
-import { BASIC_NOTE_TYPE, IDeck, INote } from "./model";
+import { BASIC_NOTE_TYPE, IDeck, IFrontmatterConfig, INote } from "./model";
 
 import type {
   Content,
@@ -118,10 +118,6 @@ async function toNote(nodes: Array<Content>): Promise<INote | undefined> {
 
 const DEFAULT_DECK_NAME = "Default";
 
-interface IFrontmatterConfig {
-  deckName?: string;
-}
-
 function parseFrontmatter(mdast: MdastRoot): IFrontmatterConfig | undefined {
   const yamlConfig = (select("yaml", mdast) as FrontmatterContent)?.value;
   if (yamlConfig) {
@@ -157,5 +153,6 @@ export async function parse(content: string): Promise<IDeck> {
   return {
     deckName: frontmatterConfig?.deckName || DEFAULT_DECK_NAME,
     notes,
+    frontmatterConfig,
   };
 }

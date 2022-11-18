@@ -1,2 +1,4 @@
 deckName: Deck name from frontmatter
 notes: []
+frontmatterConfig:
+  deckName: Deck name from frontmatter

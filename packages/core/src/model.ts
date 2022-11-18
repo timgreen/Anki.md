@@ -1,8 +1,14 @@
-import { stringify } from "yaml/dist/stringify/stringify";
+import { ModelName, NewModel } from "@autoanki/anki-connect/dist/model";
+
+export interface IFrontmatterConfig {
+  deckName?: string;
+  models?: Record<ModelName, Omit<NewModel, "modelName" | "isCloze">>;
+}
 
 export interface IDeck {
   deckName: string;
   notes: INote[];
+  frontmatterConfig?: IFrontmatterConfig;
 }
 
 export interface INoteType {
