@@ -1,18 +1,10 @@
-# oclif-hello-world
-
-oclif example Hello World CLI
+# @anki.md/cli
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/oclif-hello-world.svg)](https://npmjs.org/package/oclif-hello-world)
-[![CircleCI](https://circleci.com/gh/oclif/hello-world/tree/main.svg?style=shield)](https://circleci.com/gh/oclif/hello-world/tree/main)
-[![Downloads/week](https://img.shields.io/npm/dw/oclif-hello-world.svg)](https://npmjs.org/package/oclif-hello-world)
-[![License](https://img.shields.io/npm/l/oclif-hello-world.svg)](https://github.com/oclif/hello-world/blob/main/package.json)
+[![Version](https://img.shields.io/npm/v/@anki.md/cli.svg)](https://npmjs.org/package/@anki.md/cli)
+[![License](https://img.shields.io/npm/l/@anki.md/cli.svg)](https://github.com/timgreen/Anki.md/blob/main/packages/cli/package.json)
 
-<!-- toc -->
-
-- [Usage](#usage)
-- [Commands](#commands)
-<!-- tocstop -->
+@anki.md CLI `ankimd`.
 
 # Usage
 
@@ -36,58 +28,8 @@ USAGE
 
 <!-- commands -->
 
-- [`ankimd hello PERSON`](#ankimd-hello-person)
-- [`ankimd hello world`](#ankimd-hello-world)
 - [`ankimd help [COMMAND]`](#ankimd-help-command)
-- [`ankimd plugins`](#ankimd-plugins)
-- [`ankimd plugins:install PLUGIN...`](#ankimd-pluginsinstall-plugin)
-- [`ankimd plugins:inspect PLUGIN...`](#ankimd-pluginsinspect-plugin)
-- [`ankimd plugins:install PLUGIN...`](#ankimd-pluginsinstall-plugin-1)
-- [`ankimd plugins:link PLUGIN`](#ankimd-pluginslink-plugin)
-- [`ankimd plugins:uninstall PLUGIN...`](#ankimd-pluginsuninstall-plugin)
-- [`ankimd plugins:uninstall PLUGIN...`](#ankimd-pluginsuninstall-plugin-1)
-- [`ankimd plugins:uninstall PLUGIN...`](#ankimd-pluginsuninstall-plugin-2)
-- [`ankimd plugins update`](#ankimd-plugins-update)
-
-## `ankimd hello PERSON`
-
-Say hello
-
-```
-USAGE
-  $ ankimd hello [PERSON] -f <value>
-
-ARGUMENTS
-  PERSON  Person to say hello to
-
-FLAGS
-  -f, --from=<value>  (required) Who is saying hello
-
-DESCRIPTION
-  Say hello
-
-EXAMPLES
-  $ oex hello friend --from oclif
-  hello friend from oclif! (./src/commands/hello/index.ts)
-```
-
-_See code: [dist/commands/hello/index.ts](https://github.com/timgreen/Anki.md/blob/v0.0.0/dist/commands/hello/index.ts)_
-
-## `ankimd hello world`
-
-Say hello world
-
-```
-USAGE
-  $ ankimd hello world
-
-DESCRIPTION
-  Say hello world
-
-EXAMPLES
-  $ ankimd hello world
-  hello world! (./src/commands/hello/world.ts)
-```
+- [`ankimd sync FILE`](#ankimd-sync-file)
 
 ## `ankimd help [COMMAND]`
 
@@ -107,236 +49,28 @@ DESCRIPTION
   Display help for ankimd.
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.18/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.19/src/commands/help.ts)_
 
-## `ankimd plugins`
+## `ankimd sync FILE`
 
-List installed plugins.
+Sync to Anki Desktop via AnkiConnect.
 
 ```
 USAGE
-  $ ankimd plugins [--core]
+  $ ankimd sync [FILE]
 
-FLAGS
-  --core  Show core plugins.
+ARGUMENTS
+  FILE  Markdown files
 
 DESCRIPTION
-  List installed plugins.
+  Sync to Anki Desktop via AnkiConnect.
 
 EXAMPLES
-  $ ankimd plugins
+  $ ankimd sync deckA.md
+
+  $ ankimd sync deckA.md deckB.md
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.1.6/src/commands/plugins/index.ts)_
-
-## `ankimd plugins:install PLUGIN...`
-
-Installs a plugin into the CLI.
-
-```
-USAGE
-  $ ankimd plugins:install PLUGIN...
-
-ARGUMENTS
-  PLUGIN  Plugin to install.
-
-FLAGS
-  -f, --force    Run yarn install with force flag.
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Installs a plugin into the CLI.
-  Can be installed from npm or a git url.
-
-  Installation of a user-installed plugin will override a core plugin.
-
-  e.g. If you have a core plugin that has a 'hello' command, installing a user-installed plugin with a 'hello' command
-  will override the core plugin implementation. This is useful if a user needs to update core plugin functionality in
-  the CLI without the need to patch and update the whole CLI.
-
-
-ALIASES
-  $ ankimd plugins add
-
-EXAMPLES
-  $ ankimd plugins:install myplugin
-
-  $ ankimd plugins:install https://github.com/someuser/someplugin
-
-  $ ankimd plugins:install someuser/someplugin
-```
-
-## `ankimd plugins:inspect PLUGIN...`
-
-Displays installation properties of a plugin.
-
-```
-USAGE
-  $ ankimd plugins:inspect PLUGIN...
-
-ARGUMENTS
-  PLUGIN  [default: .] Plugin to inspect.
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Displays installation properties of a plugin.
-
-EXAMPLES
-  $ ankimd plugins:inspect myplugin
-```
-
-## `ankimd plugins:install PLUGIN...`
-
-Installs a plugin into the CLI.
-
-```
-USAGE
-  $ ankimd plugins:install PLUGIN...
-
-ARGUMENTS
-  PLUGIN  Plugin to install.
-
-FLAGS
-  -f, --force    Run yarn install with force flag.
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Installs a plugin into the CLI.
-  Can be installed from npm or a git url.
-
-  Installation of a user-installed plugin will override a core plugin.
-
-  e.g. If you have a core plugin that has a 'hello' command, installing a user-installed plugin with a 'hello' command
-  will override the core plugin implementation. This is useful if a user needs to update core plugin functionality in
-  the CLI without the need to patch and update the whole CLI.
-
-
-ALIASES
-  $ ankimd plugins add
-
-EXAMPLES
-  $ ankimd plugins:install myplugin
-
-  $ ankimd plugins:install https://github.com/someuser/someplugin
-
-  $ ankimd plugins:install someuser/someplugin
-```
-
-## `ankimd plugins:link PLUGIN`
-
-Links a plugin into the CLI for development.
-
-```
-USAGE
-  $ ankimd plugins:link PLUGIN
-
-ARGUMENTS
-  PATH  [default: .] path to plugin
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Links a plugin into the CLI for development.
-  Installation of a linked plugin will override a user-installed or core plugin.
-
-  e.g. If you have a user-installed or core plugin that has a 'hello' command, installing a linked plugin with a 'hello'
-  command will override the user-installed or core plugin implementation. This is useful for development work.
-
-
-EXAMPLES
-  $ ankimd plugins:link myplugin
-```
-
-## `ankimd plugins:uninstall PLUGIN...`
-
-Removes a plugin from the CLI.
-
-```
-USAGE
-  $ ankimd plugins:uninstall PLUGIN...
-
-ARGUMENTS
-  PLUGIN  plugin to uninstall
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Removes a plugin from the CLI.
-
-ALIASES
-  $ ankimd plugins unlink
-  $ ankimd plugins remove
-```
-
-## `ankimd plugins:uninstall PLUGIN...`
-
-Removes a plugin from the CLI.
-
-```
-USAGE
-  $ ankimd plugins:uninstall PLUGIN...
-
-ARGUMENTS
-  PLUGIN  plugin to uninstall
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Removes a plugin from the CLI.
-
-ALIASES
-  $ ankimd plugins unlink
-  $ ankimd plugins remove
-```
-
-## `ankimd plugins:uninstall PLUGIN...`
-
-Removes a plugin from the CLI.
-
-```
-USAGE
-  $ ankimd plugins:uninstall PLUGIN...
-
-ARGUMENTS
-  PLUGIN  plugin to uninstall
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Removes a plugin from the CLI.
-
-ALIASES
-  $ ankimd plugins unlink
-  $ ankimd plugins remove
-```
-
-## `ankimd plugins update`
-
-Update installed plugins.
-
-```
-USAGE
-  $ ankimd plugins update [-h] [-v]
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Update installed plugins.
-```
+_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/v0.0.0/dist/commands/sync.ts)_
 
 <!-- commandsstop -->
