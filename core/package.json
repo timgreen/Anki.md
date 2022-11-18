@@ -40,6 +40,7 @@
     "tsup": "^6.5.0"
   },
   "dependencies": {
+    "@autoanki/anki-connect": "^0.1.0",
     "rehype-sanitize": "^5.0.1",
     "rehype-stringify": "^9.0.3",
     "remark": "^14.0.2",
