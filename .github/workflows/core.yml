@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  core:
+  test:
     runs-on: ubuntu-latest
 
     strategy:
@@ -20,7 +20,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - working-directory: ./core
+      - working-directory: ./packages/core
         run: |
           npm ci
           npm run build --if-present
