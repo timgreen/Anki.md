@@ -27,7 +27,7 @@
     "url": "git+https://github.com/timgreen/Anki.md.git"
   },
   "author": "@timgreen",
-  "license": "GPL-3.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/timgreen/Anki.md/issues"
   },
