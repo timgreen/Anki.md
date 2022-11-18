@@ -3,12 +3,12 @@ notes:
   - modelName: Basic
     inOrderFields: [Front, Back]
     values:
-      - "Note 1 "
-      - "<p>n1 text</p>\n<h2>n1 h2</h2>\n<p>n1 text</p>"
+      Front: "Note 1 "
+      Back: "<p>n1 text</p>\n<h2>n1 h2</h2>\n<p>n1 text</p>"
     tags: []
   - modelName: Basic
     inOrderFields: [Front, Back]
     values:
-      - " Note 2"
-      - <h2>n2 h2</h2>
+      Front: " Note 2"
+      Back: <h2>n2 h2</h2>
     tags: []

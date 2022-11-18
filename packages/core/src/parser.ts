@@ -81,7 +81,10 @@ async function toNote(nodes: Array<Content>): Promise<INote | undefined> {
 
     return {
       ...BASIC_MODEL,
-      values: [front, back],
+      values: {
+        Front: front,
+        Back: back,
+      },
       tags,
     };
   }
@@ -99,20 +102,27 @@ async function toNote(nodes: Array<Content>): Promise<INote | undefined> {
       }
       return output;
     }, []);
+  const fields = await Promise.all(
+    fieldMds.map(async (fieldMd) => {
+      const heading = fieldMd[0] as Heading;
+      return {
+        name: extractFieldName(heading),
+        value: await toHtml(
+          (heading.children as Content[]).concat(fieldMd.slice(1)),
+        ),
+      };
+    }),
+  );
 
   return {
     modelName: extractCustomModelName(cardTag)!!,
-    inOrderFields: fieldMds.map((fieldMd) =>
-      extractFieldName(fieldMd[0] as Heading),
-    ),
-    values: await Promise.all(
-      fieldMds.map((fieldMd) =>
-        toHtml(
-          ((fieldMd[0] as Heading).children as Content[]).concat(
-            fieldMd.slice(1),
-          ),
-        ),
-      ),
+    inOrderFields: fields.map((f) => f.name),
+    values: fields.reduce(
+      (record, f) => {
+        record[f.name] = f.value;
+        return record;
+      },
+      {} as Record<string, string>,
     ),
     tags,
   };

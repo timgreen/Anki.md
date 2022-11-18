@@ -1,12 +1,12 @@
 import { invoke, ModelTypes, NoteTypes } from "@autoanki/anki-connect";
 
-import { IDeck, INoteType, noteToRecord } from "../model";
+import { IDeck, INoteType } from "../model";
 
 function toNewNotes(deck: IDeck): NoteTypes.NewNote[] {
   return deck.notes.map((n) => ({
     deckName: deck.deckName,
     modelName: n.modelName,
-    fields: noteToRecord(n),
+    fields: n.values,
     tags: n.tags,
   }));
 }

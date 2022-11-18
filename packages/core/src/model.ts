@@ -17,7 +17,7 @@ export interface INoteType {
 }
 
 export interface INote extends INoteType {
-  values: string[];
+  values: Record<string, string>;
   tags: string[];
 }
 
@@ -25,11 +25,3 @@ export const BASIC_MODEL: INoteType = {
   modelName: "Basic",
   inOrderFields: ["Front", "Back"],
 };
-
-export function noteToRecord(note: INote): Record<string, string> {
-  const record: Record<string, string> = {};
-  note.inOrderFields.forEach(
-    (field, index) => (record[field] = note.values[index]),
-  );
-  return record;
-}

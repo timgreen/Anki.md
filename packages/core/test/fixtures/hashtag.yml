@@ -3,8 +3,8 @@ notes:
   - modelName: Basic
     inOrderFields: [Front, Back]
     values:
-      - "Note 1 \n \n "
-      - "<p>n1 text </p>\n<h2>n1 h2</h2>\n<p>n1 text</p>"
+      Front: "Note 1 \n \n "
+      Back: "<p>n1 text </p>\n<h2>n1 h2</h2>\n<p>n1 text</p>"
     tags:
       - tag-in-header-1
       - tag-in-header-2
@@ -12,27 +12,27 @@ notes:
   - modelName: Basic
     inOrderFields: [Front, Back]
     values:
-      - " Note 2"
-      - <h2>n2 h2</h2>
+      Front: " Note 2"
+      Back: <h2>n2 h2</h2>
     tags: []
 
   - modelName: Basic
     inOrderFields: [Front, Back]
     values:
-      - " Note 3 \n<em>#not-tag</em>"
-      - ""
+      Front: " Note 3 \n<em>#not-tag</em>"
+      Back: ""
     tags: []
 
   - modelName: Basic
     inOrderFields: [Front, Back]
     values:
-      - " Note 4 \n<strong>#not-tag</strong>"
-      - ""
+      Front: " Note 4 \n<strong>#not-tag</strong>"
+      Back: ""
     tags: []
 
   - modelName: Basic
     inOrderFields: [Front, Back]
     values:
-      - " Note 5 \n<code>#not-tag</code>"
-      - ""
+      Front: " Note 5 \n<code>#not-tag</code>"
+      Back: ""
     tags: []
