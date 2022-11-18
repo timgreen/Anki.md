@@ -8,7 +8,7 @@ import { select, selectAll } from "unist-util-select";
 import YAML from "yaml";
 
 import { remarkTagLink, TagLink } from "./lib/remark-tag-link";
-import { BASIC_NOTE_TYPE, IDeck, IFrontmatterConfig, INote } from "./model";
+import { BASIC_MODEL, IDeck, IFrontmatterConfig, INote } from "./model";
 
 import type {
   Content,
@@ -50,7 +50,7 @@ function isBasicCardTag(tag: string): boolean {
   return tag === BASIC_CARD_TAG;
 }
 
-function extractCustomCardType(tag: string): string | undefined {
+function extractCustomModelName(tag: string): string | undefined {
   if (tag.startsWith(CUSTOM_CARD_TAG_PREFIX)) {
     return tag.substring(CUSTOM_CARD_TAG_PREFIX.length);
   }
@@ -68,7 +68,7 @@ async function toNote(nodes: Array<Content>): Promise<INote | undefined> {
 
   const cardTag = headingTags[0]!!;
   const tags = headingTags.slice(1);
-  if (!isBasicCardTag(cardTag) && !extractCustomCardType(cardTag)) {
+  if (!isBasicCardTag(cardTag) && !extractCustomModelName(cardTag)) {
     return;
   }
 
@@ -80,7 +80,7 @@ async function toNote(nodes: Array<Content>): Promise<INote | undefined> {
     const back = await toHtml(nodes.slice(1));
 
     return {
-      ...BASIC_NOTE_TYPE,
+      ...BASIC_MODEL,
       values: [front, back],
       tags,
     };
@@ -101,8 +101,10 @@ async function toNote(nodes: Array<Content>): Promise<INote | undefined> {
     }, []);
 
   return {
-    typeName: extractCustomCardType(cardTag)!!,
-    fields: fieldMds.map((fieldMd) => extractFieldName(fieldMd[0] as Heading)),
+    modelName: extractCustomModelName(cardTag)!!,
+    inOrderFields: fieldMds.map((fieldMd) =>
+      extractFieldName(fieldMd[0] as Heading),
+    ),
     values: await Promise.all(
       fieldMds.map((fieldMd) =>
         toHtml(

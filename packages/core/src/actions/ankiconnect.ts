@@ -5,7 +5,7 @@ import { IDeck, INoteType, noteToRecord } from "../model";
 function toNewNotes(deck: IDeck): NoteTypes.NewNote[] {
   return deck.notes.map((n) => ({
     deckName: deck.deckName,
-    modelName: n.typeName,
+    modelName: n.modelName,
     fields: noteToRecord(n),
     tags: n.tags,
   }));
@@ -15,13 +15,13 @@ function createDefaultCardTemplateForNoteType(
   noteType: INoteType,
 ): ModelTypes.CardTemplate {
   return {
-    Name: `${noteType.typeName} Card`,
-    Front: `{{${noteType.fields[0]}}}`,
+    Name: `${noteType.modelName} Card`,
+    Front: `{{${noteType.inOrderFields[0]}}}`,
     Back: `{{FrontSide}}
 
 <hr id=answer>
 
-${noteType.fields
+${noteType.inOrderFields
   .slice(1)
   .map((f) => `{{${f}}}`)
   .join("<br>")}`,
@@ -47,13 +47,13 @@ export async function ankiConnectSync(
 
   await Promise.all(
     deck.notes.map((n) => {
-      if (!modelNames[n.typeName]) {
+      if (!modelNames[n.modelName]) {
         return invoke({
           action: "createModel",
           version: 6,
           request: {
-            modelName: n.typeName,
-            inOrderFields: n.fields,
+            modelName: n.modelName,
+            inOrderFields: n.inOrderFields,
             isCloze: false,
             cardTemplates: [createDefaultCardTemplateForNoteType(n)],
             css: "",

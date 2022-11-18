@@ -12,8 +12,8 @@ export interface IDeck {
 }
 
 export interface INoteType {
-  typeName: string;
-  fields: string[];
+  modelName: string;
+  inOrderFields: string[];
 }
 
 export interface INote extends INoteType {
@@ -21,13 +21,15 @@ export interface INote extends INoteType {
   tags: string[];
 }
 
-export const BASIC_NOTE_TYPE: INoteType = {
-  typeName: "Basic",
-  fields: ["Front", "Back"],
+export const BASIC_MODEL: INoteType = {
+  modelName: "Basic",
+  inOrderFields: ["Front", "Back"],
 };
 
 export function noteToRecord(note: INote): Record<string, string> {
   const record: Record<string, string> = {};
-  note.fields.forEach((field, index) => (record[field] = note.values[index]));
+  note.inOrderFields.forEach(
+    (field, index) => (record[field] = note.values[index]),
+  );
   return record;
 }
