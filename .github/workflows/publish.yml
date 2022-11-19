@@ -18,7 +18,7 @@ jobs:
           registry-url: "https://registry.npmjs.org"
 
       - working-directory: ./packages/core
-        if: "startsWith(github.tag, '@anki.md/core@')"
+        if: "startsWith(github.ref_name, '@anki.md/core@')"
         run: |
           npm ci
           npm run build
@@ -27,7 +27,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - working-directory: ./packages/cli
-        if: "startsWith(github.tag, '@anki.md/cli@')"
+        if: "startsWith(github.ref_name, '@anki.md/cli@')"
         run: |
           npm i
           npm run prepack
