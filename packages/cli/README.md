@@ -4,6 +4,7 @@
 [![Version](https://img.shields.io/npm/v/@anki.md/cli.svg)](https://npmjs.org/package/@anki.md/cli)
 [![main](https://github.com/timgreen/Anki.md/actions/workflows/cli.yml/badge.svg?branch=main)](https://github.com/timgreen/Anki.md/actions/workflows/cli.yml)
 [![License](https://img.shields.io/npm/l/@anki.md/cli.svg)](https://github.com/timgreen/Anki.md/blob/main/packages/cli/package.json)
+
 @anki.md CLI `ankimd`.
 
 # Usage
@@ -15,7 +16,7 @@ $ npm install -g @anki.md/cli
 $ ankimd COMMAND
 running command...
 $ ankimd (--version)
-@anki.md/cli/0.0.1 linux-x64 node-v18.10.0
+@anki.md/cli/0.1.0 linux-x64 node-v18.10.0
 $ ankimd --help [COMMAND]
 USAGE
   $ ankimd COMMAND
@@ -310,6 +311,6 @@ EXAMPLES
   $ ankimd sync deckA.md deckB.md
 ```
 
-_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/v0.0.1/dist/commands/sync.ts)_
+_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/v0.1.0/dist/commands/sync.ts)_
 
 <!-- commandsstop -->
