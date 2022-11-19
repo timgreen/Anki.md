@@ -1,0 +1,78 @@
+{
+  "name": "@anki.md/cli",
+  "version": "0.0.1",
+  "description": "Anki.md CLI.",
+  "author": " @timgreen",
+  "bin": {
+    "ankimd": "./bin/run.js"
+  },
+  "homepage": "https://github.com/timgreen/Anki.md",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "repository": "timgreen/Anki.md",
+  "files": [
+    "/bin/run.js",
+    "/dist",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "dependencies": {
+    "@anki.md/core": "^0.1.2",
+    "@oclif/core": "^1.19.1",
+    "@oclif/plugin-help": "^5",
+    "@oclif/plugin-not-found": "^2.3.9",
+    "@oclif/plugin-plugins": "^2.1.6",
+    "@oclif/plugin-warn-if-update-available": "^2.0.14"
+  },
+  "devDependencies": {
+    "@oclif/test": "^2.2.10",
+    "@types/chai": "^4",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.18.3",
+    "chai": "^4",
+    "eslint": "^7.32.0",
+    "eslint-config-oclif": "^4",
+    "eslint-config-oclif-typescript": "^1.0.3",
+    "mocha": "^9",
+    "oclif": "^3",
+    "shx": "^0.3.3",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.4.1",
+    "typescript": "^4.8.4"
+  },
+  "oclif": {
+    "bin": "ankimd",
+    "dirname": "ankimd",
+    "commands": "./dist/commands",
+    "plugins": [
+      "@oclif/plugin-help",
+      "@oclif/plugin-plugins",
+      "@oclif/plugin-not-found",
+      "@oclif/plugin-warn-if-update-available"
+    ],
+    "topicSeparator": " ",
+    "topics": {
+      "sync": {
+        "description": "Sync to Anki Desktop via AnkiConnect."
+      }
+    }
+  },
+  "scripts": {
+    "build": "shx rm -rf dist && tsc -b",
+    "lint": "eslint . --ext .ts --config .eslintrc",
+    "postpack": "shx rm -f oclif.manifest.json",
+    "posttest": "npm run lint",
+    "prepack": "npm run build && oclif manifest && oclif readme",
+    "test": "mocha --forbid-only \"test/**/*.test.ts\"",
+    "version": "oclif readme && git add README.md"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "bugs": "https://github.com/timgreen/Anki.md/issues",
+  "keywords": [
+    "oclif"
+  ],
+  "types": "dist/index.d.ts"
+}
