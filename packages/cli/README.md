@@ -29,8 +29,38 @@ USAGE
 
 <!-- commands -->
 
+- [`ankimd autocomplete [SHELL]`](#ankimd-autocomplete-shell)
 - [`ankimd help [COMMAND]`](#ankimd-help-command)
 - [`ankimd sync FILE`](#ankimd-sync-file)
+
+## `ankimd autocomplete [SHELL]`
+
+display autocomplete installation instructions
+
+```
+USAGE
+  $ ankimd autocomplete [SHELL] [-r]
+
+ARGUMENTS
+  SHELL  shell type
+
+FLAGS
+  -r, --refresh-cache  Refresh cache (ignores displaying instructions)
+
+DESCRIPTION
+  display autocomplete installation instructions
+
+EXAMPLES
+  $ ankimd autocomplete
+
+  $ ankimd autocomplete bash
+
+  $ ankimd autocomplete zsh
+
+  $ ankimd autocomplete --refresh-cache
+```
+
+_See code: [@oclif/plugin-autocomplete](https://github.com/oclif/plugin-autocomplete/blob/v1.3.6/src/commands/autocomplete/index.ts)_
 
 ## `ankimd help [COMMAND]`
 
