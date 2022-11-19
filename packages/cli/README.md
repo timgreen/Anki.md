@@ -2,8 +2,8 @@
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/@anki.md/cli.svg)](https://npmjs.org/package/@anki.md/cli)
+[![main](https://github.com/timgreen/Anki.md/actions/workflows/cli.yml/badge.svg?branch=main)](https://github.com/timgreen/Anki.md/actions/workflows/cli.yml)
 [![License](https://img.shields.io/npm/l/@anki.md/cli.svg)](https://github.com/timgreen/Anki.md/blob/main/packages/cli/package.json)
-
 @anki.md CLI `ankimd`.
 
 # Usage
