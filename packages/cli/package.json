@@ -51,6 +51,7 @@
       "@oclif/plugin-not-found",
       "@oclif/plugin-warn-if-update-available"
     ],
+    "repositoryPrefix": "<%- repo %>/blob/@anki.md/cli@<%- version %>/packages/cli/src<%- commandPath.substring(4) %>",
     "topicSeparator": " ",
     "topics": {
       "sync": {

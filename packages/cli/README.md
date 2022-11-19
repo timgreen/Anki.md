@@ -311,6 +311,6 @@ EXAMPLES
   $ ankimd sync deckA.md deckB.md
 ```
 
-_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/v0.1.1/dist/commands/sync.ts)_
+_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/@anki.md/cli@0.1.1/packages/cli/src/commands/sync.ts)_
 
 <!-- commandsstop -->
