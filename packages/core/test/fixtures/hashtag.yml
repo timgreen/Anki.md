@@ -8,6 +8,7 @@ notes:
     tags:
       - tag-in-header-1
       - tag-in-header-2
+    medias: {}
 
   - modelName: Basic
     inOrderFields: [Front, Back]
@@ -15,6 +16,7 @@ notes:
       Front: " Note 2"
       Back: <h2>n2 h2</h2>
     tags: []
+    medias: {}
 
   - modelName: Basic
     inOrderFields: [Front, Back]
@@ -22,6 +24,7 @@ notes:
       Front: " Note 3 \n<em>#not-tag</em>"
       Back: ""
     tags: []
+    medias: {}
 
   - modelName: Basic
     inOrderFields: [Front, Back]
@@ -29,6 +32,7 @@ notes:
       Front: " Note 4 \n<strong>#not-tag</strong>"
       Back: ""
     tags: []
+    medias: {}
 
   - modelName: Basic
     inOrderFields: [Front, Back]
@@ -36,3 +40,4 @@ notes:
       Front: " Note 5 \n<code>#not-tag</code>"
       Back: ""
     tags: []
+    medias: {}

@@ -8,7 +8,14 @@ import { select, selectAll } from "unist-util-select";
 import YAML from "yaml";
 
 import { remarkTagLink, TagLink } from "./lib/remark-tag-link";
-import { BASIC_MODEL, IDeck, IFrontmatterConfig, INote } from "./model";
+import {
+  BASIC_MODEL,
+  IDeck,
+  IFrontmatterConfig,
+  INote,
+  MediaName,
+  MediaInfo,
+} from "./model";
 
 import type {
   Content,
@@ -56,6 +63,16 @@ function extractCustomModelName(tag: string): string | undefined {
   }
 }
 
+function processAndExtraMedias(
+  nodes: Array<Content>,
+): Record<MediaName, MediaInfo> {
+  const medias: Record<MediaName, MediaInfo> = {};
+
+  // TODO: impl
+
+  return medias;
+}
+
 async function toNote(nodes: Array<Content>): Promise<INote | undefined> {
   const heading = nodes[0] as Heading;
   const headingTags = selectAll("tagLink", heading).map(
@@ -75,6 +92,8 @@ async function toNote(nodes: Array<Content>): Promise<INote | undefined> {
   // TODO: remove the surrounding spaces as well.
   remove(heading, (n) => n.type === "tagLink");
 
+  const medias = processAndExtraMedias(nodes);
+
   if (isBasicCardTag(cardTag)) {
     const front = await toHtml(heading.children);
     const back = await toHtml(nodes.slice(1));
@@ -86,6 +105,7 @@ async function toNote(nodes: Array<Content>): Promise<INote | undefined> {
         Back: back,
       },
       tags,
+      medias,
     };
   }
 
@@ -125,6 +145,7 @@ async function toNote(nodes: Array<Content>): Promise<INote | undefined> {
       {} as Record<string, string>,
     ),
     tags,
+    medias,
   };
 }
 

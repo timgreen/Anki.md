@@ -16,9 +16,17 @@ export interface INoteType {
   inOrderFields: string[];
 }
 
+export type MediaName = string;
+
+export interface MediaInfo {
+  url?: string;
+  absPath?: string;
+}
+
 export interface INote extends INoteType {
   values: Record<string, string>;
   tags: string[];
+  medias: Record<MediaName, MediaInfo>;
 }
 
 export const BASIC_MODEL: INoteType = {
