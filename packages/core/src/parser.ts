@@ -6,6 +6,8 @@ import { unified } from "unified";
 import { remove } from "unist-util-remove";
 import { select, selectAll } from "unist-util-select";
 import YAML from "yaml";
+import { isUri } from "valid-url";
+import fastHashCode from "fast-hash-code";
 
 import { remarkTagLink, TagLink } from "./lib/remark-tag-link";
 import {
@@ -21,6 +23,9 @@ import type {
   Content,
   FrontmatterContent,
   Heading,
+  Image,
+  Resource,
+  Alternative,
   Root as MdastRoot,
 } from "mdast";
 
@@ -63,12 +68,44 @@ function extractCustomModelName(tag: string): string | undefined {
   }
 }
 
+/**
+ * According to https://docs.ankiweb.net/importing.html#importing-media
+ * Do not put subdirectories in the media folder, or some features will not work.
+ *
+ * Use normalized filename instead to avoid collisions when flattening all the media files.
+ */
+function normalizedFilename(resource: Resource & Alternative): string {
+  const hash = fastHashCode(
+    JSON.stringify({
+      url: resource.url,
+      alt: resource.alt,
+      title: resource.title,
+    }),
+    {
+      forcePositive: true,
+    },
+  );
+  return `${hash}-${resource.url.split("/").at(-1)}`;
+}
+
 function processAndExtraMedias(
   nodes: Array<Content>,
 ): Record<MediaName, MediaInfo> {
   const medias: Record<MediaName, MediaInfo> = {};
+  for (const node of nodes) {
+    selectAll("image", node).forEach((i) => {
+      const image = i as Image;
+      const filename = normalizedFilename(image);
+      if (isUri(image.url)) {
+        medias[filename] = { url: image.url };
+      } else {
+        // TODO: convert relative path to abs path.
+        medias[filename] = { absPath: image.url };
+      }
 
-  // TODO: impl
+      image.url = filename;
+    });
+  }
 
   return medias;
 }

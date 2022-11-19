@@ -4,20 +4,32 @@ notes:
     inOrderFields: [Front, Back]
     values:
       Front: " Image: remote url"
-      Back: '<p><img src="https://raw.githubusercontent.com/timgreen/Anki.md/main/docs/overview.png" alt="remote image"></p>'
+      Back: '<p><img src="1365243335-overview.png" alt="remote image"></p>'
     tags: []
-    medias: {}
+    medias:
+      "1365243335-overview.png":
+        url: https://raw.githubusercontent.com/timgreen/Anki.md/main/docs/overview.png
+
   - modelName: Basic
     inOrderFields: [Front, Back]
     values:
       Front: " Image: local (same directory)"
-      Back: "<p><img src=\"./local.png\" alt=\"local image\">\n<img src=\"local.png\" alt=\"local image\"></p>"
+      Back: "<p><img src=\"2116272654-local.png\" alt=\"local image\">\n<img src=\"599261773-local.png\" alt=\"local image\"></p>"
     tags: []
-    medias: {}
+    medias:
+      "2116272654-local.png":
+        absPath: ./local.png
+      "599261773-local.png":
+        absPath: local.png
+
   - modelName: Basic
     inOrderFields: [Front, Back]
     values:
       Front: " Image: local (sub directory)"
-      Back: "<p><img src=\"./sub/local.png\" alt=\"local image\">\n<img src=\"sub/local.png\" alt=\"local image\"></p>"
+      Back: "<p><img src=\"117401597-local.png\" alt=\"local image\">\n<img src=\"1273721020-local.png\" alt=\"local image\"></p>"
     tags: []
-    medias: {}
+    medias:
+      "117401597-local.png":
+        absPath: "./sub/local.png"
+      "1273721020-local.png":
+        absPath: "sub/local.png"
