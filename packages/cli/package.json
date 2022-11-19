@@ -71,7 +71,9 @@
   },
   "bugs": "https://github.com/timgreen/Anki.md/issues",
   "keywords": [
-    "oclif"
+    "oclif",
+    "anki",
+    "markdown"
   ],
   "types": "dist/index.d.ts"
 }
