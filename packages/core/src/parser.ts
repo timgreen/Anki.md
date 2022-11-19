@@ -7,7 +7,7 @@ import { remove } from "unist-util-remove";
 import { select, selectAll } from "unist-util-select";
 import YAML from "yaml";
 import { isUri } from "valid-url";
-import fastHashCode from "fast-hash-code";
+import { fastHashCode } from "fast-hash-code";
 
 import { remarkTagLink, TagLink } from "./lib/remark-tag-link";
 import {
