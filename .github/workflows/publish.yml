@@ -3,7 +3,7 @@ name: Publish Packages to npmjs
 on:
   push:
     tags:
-      - "v*"
+      - "@anki.md/*@*"
 
 jobs:
   publish:
@@ -13,14 +13,24 @@ jobs:
 
       # Setup .npmrc file to publish to npm
       - uses: actions/setup-node@v3
-
         with:
           node-version: "18.x"
           registry-url: "https://registry.npmjs.org"
+
       - working-directory: ./packages/core
+        if: "startsWith(github.tag, '@anki.md/core@')"
         run: |
           npm ci
           npm run build
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - working-directory: ./packages/cli
+        if: "startsWith(github.tag, '@anki.md/cli@')"
+        run: |
+          npm ci
+          npm run prepack
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
