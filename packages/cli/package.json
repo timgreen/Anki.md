@@ -1,6 +1,6 @@
 {
   "name": "@anki.md/cli",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Anki.md CLI.",
   "author": " @timgreen",
   "bin": {
@@ -18,7 +18,7 @@
     "/oclif.manifest.json"
   ],
   "dependencies": {
-    "@anki.md/core": "^0.1.2",
+    "@anki.md/core": "^0.2.1",
     "@oclif/core": "^1.19.1",
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-not-found": "^2.3.9",
