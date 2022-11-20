@@ -18,9 +18,9 @@ notes:
     tags: []
     medias:
       "2116272654-local.png":
-        absPath: ./local.png
+        absPath: /<test>/local.png
       "599261773-local.png":
-        absPath: local.png
+        absPath: /<test>/local.png
 
   - modelName: Basic
     inOrderFields: [Front, Back]
@@ -30,6 +30,6 @@ notes:
     tags: []
     medias:
       "117401597-local.png":
-        absPath: "./sub/local.png"
+        absPath: "/<test>/sub/local.png"
       "1273721020-local.png":
-        absPath: "sub/local.png"
+        absPath: "/<test>/sub/local.png"
