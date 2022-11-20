@@ -6,17 +6,26 @@ The markdown format for Anki cards.
 
 ![Overview Forward](docs/overview.png)
 
+## Tools
+
+- CLI: [`ankimd`](packages/cli)
+- [ ] Obsidian Integration: TBD
+
+### Actions
+
+- 🔄 [WIP] Sync: md -> Anki Desktop (via [Anki Connect](https://ankiweb.net/shared/info/2055492159))
+- ➡️ [TODO] Convert: md -> deck apkg
+
 ## Features
 
-- Tools
-
-  - [ ] CLI: md -> deck apkg
-  - [ ] CLI: md -> Anki Desktop (via [Anki Connect](https://ankiweb.net/shared/info/2055492159))
-  - [ ] Obsidian Integration: md -> Anki Desktop
-
-- Supported Format
-  - [ ] Simple front/back card
-  - [ ] Custom note types / fields
+- 📄 Simple front / back card (with <kbd>#card</kbd>)
+- 🃏 Custom note types / fields (with <kbd>#card-_\<custom>_</kbd>)
+- 🛠️ Custom **card templates**
+- 🏷️ [TODO] Global and local **tags**
+- 🖼️ Support for **images**
+- 🎤 [TODO] Support for **audios**
+- 💻 [TODO] Support for **code syntax highlight**
+- 🟰 [TODO] Support for **math**
 
 ## Inspired by
 
