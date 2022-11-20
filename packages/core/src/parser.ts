@@ -97,16 +97,19 @@ function processAndExtraMedias(
 	for (const node of nodes) {
 		selectAll("image", node).forEach((i) => {
 			const image = i as Image;
-			const filename = normalizedFilename(image);
 			if (isUri(image.url)) {
+        const filename = normalizedFilename(image);
 				medias[filename] = { url: image.url };
+        image.url = filename;
 			} else {
-				medias[filename] = {
-					absPath: path.resolve(dirpath || path.resolve(), image.url),
-				};
+        const absPath = path.resolve(dirpath || path.resolve(), image.url)
+        const filename = normalizedFilename({
+          ...image,
+          url: path.relative(dirpath || path.resolve(), absPath)
+        });
+				medias[filename] = { absPath };
+        image.url = filename;
 			}
-
-			image.url = filename;
 		});
 	}
 
