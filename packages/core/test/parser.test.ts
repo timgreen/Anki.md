@@ -15,7 +15,7 @@ describe("Parser fixtures", () => {
             fs.readFileSync(`${dir}/${mdInputFile.replace(/\.md$/, ".yml")}`),
           ),
         );
-        expect(await parse(mdInput, '/<test>')).toEqual(json);
+        expect(await parse(mdInput, "/<test>")).toEqual(json);
       });
     });
 });
