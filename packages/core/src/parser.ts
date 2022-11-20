@@ -1,8 +1,10 @@
 import { fastHashCode } from "fast-hash-code";
+import * as path from "path";
+import rehypeMathjax from "rehype-mathjax";
 import rehypeStringify from "rehype-stringify";
 import remarkFrontmatter from "remark-frontmatter";
+import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
-import * as path from "path";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
 import { remove } from "unist-util-remove";
@@ -47,7 +49,10 @@ async function toHtml(nodes: Array<Content>): Promise<string> {
   // TODO: remove the surrounding spaces as well.
   remove(mdast, "tagLink");
 
-  const rehypeAst: any = await unified().use(remarkRehype).run(mdast);
+  const rehypeAst: any = await unified()
+    .use(remarkRehype)
+    .use(rehypeMathjax)
+    .run(mdast);
   return unified().use(rehypeStringify).stringify(rehypeAst);
 }
 
@@ -218,6 +223,7 @@ export async function parse(content: string, dirpath?: string): Promise<IDeck> {
     .use(remarkParse)
     .use(remarkFrontmatter, ["yaml"])
     .use(remarkTagLink)
+    .use(remarkMath)
     .parse(content);
   const frontmatterConfig = parseFrontmatter(mdast);
 

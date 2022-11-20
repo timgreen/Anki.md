@@ -7,8 +7,10 @@ const esModules = [
   "decode-named-character-reference",
   "fault",
   "hast-util-.*",
+  "hastscript",
   "html-void-elements",
   "is-plain-obj",
+  "longest-streak",
   "mdast-util-.*",
   "micromark.*",
   "property-information",
@@ -21,6 +23,7 @@ const esModules = [
   "unified",
   "unist-.*",
   "vfile",
+  "web-namespaces",
   "zwitch",
 ];
 
