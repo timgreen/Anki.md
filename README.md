@@ -25,7 +25,7 @@ The markdown format for Anki cards.
 - 🖼️ Support for **images**
 - 🎤 [TODO] Support for **audios**
 - 💻 [TODO] Support for **code syntax highlight**
-- 🟰 [TODO] Support for **math**
+- 🟰 Support for **math**
 
 ## Inspired by
 
