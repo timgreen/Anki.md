@@ -4,7 +4,8 @@ notes:
     inOrderFields: [Front, Back]
     values:
       Front: " Image: remote url"
-      Back: '<p><img src="1365243335-overview.png" alt="remote image"></p>'
+      Back: |-
+        <p><img src="1365243335-overview.png" alt="remote image"></p>
     tags: []
     medias:
       "1365243335-overview.png":
@@ -14,7 +15,9 @@ notes:
     inOrderFields: [Front, Back]
     values:
       Front: " Image: local (same directory)"
-      Back: "<p><img src=\"599261773-local.png\" alt=\"local image\">\n<img src=\"599261773-local.png\" alt=\"local image\"></p>"
+      Back: |-
+        <p><img src="599261773-local.png" alt="local image">
+        <img src="599261773-local.png" alt="local image"></p>
     tags: []
     medias:
       "599261773-local.png":
@@ -24,7 +27,9 @@ notes:
     inOrderFields: [Front, Back]
     values:
       Front: " Image: local (sub directory)"
-      Back: "<p><img src=\"1273721020-local.png\" alt=\"local image\">\n<img src=\"1273721020-local.png\" alt=\"local image\"></p>"
+      Back: |-
+        <p><img src="1273721020-local.png" alt="local image">
+        <img src="1273721020-local.png" alt="local image"></p>
     tags: []
     medias:
       "1273721020-local.png":

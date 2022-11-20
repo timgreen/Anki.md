@@ -4,7 +4,10 @@ notes:
     inOrderFields: [Front, Back]
     values:
       Front: "Note 1 \n \n "
-      Back: "<p>n1 text </p>\n<h2>n1 h2</h2>\n<p>n1 text</p>"
+      Back: |-
+        <p>n1 text </p>
+        <h2>n1 h2</h2>
+        <p>n1 text</p>
     tags:
       - tag-in-header-1
       - tag-in-header-2
