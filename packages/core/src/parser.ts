@@ -12,6 +12,7 @@ import { select, selectAll } from "unist-util-select";
 import { isUri } from "valid-url";
 import YAML from "yaml";
 
+import { rehypeAnkiMathjax } from "./lib/rehype-anki-mathjax";
 import { remarkTagLink, TagLink } from "./lib/remark-tag-link";
 import {
   BASIC_MODEL,
@@ -32,7 +33,11 @@ import type {
   Root as MdastRoot,
 } from "mdast";
 
-interface ParserConfig {}
+interface ParserConfig {
+  // Render mathjax as svg, instead of Anki native mathjax syntax.
+  // https://docs.ankiweb.net/math.html#mathjax.
+  useSvgMathjax?: boolean;
+}
 
 export class Parser {
   #config: ParserConfig;
@@ -53,7 +58,7 @@ export class Parser {
     return node.type === "heading" && node.depth === 2;
   }
 
-  private static async toHtml(nodes: Array<Content>): Promise<string> {
+  private async toHtml(nodes: Array<Content>): Promise<string> {
     const mdast: MdastRoot = {
       type: "root",
       children: nodes,
@@ -64,7 +69,7 @@ export class Parser {
 
     const rehypeAst: any = await unified()
       .use(remarkRehype)
-      .use(rehypeMathjax)
+      .use(this.#config.useSvgMathjax ? rehypeMathjax : rehypeAnkiMathjax)
       .run(mdast);
     return unified().use(rehypeStringify).stringify(rehypeAst);
   }
@@ -166,7 +171,7 @@ export class Parser {
     return [undefined, nodes];
   }
 
-  private static async toNote(
+  private async toNote(
     nodes: Array<Content>,
     dirpath?: string,
   ): Promise<INote | undefined> {
@@ -195,8 +200,8 @@ export class Parser {
     const medias = Parser.processAndExtraMedias(nodes, dirpath);
 
     if (Parser.isBasicCardTag(cardTag)) {
-      const front = await Parser.toHtml(heading.children);
-      const back = await Parser.toHtml(otherNodes);
+      const front = await this.toHtml(heading.children);
+      const back = await this.toHtml(otherNodes);
 
       return {
         ...BASIC_MODEL,
@@ -229,7 +234,7 @@ export class Parser {
         const heading = fieldMd[0] as Heading;
         return {
           name: Parser.extractFieldName(heading),
-          value: await Parser.toHtml(
+          value: await this.toHtml(
             (heading.children as Content[]).concat(fieldMd.slice(1)),
           ),
         };
@@ -293,7 +298,7 @@ export class Parser {
     );
 
     const notes = (
-      await Promise.all(noteMds.map((it) => Parser.toNote(it, dirpath)))
+      await Promise.all(noteMds.map((it) => this.toNote(it, dirpath)))
     ).filter((n) => !!n) as Array<INote>;
 
     return {
