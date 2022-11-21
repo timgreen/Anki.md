@@ -53,29 +53,26 @@ export async function ankiConnectSync(
         action: "createModel",
         version: 6,
         request: {
-          ...model,
+          modelName,
+          inOrderFields: model.inOrderFields,
+          css: model.css || "",
           isCloze: false,
-          modelName: modelName,
+          cardTemplates: Object.keys(model.templates).map((Name) => ({
+            Name,
+            ...model.templates[Name],
+          })),
         },
       });
       existingModelNames.add(modelName);
     } else {
       if (config?.updateModelTemplates) {
-        const templates: ModelTypes.ModelTemplates = {};
-        for (const t of model.cardTemplates) {
-          templates[t.Name || "default"] = {
-            Front: t.Front,
-            Back: t.Back,
-          };
-        }
-
         await invoke({
           action: "updateModelTemplates",
           version: 6,
           request: {
             model: {
               name: modelName,
-              templates,
+              templates: model.templates,
             },
           },
         });

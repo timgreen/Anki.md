@@ -1,8 +1,18 @@
-import { ModelName, NewModel } from "@autoanki/anki-connect/dist/model";
+import {
+  FieldName,
+  ModelName,
+  ModelTemplates,
+} from "@autoanki/anki-connect/dist/model";
+
+export interface NoteModel {
+  inOrderFields: FieldName[];
+  css?: string;
+  templates: ModelTemplates;
+}
 
 export interface IFrontmatterConfig {
   deckName?: string;
-  models?: Record<ModelName, Omit<NewModel, "modelName" | "isCloze">>;
+  models?: Record<ModelName, NoteModel>;
 }
 
 export interface IDeck {
