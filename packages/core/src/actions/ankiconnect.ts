@@ -19,8 +19,13 @@ ${noteType.inOrderFields
   };
 }
 
+export interface SyncConfig {
+  updateModelTemplates?: boolean;
+}
+
 export async function ankiConnectSync(
   deck: IDeck,
+  config?: SyncConfig,
 ): Promise<Array<NoteTypes.NoteId | null>> {
   await invoke({
     action: "createDeck",
@@ -42,17 +47,39 @@ export async function ankiConnectSync(
   // createModel defined in the frontmatter
   const models = deck.frontmatterConfig?.models || {};
   for (const modelName in models) {
+    const model = models[modelName];
     if (!existingModelNames.has(modelName)) {
       await invoke({
         action: "createModel",
         version: 6,
         request: {
-          ...models[modelName],
+          ...model,
           isCloze: false,
           modelName: modelName,
         },
       });
       existingModelNames.add(modelName);
+    } else {
+      if (config?.updateModelTemplates) {
+        const templates: ModelTypes.ModelTemplates = {};
+        for (const t of model.cardTemplates) {
+          templates[t.Name || "default"] = {
+            Front: t.Front,
+            Back: t.Back,
+          };
+        }
+
+        await invoke({
+          action: "updateModelTemplates",
+          version: 6,
+          request: {
+            model: {
+              name: modelName,
+              templates,
+            },
+          },
+        });
+      }
     }
   }
 
