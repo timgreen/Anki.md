@@ -25,7 +25,7 @@ jobs:
         if: steps.release.outputs.release_created
 
       - working-directory: ./packages/core
-        if: steps.release.outputs['packages/core-a--release_created'] }}
+        if: steps.release.outputs['packages/core-a--release_created']
         run: |
           npm ci
           npm run build
