@@ -1,5 +1,5 @@
 import { Command, Flags } from "@oclif/core";
-import { ankiConnectSync, parse } from "@anki.md/core";
+import { ankiConnectSync, Parser } from "@anki.md/core";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -17,12 +17,25 @@ export default class Sync extends Command {
     { name: "file", required: true, description: "Markdown files" },
   ];
 
+  static flags = {
+    math: Flags.string({
+      description:
+        "render math equations as SVG or use Anki native mathjax support.",
+      default: "native",
+      options: ["native", "svg"],
+      required: false,
+    }),
+  };
+
   public async run(): Promise<void> {
-    const { argv } = await this.parse(Sync);
+    const { argv, flags } = await this.parse(Sync);
+    const parser = new Parser({
+      useSvgMathjax: flags.math === "svg",
+    });
 
     for (const input of argv) {
       this.log(input);
-      const deck = await parse(
+      const deck = await parser.parse(
         String(fs.readFileSync(input)),
         path.dirname(input),
       );
