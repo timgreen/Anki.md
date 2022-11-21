@@ -1,8 +1,10 @@
 import * as fs from "fs";
 import YAML from "yaml";
-import { parse } from "../src/parser";
+import { Parser } from "../src/parser";
 
 describe("Parser fixtures", () => {
+  const parser = new Parser({});
+
   const dir = "./test/fixtures";
   const files = fs.readdirSync(dir);
   files
@@ -15,7 +17,7 @@ describe("Parser fixtures", () => {
             fs.readFileSync(`${dir}/${mdInputFile.replace(/\.md$/, ".yml")}`),
           ),
         );
-        expect(await parse(mdInput, "/<test>")).toEqual(json);
+        expect(await parser.parse(mdInput, "/<test>")).toEqual(json);
       });
     });
 });
