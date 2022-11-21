@@ -25,6 +25,9 @@ export default class Sync extends Command {
       options: ["native", "svg"],
       required: false,
     }),
+    "update-model-templates": Flags.boolean({
+      description: "update the card templates for the existing note models.",
+    }),
   };
 
   public async run(): Promise<void> {
@@ -39,7 +42,9 @@ export default class Sync extends Command {
         String(fs.readFileSync(input)),
         path.dirname(input),
       );
-      await ankiConnectSync(deck);
+      await ankiConnectSync(deck, {
+        updateModelTemplates: flags["update-model-templates"],
+      });
     }
   }
 }
