@@ -1,0 +1,58 @@
+deckName: Default
+notes:
+  - modelName: Basic
+    inOrderFields: [Front, Back]
+    noteId: "12345678901"
+    values:
+      Front: "Note A with id "
+      Back: |-
+        <p>na text</p>
+        <h2>na h2</h2>
+        <p>na text</p>
+    tags: []
+    medias: {}
+
+  - modelName: Basic
+    inOrderFields: [Front, Back]
+    values:
+      Front: "Note A without id "
+      Back: |-
+        <p>na text</p>
+        <h2>na h2</h2>
+        <p>na text</p>
+    tags: []
+    medias: {}
+
+  - modelName: Basic
+    inOrderFields: [Front, Back]
+    noteId: "12345678902"
+    values:
+      Front: " Note B with id"
+      Back: <h2>nb h2</h2>
+    tags: []
+    medias: {}
+
+  - modelName: Basic
+    inOrderFields: [Front, Back]
+    values:
+      Front: " Note B without id"
+      Back: <h2>nb h2</h2>
+    tags: []
+    medias: {}
+
+  - modelName: Basic
+    inOrderFields: [Front, Back]
+    noteId: "12345678903"
+    values:
+      Front: " Note C with id"
+      Back: ""
+    tags: []
+    medias: {}
+
+  - modelName: Basic
+    inOrderFields: [Front, Back]
+    values:
+      Front: " Note C without id"
+      Back: ""
+    tags: []
+    medias: {}

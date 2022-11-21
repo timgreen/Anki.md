@@ -121,6 +121,40 @@ function processAndExtraMedias(
   return medias;
 }
 
+/**
+ * NoteId is line next the card heading with format.
+ * `^\^[0-9]+$`
+ *
+ * @returns nodeId & updated nodes.
+ */
+function extractNoteId(
+  nodes: Array<Content>,
+): [string | undefined, Array<Content>] {
+  const [firstParagraph] = nodes;
+  if (!firstParagraph || firstParagraph.type !== "paragraph") {
+    return [undefined, nodes];
+  }
+  const [firstText] = firstParagraph.children;
+  if (!firstText || firstText.type !== "text") {
+    return [undefined, nodes];
+  }
+
+  const matches = firstText.value.match(/^\^([0-9]+)(\n|$)/);
+  if (matches && matches.length >= 2) {
+    const nodeId: string = matches[1];
+    firstText.value = firstText.value.slice(matches[0].length);
+    if (!firstText.value) {
+      firstParagraph.children = firstParagraph.children.slice(1);
+    }
+    if (!firstParagraph.children.length) {
+      return [nodeId, nodes.slice(1)];
+    }
+    return [nodeId, nodes];
+  }
+
+  return [undefined, nodes];
+}
+
 async function toNote(
   nodes: Array<Content>,
   dirpath?: string,
@@ -142,15 +176,17 @@ async function toNote(
 
   // TODO: remove the surrounding spaces as well.
   remove(heading, (n) => n.type === "tagLink");
+  const [noteId, otherNodes] = extractNoteId(nodes.slice(1));
 
   const medias = processAndExtraMedias(nodes, dirpath);
 
   if (isBasicCardTag(cardTag)) {
     const front = await toHtml(heading.children);
-    const back = await toHtml(nodes.slice(1));
+    const back = await toHtml(otherNodes);
 
     return {
       ...BASIC_MODEL,
+      noteId,
       values: {
         Front: front,
         Back: back,
@@ -163,16 +199,14 @@ async function toNote(
   // Custom card
 
   // Split fields based on ATX Heading 2.
-  const fieldMds = nodes
-    .slice(1)
-    .reduce<Array<Array<Content>>>((output, node) => {
-      if (isH2(node)) {
-        output.push([node]);
-      } else if (output.length) {
-        output[output.length - 1].push(node);
-      }
-      return output;
-    }, []);
+  const fieldMds = otherNodes.reduce<Array<Array<Content>>>((output, node) => {
+    if (isH2(node)) {
+      output.push([node]);
+    } else if (output.length) {
+      output[output.length - 1].push(node);
+    }
+    return output;
+  }, []);
   const fields = await Promise.all(
     fieldMds.map(async (fieldMd) => {
       const heading = fieldMd[0] as Heading;
@@ -188,6 +222,7 @@ async function toNote(
   return {
     modelName: extractCustomModelName(cardTag)!!,
     inOrderFields: fields.map((f) => f.name),
+    noteId,
     values: fields.reduce(
       (record, f) => {
         record[f.name] = f.value;

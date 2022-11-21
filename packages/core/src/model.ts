@@ -24,6 +24,7 @@ export interface MediaInfo {
 }
 
 export interface INote extends INoteType {
+  noteId?: string;
   values: Record<string, string>;
   tags: string[];
   medias: Record<MediaName, MediaInfo>;
