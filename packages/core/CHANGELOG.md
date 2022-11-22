@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.7.4](https://github.com/timgreen/Anki.md/compare/core/v0.7.3...core/v0.7.4) (2022-11-22)
+
+### Features
+
+- **parser:** Code syntax highlight, no css. ([ca9d5ef](https://github.com/timgreen/Anki.md/commit/ca9d5ef374591c29969b1cbf1e092621584efc15))
+
 ## [0.7.3](https://github.com/timgreen/Anki.md/compare/core/v0.7.2...core/v0.7.3) (2022-11-22)
 
 ### Features
