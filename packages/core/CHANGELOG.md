@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.7.1](https://github.com/timgreen/Anki.md/compare/core/v0.7.0...core/v0.7.1) (2022-11-22)
+
+### Features
+
+- **AnkiConnect:** Pass api origin via config. ([13f0ff5](https://github.com/timgreen/Anki.md/commit/13f0ff567d6f96d397fb5c1aaee7c22a252d2165)), closes [#14](https://github.com/timgreen/Anki.md/issues/14)
+
 ## [0.7.0](https://github.com/timgreen/Anki.md/compare/core-v0.6.0...core/v0.7.0) (2022-11-22)
 
 ### ⚠ BREAKING CHANGES
