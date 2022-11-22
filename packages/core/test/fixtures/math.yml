@@ -3,11 +3,25 @@ notes:
   - modelName: Basic
     inOrderFields: [Front, Back]
     values:
-      Front: " math"
+      Front: " math \n<code>$</code>\n &#x26; \n<code>$$</code>"
       Back: |-
         <p>Lift(<span class="math math-inline">\(L\)</span>) can be determined by Lift Coefficient (<span class="math math-inline">\(C_L\)</span>) like the following
         equation.</p>
         <div class="math math-display">\[L = \frac{1}{2} \rho v^2 S C_L\]</div>
+
+    tags: []
+    medias: {}
+
+  - modelName: Basic
+    inOrderFields: [Front, Back]
+    values:
+      Front: " \n<code>\\(\\)</code>\n &#x26; \n<code>\\[\\]</code>\n don't work"
+      Back: |-
+        <p>Lift((L)) can be determined by Lift Coefficient ((C_L)) like the following
+        equation.</p>
+        <p>[
+        L = \frac{1}{2} \rho v^2 S C_L
+        ]</p>
 
     tags: []
     medias: {}
