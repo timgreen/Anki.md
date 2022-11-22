@@ -10,6 +10,7 @@ jobs:
       - uses: google-github-actions/release-please-action@v3
         id: release
         with:
+          token: ${{ secrets.ANKIMD_GITHUB_TOKEN }}
           command: manifest
 
       # Credits: https://github.com/remarkablemark/release-please-extra-files-demo/blob/master/.github/workflows/release-please.yml
