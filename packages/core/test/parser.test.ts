@@ -5,7 +5,7 @@ import { Parser } from "../src/parser";
 describe("Parser fixtures", () => {
   const parser = new Parser({});
 
-  const dir = "./test/fixtures";
+  const dir = "./test/fixtures/parser";
   const files = fs.readdirSync(dir);
   files
     .filter((f) => f.endsWith(".md"))
