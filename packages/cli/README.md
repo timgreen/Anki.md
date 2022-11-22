@@ -10,28 +10,25 @@
 # Usage
 
 <!-- usage -->
-
 ```sh-session
 $ npm install -g @anki.md/cli
 $ ankimd COMMAND
 running command...
 $ ankimd (--version)
-@anki.md/cli/0.4.2 linux-x64 node-v18.12.1
+@anki.md/cli/0.4.4 linux-x64 node-v18.12.0
 $ ankimd --help [COMMAND]
 USAGE
   $ ankimd COMMAND
 ...
 ```
-
 <!-- usagestop -->
 
 # Commands
 
 <!-- commands -->
-
-- [`ankimd autocomplete [SHELL]`](#ankimd-autocomplete-shell)
-- [`ankimd help [COMMAND]`](#ankimd-help-command)
-- [`ankimd sync FILE`](#ankimd-sync-file)
+* [`ankimd autocomplete [SHELL]`](#ankimd-autocomplete-shell)
+* [`ankimd help [COMMAND]`](#ankimd-help-command)
+* [`ankimd sync FILE`](#ankimd-sync-file)
 
 ## `ankimd autocomplete [SHELL]`
 
@@ -107,6 +104,5 @@ EXAMPLES
   $ ankimd sync deckA.md deckB.md
 ```
 
-_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/@anki.md/cli@0.4.2/packages/cli/src/commands/sync.ts)_
-
+_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/@anki.md/cli@0.4.4/packages/cli/src/commands/sync.ts)_
 <!-- commandsstop -->
