@@ -37,6 +37,9 @@ export interface MediaInfo {
  * Location of a note in a source file.
  */
 export interface INotePosition {
+  /**
+   * Start from 1.
+   */
   startLine: number;
   endLine: number;
 }
@@ -46,6 +49,11 @@ export interface INote extends INoteType {
   values: Record<string, string>;
   tags: string[];
   medias: Record<MediaName, MediaInfo>;
+}
+
+export interface INoteIdAndPosition {
+  noteId?: string;
+  position: { startLine: number };
 }
 
 export const BASIC_MODEL: INoteType = {

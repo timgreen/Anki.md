@@ -1,0 +1,27 @@
+- position:
+    startLine: 5
+  noteId: "12345678901"
+- position:
+    startLine: 13
+  noteId: "1"
+- position:
+    startLine: 21
+  noteId: "12345678902"
+- position:
+    startLine: 25
+  noteId: "2"
+- position:
+    startLine: 29
+  noteId: "12345678903"
+- position:
+    startLine: 31
+  noteId: "3"
+- position:
+    startLine: 33
+  noteId: "4"
+- position:
+    startLine: 37
+  noteId: "5"
+- position:
+    startLine: 41
+  noteId: "6"
