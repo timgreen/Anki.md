@@ -1,4 +1,9 @@
-import { invoke, ModelTypes, NoteTypes } from "@autoanki/anki-connect";
+import {
+  invoke,
+  ModelTypes,
+  NoteTypes,
+  ApiOrigin,
+} from "@autoanki/anki-connect";
 
 import { IDeck, INoteType } from "../model";
 
@@ -21,6 +26,7 @@ ${noteType.inOrderFields
 
 export interface SyncConfig {
   updateModelTemplates?: boolean;
+  origin?: ApiOrigin;
 }
 
 export async function ankiConnectSync(
@@ -33,6 +39,7 @@ export async function ankiConnectSync(
     request: {
       deck: deck.deckName,
     },
+    origin: config?.origin,
   });
 
   const existingModelNames = new Set<string>();
@@ -40,6 +47,7 @@ export async function ankiConnectSync(
     action: "modelNamesAndIds",
     version: 6,
     request: undefined,
+    origin: config?.origin,
   })) {
     existingModelNames.add(modelName);
   }
@@ -62,6 +70,7 @@ export async function ankiConnectSync(
             ...model.templates[Name],
           })),
         },
+        origin: config?.origin,
       });
       existingModelNames.add(modelName);
     } else {
@@ -75,6 +84,7 @@ export async function ankiConnectSync(
               templates: model.templates,
             },
           },
+          origin: config?.origin,
         });
       }
     }
@@ -93,6 +103,7 @@ export async function ankiConnectSync(
           cardTemplates: [createDefaultCardTemplateForNoteType(note)],
           css: "",
         },
+        origin: config?.origin,
       });
       existingModelNames.add(note.modelName);
     }
@@ -110,6 +121,7 @@ export async function ankiConnectSync(
           path: media.absPath,
           url: media.url,
         },
+        origin: config?.origin,
       });
     }
   }
@@ -125,5 +137,6 @@ export async function ankiConnectSync(
         tags: n.tags,
       })),
     },
+    origin: config?.origin,
   });
 }
