@@ -1,13 +1,14 @@
 {
   "include-component-in-tag": true,
-  "include-v-in-tag": false,
-  "tag-separator": "@",
+  "include-v-in-tag": true,
+  "tag-separator": "/",
+  "release-type": "node",
   "packages": {
     "packages/core": {
-      "release-type": "node"
+      "component": "core"
     },
     "packages/cli": {
-      "release-type": "node"
+      "component": "cli"
     }
   },
   "bump-minor-pre-major": true,
