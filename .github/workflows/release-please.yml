@@ -14,21 +14,32 @@ jobs:
 
       # Credits: https://github.com/remarkablemark/release-please-extra-files-demo/blob/master/.github/workflows/release-please.yml
       - uses: actions/checkout@v3
-        if: ${{ steps.release.outputs.pr }}
+        if: steps.release.outputs.pr
         with:
           ref: ${{ fromJson(steps.release.outputs.pr).headBranchName }}
+      - uses: actions/setup-node@v3
+        if: steps.release.outputs.pr
+        with:
+          node-version: "18.x"
+          registry-url: "https://registry.npmjs.org"
       - name: Configure Git user
-        if: ${{ steps.release.outputs.pr }}
+        if: steps.release.outputs.pr
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git --no-pager show --name-only
       - name: Run CHANGELOG.md through Prettier
-        if: ${{ steps.release.outputs.pr }}
+        if: steps.release.outputs.pr
         run: |
           npx prettier --write packages/*/CHANGELOG.md
+      - name: Update cli/README
+        working-directory: ./packages/cli
+        if: steps.release.outputs.pr
+        run: |
+          npm i
+          npm run prepack
       - name: Commit and push
-        if: ${{ steps.release.outputs.pr }}
+        if: steps.release.outputs.pr
         run: |
           git add packages/*/CHANGELOG.md
           git commit -m 'chore: run CHANGELOG.md through Prettier' --no-verify
