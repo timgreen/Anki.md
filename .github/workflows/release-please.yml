@@ -29,22 +29,26 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git --no-pager show --name-only
-      - name: Run CHANGELOG.md through Prettier
+      - name: Run CHANGELOG.md through Prettier and commit
         if: steps.release.outputs.pr
         run: |
           npx prettier --write packages/*/CHANGELOG.md
+          git add packages/*/CHANGELOG.md
+          git commit -m 'chore: run CHANGELOG.md through Prettier.' --no-verify
       - name: Update cli/README
         working-directory: ./packages/cli
         if: steps.release.outputs.pr
         run: |
           npm i
           npm run prepack
-      - name: Commit and push
+      - name: Make sure the cli/README is up-to-date
         if: steps.release.outputs.pr
         run: |
-          git add packages/*/CHANGELOG.md
-          git commit -m 'chore: run CHANGELOG.md through Prettier' --no-verify
-          git push
+          git add packages/cli/README.md
+          git commit -m 'chore(cli): update README.' --no-verify || echo "no update"
+      - name: push
+        if: steps.release.outputs.pr
+        run: git push
 
       # The logic below handles the npm publication:
       - uses: actions/checkout@v3
