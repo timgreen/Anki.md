@@ -61,7 +61,7 @@ jobs:
           registry-url: "https://registry.npmjs.org"
         if: steps.release.outputs.release_created
       - working-directory: ./packages/core
-        if: steps.release.outputs['packages/core-a--release_created']
+        if: steps.release.outputs['packages/core--release_created']
         run: |
           npm ci
           npm run build
@@ -69,7 +69,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - working-directory: ./packages/cli
-        if: steps.release.outputs['packages/cli-a--release_created']
+        if: steps.release.outputs['packages/cli--release_created']
         run: |
           npm i
           npm run prepack
