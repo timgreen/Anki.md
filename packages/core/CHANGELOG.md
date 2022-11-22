@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.7.3](https://github.com/timgreen/Anki.md/compare/core/v0.7.2...core/v0.7.3) (2022-11-22)
+
+### Features
+
+- **AnkiConnect:** Option to update model styling. ([6cb5410](https://github.com/timgreen/Anki.md/commit/6cb54107446931b487d9b34e57f9311511c90f3c))
+
 ## [0.7.2](https://github.com/timgreen/Anki.md/compare/core/v0.7.1...core/v0.7.2) (2022-11-22)
 
 ### Features
