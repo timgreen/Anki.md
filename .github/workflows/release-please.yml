@@ -46,7 +46,9 @@ jobs:
           git commit -m 'chore(cli): update README.' --no-verify || echo "no update"
       - name: push
         if: steps.release.outputs.pr
-        run: git push
+        # Use personal access token to trigger workflows.
+        # See https://help.github.com/en/actions/reference/events-that-trigger-workflows#triggering-new-workflows-using-a-personal-access-token
+        run: git push https://${GITHUB_ACTOR}:${{ secrets.ANKIMD_GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}
 
       # The logic below handles the npm publication:
       - uses: actions/checkout@v3
