@@ -14,12 +14,12 @@ import YAML from "yaml";
 
 import { rehypeAnkiMathjax } from "./lib/rehype-anki-mathjax";
 import { remarkTagLink, TagLink } from "./lib/remark-tag-link";
-import { INotePosition } from "./model";
 import {
   BASIC_MODEL,
   IDeck,
   IFrontmatterConfig,
   INote,
+  INotePosition,
   MediaInfo,
   MediaName,
 } from "./model";
@@ -169,6 +169,7 @@ export class Parser {
 
   private async toNote(
     nodes: Array<Content>,
+    frontmatterConfig?: IFrontmatterConfig,
     dirpath?: string,
   ): Promise<INote | undefined> {
     const heading = nodes[0] as Heading;
@@ -182,7 +183,9 @@ export class Parser {
     }
 
     const cardTag = headingTags[0]!!;
-    const tags = headingTags.slice(1);
+    const localTags = headingTags.slice(1);
+    const globalTags = frontmatterConfig?.tags || [];
+    const tags = Array.from(new Set(localTags.concat(globalTags)));
     if (
       !Parser.isBasicCardTag(cardTag) &&
       !Parser.extractCustomModelName(cardTag)
@@ -301,7 +304,9 @@ export class Parser {
     );
 
     const notes = (
-      await Promise.all(noteMds.map((it) => this.toNote(it, dirpath)))
+      await Promise.all(
+        noteMds.map((it) => this.toNote(it, frontmatterConfig, dirpath)),
+      )
     ).filter((n) => !!n) as Array<INote>;
 
     return {

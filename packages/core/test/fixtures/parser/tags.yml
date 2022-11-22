@@ -1,0 +1,35 @@
+deckName: Default
+frontmatterConfig:
+  tags:
+    - global-tag-1
+    - global-tag-2
+notes:
+  - modelName: Basic
+    inOrderFields: [Front, Back]
+    values:
+      Front: "Note 1 \n "
+      Back: |-
+        <p>n1 text</p>
+        <h2>n1 h2</h2>
+        <p>n1 text</p>
+    tags:
+      - local-tag-1
+      - global-tag-1
+      - global-tag-2
+    medias: {}
+    position:
+      startLine: 11
+      endLine: 17
+  - modelName: Basic
+    inOrderFields: [Front, Back]
+    values:
+      Front: " Note 2 "
+      Back: <h2>n2 h2</h2>
+    tags:
+      - local-tag-2
+      - global-tag-1
+      - global-tag-2
+    medias: {}
+    position:
+      startLine: 19
+      endLine: 21

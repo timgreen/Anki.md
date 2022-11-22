@@ -13,6 +13,7 @@ export interface NoteModel {
 export interface IFrontmatterConfig {
   deckName?: string;
   models?: Record<ModelName, NoteModel>;
+  tags?: string[];
 }
 
 export interface IDeck {
