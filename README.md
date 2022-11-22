@@ -10,7 +10,7 @@ The markdown format for Anki cards.
 
 ## Tools
 
-- CLI: [`ankimd`](packages/cli)
+- CLI: [**`ankimd`**](packages/cli)
 - [ ] Obsidian Integration: TBD
 
 ### Actions
@@ -20,13 +20,13 @@ The markdown format for Anki cards.
 
 ## Features
 
-- 📄 Simple front / back card (with <kbd>#card</kbd>)
-- 🃏 Custom note types / fields (with <kbd>#card-_\<custom>_</kbd>)
+- 📄 Simple front / back card (with <kbd>**#card**</kbd>)
+- 🃏 Custom note types / fields (with <kbd>**#card-_\<custom>_**</kbd>)
 - 🛠️ Custom **card templates**
-- 🏷️ [TODO] Global and local **tags**
+- 🏷️ Global and local **tags**
 - 🖼️ Support for **images**
 - 🎤 [TODO] Support for **audios**
-- 💻 [TODO] Support for **code syntax highlight**
+- 💻 Support for **code syntax highlight**
 - 🟰 Support for **math**
 
 ## Inspired by
