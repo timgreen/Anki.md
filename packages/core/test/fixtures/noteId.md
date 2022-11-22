@@ -2,7 +2,7 @@
 
 ignored
 
-# Note A with id #card ^12345678901
+# #card Note A with id ^12345678901
 
 na text
 
@@ -10,7 +10,7 @@ na text
 
 na text
 
-# Note A without id #card
+# #card Note A without id
 
 na text
 

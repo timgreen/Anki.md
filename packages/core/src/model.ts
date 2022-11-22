@@ -33,8 +33,16 @@ export interface MediaInfo {
   absPath?: string;
 }
 
+/**
+ * Location of a note in a source file.
+ */
+export interface INotePosition {
+  startLine: number;
+  endLine: number;
+}
 export interface INote extends INoteType {
   noteId?: string;
+  position: INotePosition;
   values: Record<string, string>;
   tags: string[];
   medias: Record<MediaName, MediaInfo>;

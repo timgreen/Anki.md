@@ -4,24 +4,30 @@ notes:
     inOrderFields: [Front, Back]
     noteId: "12345678901"
     values:
-      Front: "Note A with id "
+      Front: " Note A with id"
       Back: |-
         <p>na text</p>
         <h2>na h2</h2>
         <p>na text</p>
     tags: []
     medias: {}
+    position:
+      startLine: 5
+      endLine: 11
 
   - modelName: Basic
     inOrderFields: [Front, Back]
     values:
-      Front: "Note A without id "
+      Front: " Note A without id"
       Back: |-
         <p>na text</p>
         <h2>na h2</h2>
         <p>na text</p>
     tags: []
     medias: {}
+    position:
+      startLine: 13
+      endLine: 19
 
   - modelName: Basic
     inOrderFields: [Front, Back]
@@ -31,6 +37,9 @@ notes:
       Back: <h2>nb h2</h2>
     tags: []
     medias: {}
+    position:
+      startLine: 21
+      endLine: 23
 
   - modelName: Basic
     inOrderFields: [Front, Back]
@@ -39,6 +48,9 @@ notes:
       Back: <h2>nb h2</h2>
     tags: []
     medias: {}
+    position:
+      startLine: 25
+      endLine: 27
 
   - modelName: Basic
     inOrderFields: [Front, Back]
@@ -48,6 +60,9 @@ notes:
       Back: ""
     tags: []
     medias: {}
+    position:
+      startLine: 29
+      endLine: 29
 
   - modelName: Basic
     inOrderFields: [Front, Back]
@@ -56,6 +71,9 @@ notes:
       Back: ""
     tags: []
     medias: {}
+    position:
+      startLine: 31
+      endLine: 31
 
   - modelName: Basic
     inOrderFields: [Front, Back]
@@ -64,6 +82,9 @@ notes:
       Back: <p>NoteId only contains numbers.</p>
     tags: []
     medias: {}
+    position:
+      startLine: 33
+      endLine: 35
 
   - modelName: Basic
     inOrderFields: [Front, Back]
@@ -72,6 +93,9 @@ notes:
       Back: <p>Missing a space before <code>^</code>.</p>
     tags: []
     medias: {}
+    position:
+      startLine: 37
+      endLine: 39
 
   - modelName: Basic
     inOrderFields: [Front, Back]
@@ -81,3 +105,6 @@ notes:
     tags:
       - tag
     medias: {}
+    position:
+      startLine: 41
+      endLine: 43

@@ -10,6 +10,9 @@ notes:
         <p>n1 text</p>
     tags: []
     medias: {}
+    position:
+      startLine: 5
+      endLine: 11
   - modelName: Basic
     inOrderFields: [Front, Back]
     values:
@@ -17,3 +20,6 @@ notes:
       Back: <h2>n2 h2</h2>
     tags: []
     medias: {}
+    position:
+      startLine: 13
+      endLine: 15

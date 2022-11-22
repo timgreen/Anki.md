@@ -10,6 +10,9 @@ notes:
     medias:
       "1365243335-overview.png":
         url: https://raw.githubusercontent.com/timgreen/Anki.md/main/docs/overview.png
+    position:
+      startLine: 1
+      endLine: 3
 
   - modelName: Basic
     inOrderFields: [Front, Back]
@@ -22,6 +25,9 @@ notes:
     medias:
       "599261773-local.png":
         absPath: /<test>/local.png
+    position:
+      startLine: 5
+      endLine: 8
 
   - modelName: Basic
     inOrderFields: [Front, Back]
@@ -34,3 +40,6 @@ notes:
     medias:
       "1273721020-local.png":
         absPath: "/<test>/sub/local.png"
+    position:
+      startLine: 10
+      endLine: 13

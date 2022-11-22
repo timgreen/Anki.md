@@ -14,6 +14,7 @@ import YAML from "yaml";
 
 import { rehypeAnkiMathjax } from "./lib/rehype-anki-mathjax";
 import { remarkTagLink, TagLink } from "./lib/remark-tag-link";
+import { INotePosition } from "./model";
 import {
   BASIC_MODEL,
   IDeck,
@@ -194,6 +195,10 @@ export class Parser {
     remove(heading, (n) => n.type === "tagLink");
 
     const medias = Parser.processAndExtraMedias(nodes, dirpath);
+    const position: INotePosition = {
+      startLine: nodes[0].position!!.start.line,
+      endLine: nodes.at(-1)!!.position!!.end.line,
+    };
 
     if (Parser.isBasicCardTag(cardTag)) {
       const front = await this.toHtml(heading.children);
@@ -202,6 +207,7 @@ export class Parser {
       return {
         ...BASIC_MODEL,
         noteId,
+        position,
         values: {
           Front: front,
           Back: back,
@@ -241,6 +247,7 @@ export class Parser {
       modelName: Parser.extractCustomModelName(cardTag)!!,
       inOrderFields: fields.map((f) => f.name),
       noteId,
+      position,
       values: fields.reduce(
         (record, f) => {
           record[f.name] = f.value;

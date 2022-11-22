@@ -12,6 +12,9 @@ notes:
       - tag-in-header-1
       - tag-in-header-2
     medias: {}
+    position:
+      startLine: 5
+      endLine: 13
 
   - modelName: Basic
     inOrderFields: [Front, Back]
@@ -20,6 +23,9 @@ notes:
       Back: <h2>n2 h2</h2>
     tags: []
     medias: {}
+    position:
+      startLine: 15
+      endLine: 17
 
   - modelName: Basic
     inOrderFields: [Front, Back]
@@ -28,6 +34,9 @@ notes:
       Back: ""
     tags: []
     medias: {}
+    position:
+      startLine: 19
+      endLine: 19
 
   - modelName: Basic
     inOrderFields: [Front, Back]
@@ -36,6 +45,9 @@ notes:
       Back: ""
     tags: []
     medias: {}
+    position:
+      startLine: 21
+      endLine: 21
 
   - modelName: Basic
     inOrderFields: [Front, Back]
@@ -44,3 +56,6 @@ notes:
       Back: ""
     tags: []
     medias: {}
+    position:
+      startLine: 23
+      endLine: 23
