@@ -1,5 +1,6 @@
 import { fastHashCode } from "fast-hash-code";
 import * as path from "path";
+import rehypeHighlight from "rehype-highlight";
 import rehypeMathjax from "rehype-mathjax";
 import rehypeStringify from "rehype-stringify";
 import remarkFrontmatter from "remark-frontmatter";
@@ -7,13 +8,12 @@ import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
-import rehypeHighlight from "rehype-highlight";
-
 import { remove } from "unist-util-remove";
 import { select, selectAll } from "unist-util-select";
 import { isUri } from "valid-url";
 import YAML from "yaml";
 
+import { rehypeAddHighlightCss } from "./lib/rehype-add-highlight-css";
 import { rehypeAnkiMathjax } from "./lib/rehype-anki-mathjax";
 import { remarkTagLink, TagLink } from "./lib/remark-tag-link";
 import {
@@ -74,7 +74,9 @@ export class Parser {
       .use(remarkRehype)
       .use(this.#config.useSvgMathjax ? rehypeMathjax : rehypeAnkiMathjax)
       .use(rehypeHighlight)
+      .use(rehypeAddHighlightCss)
       .run(mdast);
+
     return unified().use(rehypeStringify).stringify(rehypeAst);
   }
 

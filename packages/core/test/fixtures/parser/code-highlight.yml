@@ -21,7 +21,7 @@ notes:
       Back: |-
         <pre><code class="hljs language-bash"><span class="hljs-built_in">ls</span> <span class="hljs-built_in">dir</span>
         <span class="hljs-built_in">echo</span> <span class="hljs-string">"xxx"</span> > /dev/null
-        </code></pre>
+        </code></pre><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/github-dark.min.css">
     tags: []
     medias: {}
     position:
