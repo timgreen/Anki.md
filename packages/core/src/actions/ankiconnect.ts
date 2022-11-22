@@ -26,6 +26,7 @@ ${noteType.inOrderFields
 
 export interface SyncConfig {
   updateModelTemplates?: boolean;
+  updateModelStyling?: boolean;
   origin?: ApiOrigin;
 }
 
@@ -82,6 +83,19 @@ export async function ankiConnectSync(
             model: {
               name: modelName,
               templates: model.templates,
+            },
+          },
+          origin: config?.origin,
+        });
+      }
+      if (config?.updateModelStyling && model.css) {
+        await invoke({
+          action: "updateModelStyling",
+          version: 6,
+          request: {
+            model: {
+              name: modelName,
+              css: model.css,
             },
           },
           origin: config?.origin,
