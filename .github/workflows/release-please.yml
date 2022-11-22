@@ -41,10 +41,8 @@ jobs:
         run: |
           npm i
           npm run prepack
-      - name: Make sure the cli/README is up-to-date
-        if: steps.release.outputs.pr
-        run: |
-          git add packages/cli/README.md
+          npx prettier --write README.md
+          git add README.md
           git commit -m 'chore(cli): update README.' --no-verify || echo "no update"
       - name: push
         if: steps.release.outputs.pr
