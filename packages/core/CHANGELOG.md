@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.5](https://github.com/timgreen/Anki.md/compare/core/v0.7.4...core/v0.7.5) (2022-11-22)
+
+
+### Features
+
+* **parser:** Include highlight css when needed. ([8e51b92](https://github.com/timgreen/Anki.md/commit/8e51b92872a5e2cb88b12afa8b443d113de804ef))
+
 ## [0.7.4](https://github.com/timgreen/Anki.md/compare/core/v0.7.3...core/v0.7.4) (2022-11-22)
 
 ### Features
