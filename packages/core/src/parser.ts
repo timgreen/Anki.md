@@ -7,6 +7,8 @@ import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
+import rehypeHighlight from "rehype-highlight";
+
 import { remove } from "unist-util-remove";
 import { select, selectAll } from "unist-util-select";
 import { isUri } from "valid-url";
@@ -71,6 +73,7 @@ export class Parser {
     const rehypeAst: any = await unified()
       .use(remarkRehype)
       .use(this.#config.useSvgMathjax ? rehypeMathjax : rehypeAnkiMathjax)
+      .use(rehypeHighlight)
       .run(mdast);
     return unified().use(rehypeStringify).stringify(rehypeAst);
   }

@@ -11,6 +11,7 @@ const esModules = [
   "html-void-elements",
   "is-plain-obj",
   "longest-streak",
+  "lowlight",
   "mdast-util-.*",
   "micromark.*",
   "property-information",

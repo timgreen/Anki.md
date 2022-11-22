@@ -1,0 +1,29 @@
+deckName: Default
+notes:
+  - modelName: Basic
+    inOrderFields: [Front, Back]
+    values:
+      Front: " bash without language"
+      Back: |-
+        <pre><code>ls dir
+        echo "xxx" > /dev/null
+        </code></pre>
+    tags: []
+    medias: {}
+    position:
+      startLine: 1
+      endLine: 6
+
+  - modelName: Basic
+    inOrderFields: [Front, Back]
+    values:
+      Front: " bash with language"
+      Back: |-
+        <pre><code class="hljs language-bash"><span class="hljs-built_in">ls</span> <span class="hljs-built_in">dir</span>
+        <span class="hljs-built_in">echo</span> <span class="hljs-string">"xxx"</span> > /dev/null
+        </code></pre>
+    tags: []
+    medias: {}
+    position:
+      startLine: 8
+      endLine: 13
