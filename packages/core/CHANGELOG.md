@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.7.2](https://github.com/timgreen/Anki.md/compare/core/v0.7.1...core/v0.7.2) (2022-11-22)
+
+### Features
+
+- **parser:** Support global tags in frontmatter. ([5d7e0a0](https://github.com/timgreen/Anki.md/commit/5d7e0a0db279a787efaff1154daf522b56a2fb07))
+
 ## [0.7.1](https://github.com/timgreen/Anki.md/compare/core/v0.7.0...core/v0.7.1) (2022-11-22)
 
 ### Features
