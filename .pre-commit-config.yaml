@@ -13,9 +13,3 @@ repos:
     rev: "v3.0.0-alpha.4" # Use the sha or tag you want to point at
     hooks:
       - id: prettier
-
-exclude: |
-  (?x)^(
-    packages/cli/CHANGELOG.md|
-    packages/core/CHANGELOG.md
-  )$

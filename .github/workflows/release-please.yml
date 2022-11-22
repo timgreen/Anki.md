@@ -12,18 +12,38 @@ jobs:
         with:
           command: manifest
 
+      # Credits: https://github.com/remarkablemark/release-please-extra-files-demo/blob/master/.github/workflows/release-please.yml
+      - uses: actions/checkout@v3
+        if: ${{ steps.release.outputs.pr }}
+        with:
+          ref: ${{ fromJson(steps.release.outputs.pr).headBranchName }}
+      - name: Configure Git user
+        if: ${{ steps.release.outputs.pr }}
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git --no-pager show --name-only
+      - name: Run CHANGELOG.md through Prettier
+        if: ${{ steps.release.outputs.pr }}
+        run: |
+          npx prettier --write packages/*/CHANGELOG.md
+      - name: Commit and push
+        if: ${{ steps.release.outputs.pr }}
+        run: |
+          git add packages/*/CHANGELOG.md
+          git commit -m 'chore: run CHANGELOG.md through Prettier' --no-verify
+          git push
+
       # The logic below handles the npm publication:
       - uses: actions/checkout@v3
         # these if statements ensure that a publication only occurs when
         # a new release is created:
         if: steps.release.outputs.release_created
-
       - uses: actions/setup-node@v3
         with:
           node-version: "18.x"
           registry-url: "https://registry.npmjs.org"
         if: steps.release.outputs.release_created
-
       - working-directory: ./packages/core
         if: steps.release.outputs['packages/core-a--release_created']
         run: |
@@ -32,7 +52,6 @@ jobs:
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - working-directory: ./packages/cli
         if: steps.release.outputs['packages/cli-a--release_created']
         run: |
