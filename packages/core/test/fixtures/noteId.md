@@ -2,9 +2,8 @@
 
 ignored
 
-# Note A with id #card
+# Note A with id #card ^12345678901
 
-^12345678901
 na text
 
 ## na h2
@@ -19,9 +18,7 @@ na text
 
 na text
 
-# #card Note B with id
-
-^12345678902
+# #card Note B with id ^12345678902
 
 ## nb h2
 
@@ -29,8 +26,18 @@ na text
 
 ## nb h2
 
-# #card Note C with id
-
-^12345678903
+# #card Note C with id ^12345678903
 
 # #card Note C without id
+
+# #card Invalid id 1 ^abcd
+
+NoteId only contains numbers.
+
+# #card Invalid id 2 x^12345678900
+
+Missing a space before `^`.
+
+# #card Invalid id 3 ^12345678900 #tag
+
+NoteId has to be at the end of the heading.

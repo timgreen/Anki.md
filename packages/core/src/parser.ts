@@ -138,37 +138,32 @@ export class Parser {
   }
 
   /**
-   * NoteId is line next the card heading with format.
-   * `^\^[0-9]+$`
+   * NoteId is token at the end of card heading with format:
+   * `\s+\^[0-9]+$`
    *
-   * @returns nodeId & updated nodes.
+   * @returns nodeId, if present
    */
-  private static extractNoteId(
-    nodes: Array<Content>,
-  ): [string | undefined, Array<Content>] {
-    const [firstParagraph] = nodes;
-    if (!firstParagraph || firstParagraph.type !== "paragraph") {
-      return [undefined, nodes];
-    }
-    const [firstText] = firstParagraph.children;
-    if (!firstText || firstText.type !== "text") {
-      return [undefined, nodes];
+  private static extractNoteId(heading: Heading): string | undefined {
+    const lastText = heading.children.at(-1);
+    if (!lastText || lastText.type !== "text") {
+      return;
     }
 
-    const matches = firstText.value.match(/^\^([0-9]+)(\n|$)/);
+    const matches = lastText.value.match(/\s+\^([0-9]+)$/);
     if (matches && matches.length >= 2) {
       const nodeId: string = matches[1];
-      firstText.value = firstText.value.slice(matches[0].length);
-      if (!firstText.value) {
-        firstParagraph.children = firstParagraph.children.slice(1);
+      lastText.value = lastText.value.substring(
+        0,
+        lastText.value.length - matches[0].length,
+      );
+      if (!lastText.value) {
+        heading.children = heading.children.slice(
+          0,
+          heading.children.length - 1,
+        );
       }
-      if (!firstParagraph.children.length) {
-        return [nodeId, nodes.slice(1)];
-      }
-      return [nodeId, nodes];
+      return nodeId;
     }
-
-    return [undefined, nodes];
   }
 
   private async toNote(
@@ -176,6 +171,7 @@ export class Parser {
     dirpath?: string,
   ): Promise<INote | undefined> {
     const heading = nodes[0] as Heading;
+    const otherNodes = nodes.slice(1);
     const headingTags = selectAll("tagLink", heading).map(
       (n) => (n as TagLink).data.name,
     );
@@ -193,9 +189,9 @@ export class Parser {
       return;
     }
 
+    const noteId = Parser.extractNoteId(heading);
     // TODO: remove the surrounding spaces as well.
     remove(heading, (n) => n.type === "tagLink");
-    const [noteId, otherNodes] = Parser.extractNoteId(nodes.slice(1));
 
     const medias = Parser.processAndExtraMedias(nodes, dirpath);
 
