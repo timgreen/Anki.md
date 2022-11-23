@@ -28,6 +28,14 @@ export default class Sync extends Command {
     "update-model-templates": Flags.boolean({
       description: "update the card templates for the existing note models.",
     }),
+    "save-note-ids": Flags.boolean({
+      description:
+        "save the note id in markdown after sync. \nIt will be used to update note instead insert on next sync",
+      default: true,
+      required: false,
+      allowNo: true,
+      aliases: ["save-note-id"],
+    }),
   };
 
   public async run(): Promise<void> {
@@ -44,15 +52,17 @@ export default class Sync extends Command {
         updateModelTemplates: flags["update-model-templates"],
       });
 
-      // Save noteIds.
-      noteIds.forEach((noteId, index) => {
-        if (noteId) {
-          deck.notes[index].noteId = noteId;
+      if (flags["save-note-ids"]) {
+        // TODO: check if the source if readonly or remote.
+        noteIds.forEach((noteId, index) => {
+          if (noteId) {
+            deck.notes[index].noteId = noteId;
+          }
+        });
+        const updatedContent = updateNoteId(content, deck.notes);
+        if (content != updatedContent) {
+          fs.writeFileSync(input, updatedContent);
         }
-      });
-      const updatedContent = updateNoteId(content, deck.notes);
-      if (content != updatedContent) {
-        fs.writeFileSync(input, updatedContent);
       }
     }
   }
