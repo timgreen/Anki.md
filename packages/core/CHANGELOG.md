@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.1](https://github.com/timgreen/Anki.md/compare/core/v0.8.0...core/v0.8.1) (2022-11-23)
+
+
+### Bug Fixes
+
+* Code syntax highlight css injection. ([3f94b8a](https://github.com/timgreen/Anki.md/commit/3f94b8a4777fac44968d61b14bdf0ea0b3587abd))
+
 ## [0.8.0](https://github.com/timgreen/Anki.md/compare/core/v0.7.5...core/v0.8.0) (2022-11-23)
 
 ### ⚠ BREAKING CHANGES
