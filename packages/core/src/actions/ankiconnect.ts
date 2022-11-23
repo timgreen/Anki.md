@@ -33,7 +33,7 @@ export interface SyncConfig {
 export async function ankiConnectSync(
   deck: IDeck,
   config?: SyncConfig,
-): Promise<Array<NoteTypes.NoteId | null>> {
+): Promise<Array<NoteTypes.NoteId | undefined>> {
   await invoke({
     action: "createDeck",
     version: 6,
@@ -140,11 +140,28 @@ export async function ankiConnectSync(
     }
   }
 
-  return invoke({
+  const notesToUpdate = deck.notes.filter((note) => note.noteId);
+  const notesToInsert = deck.notes.filter((note) => !note.noteId);
+
+  for (const note of notesToUpdate) {
+    await invoke({
+      action: "updateNoteFields",
+      version: 6,
+      request: {
+        note: {
+          id: note.noteId!!,
+          fields: note.values,
+        },
+      },
+      origin: config?.origin,
+    });
+  }
+
+  const newNoteIds = await invoke({
     action: "addNotes",
     version: 6,
     request: {
-      notes: deck.notes.map((n) => ({
+      notes: notesToInsert.map((n) => ({
         deckName: deck.deckName,
         modelName: n.modelName,
         fields: n.values,
@@ -153,4 +170,11 @@ export async function ankiConnectSync(
     },
     origin: config?.origin,
   });
+  newNoteIds.forEach((newNoteId, index) => {
+    if (newNoteId) {
+      notesToInsert[index].noteId = newNoteId;
+    }
+  });
+
+  return deck.notes.map((n) => n.noteId);
 }

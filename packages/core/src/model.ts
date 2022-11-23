@@ -1,3 +1,4 @@
+import { NoteTypes } from "@autoanki/anki-connect";
 import {
   FieldName,
   ModelName,
@@ -53,7 +54,7 @@ export interface INote extends INoteType {
 }
 
 export interface INoteIdAndPosition {
-  noteId?: number;
+  noteId?: NoteTypes.NoteId;
   position: { startLine: number };
 }
 
