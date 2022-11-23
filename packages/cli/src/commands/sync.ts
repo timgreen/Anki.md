@@ -14,7 +14,7 @@ export default class Sync extends Command {
   ];
 
   static args = [
-    { name: "file", required: true, description: "Markdown files" },
+    { name: "files", required: true, description: "Markdown files" },
   ];
 
   static flags = {
@@ -30,7 +30,7 @@ export default class Sync extends Command {
     }),
     "save-note-ids": Flags.boolean({
       description:
-        "save the note id in markdown after sync. \nIt will be used to update note instead insert on next sync",
+        "save the note IDs in markdown after sync. \nIt will be used to update note instead insert on next sync",
       default: true,
       required: false,
       allowNo: true,
