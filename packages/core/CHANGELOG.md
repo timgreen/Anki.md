@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.8.0](https://github.com/timgreen/Anki.md/compare/core/v0.7.5...core/v0.8.0) (2022-11-23)
+
+### ⚠ BREAKING CHANGES
+
+- **NoteId:** Type string? -> number?.
+
+### Features
+
+- **AnkiConnect:** Update the existing notes. ([9b6108e](https://github.com/timgreen/Anki.md/commit/9b6108e02d9a1c3b4149e6c17fc0085725c686aa))
+
+### Code Refactoring
+
+- **NoteId:** Type string? -&gt; number?. ([db3c5db](https://github.com/timgreen/Anki.md/commit/db3c5db2b81fd9f99d3f822797eacdf9294582d2))
+
 ## [0.7.5](https://github.com/timgreen/Anki.md/compare/core/v0.7.4...core/v0.7.5) (2022-11-22)
 
 ### Features
