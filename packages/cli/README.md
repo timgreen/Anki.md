@@ -16,7 +16,7 @@ $ npm install -g @anki.md/cli
 $ ankimd COMMAND
 running command...
 $ ankimd (--version)
-@anki.md/cli/0.4.4 linux-x64 node-v18.12.1
+@anki.md/cli/0.4.5 linux-x64 node-v18.12.0
 $ ankimd --help [COMMAND]
 USAGE
   $ ankimd COMMAND
@@ -88,7 +88,7 @@ Sync to Anki Desktop via AnkiConnect.
 
 ```
 USAGE
-  $ ankimd sync [FILE] [--math native|svg] [--update-model-templates]
+  $ ankimd sync [FILE] [--math native|svg] [--update-model-templates] [--save-note-ids]
 
 ARGUMENTS
   FILE  Markdown files
@@ -96,6 +96,8 @@ ARGUMENTS
 FLAGS
   --math=<option>           [default: native] render math equations as SVG or use Anki native mathjax support.
                             <options: native|svg>
+  --[no-]save-note-ids      save the note id in markdown after sync.
+                            It will be used to update note instead insert on next sync
   --update-model-templates  update the card templates for the existing note models.
 
 DESCRIPTION
@@ -107,6 +109,6 @@ EXAMPLES
   $ ankimd sync deckA.md deckB.md
 ```
 
-_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/@anki.md/cli@0.4.4/packages/cli/src/commands/sync.ts)_
+_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/@anki.md/cli@0.4.5/packages/cli/src/commands/sync.ts)_
 
 <!-- commandsstop -->
