@@ -1,5 +1,5 @@
+import { ankiConnectSync, Parser, updateNoteId } from "@anki.md/core";
 import { Command, Flags } from "@oclif/core";
-import { ankiConnectSync, Parser } from "@anki.md/core";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -38,13 +38,22 @@ export default class Sync extends Command {
 
     for (const input of argv) {
       this.log(input);
-      const deck = await parser.parse(
-        String(fs.readFileSync(input)),
-        path.dirname(input),
-      );
-      await ankiConnectSync(deck, {
+      const content = String(fs.readFileSync(input));
+      const deck = await parser.parse(content, path.dirname(input));
+      const noteIds = await ankiConnectSync(deck, {
         updateModelTemplates: flags["update-model-templates"],
       });
+
+      // Save noteIds.
+      noteIds.forEach((noteId, index) => {
+        if (noteId) {
+          deck.notes[index].noteId = noteId;
+        }
+      });
+      const updatedContent = updateNoteId(content, deck.notes);
+      if (content != updatedContent) {
+        fs.writeFileSync(input, updatedContent);
+      }
     }
   }
 }
