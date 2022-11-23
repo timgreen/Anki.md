@@ -2,7 +2,7 @@ deckName: Default
 notes:
   - modelName: Basic
     inOrderFields: [Front, Back]
-    noteId: "12345678901"
+    noteId: 12345678901
     values:
       Front: " Note A with id"
       Back: |-
@@ -31,7 +31,7 @@ notes:
 
   - modelName: Basic
     inOrderFields: [Front, Back]
-    noteId: "12345678902"
+    noteId: 12345678902
     values:
       Front: " Note B with id"
       Back: <h2>nb h2</h2>
@@ -54,7 +54,7 @@ notes:
 
   - modelName: Basic
     inOrderFields: [Front, Back]
-    noteId: "12345678903"
+    noteId: 12345678903
     values:
       Front: " Note C with id"
       Back: ""

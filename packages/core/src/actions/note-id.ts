@@ -15,7 +15,7 @@ export function updateNoteId(
   const lines = input.split("\n");
   for (const { noteId, position } of noteIds) {
     const line = lines[position.startLine - 1];
-    const matches = line.match(/\s+\^([0-9]+)$/);
+    const matches = line.match(/\s+\^([1-9][0-9]*)$/);
     if (noteId) {
       if (matches) {
         // remove the existing noteId

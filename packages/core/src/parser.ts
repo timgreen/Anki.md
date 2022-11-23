@@ -145,19 +145,19 @@ export class Parser {
 
   /**
    * NoteId is token at the end of card heading with format:
-   * `\s+\^[0-9]+$`
+   * `\s+\^[1-9][0-9]*$`
    *
    * @returns nodeId, if present
    */
-  private static extractNoteId(heading: Heading): string | undefined {
+  private static extractNoteId(heading: Heading): number | undefined {
     const lastText = heading.children.at(-1);
     if (!lastText || lastText.type !== "text") {
       return;
     }
 
-    const matches = lastText.value.match(/\s+\^([0-9]+)$/);
+    const matches = lastText.value.match(/\s+\^([1-9][0-9]*)$/);
     if (matches && matches.length >= 2) {
-      const nodeId: string = matches[1];
+      const nodeId = parseInt(matches[1], 10);
       lastText.value = lastText.value.substring(
         0,
         lastText.value.length - matches[0].length,

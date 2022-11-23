@@ -45,7 +45,7 @@ export interface INotePosition {
   endLine: number;
 }
 export interface INote extends INoteType {
-  noteId?: string;
+  noteId?: number;
   position: INotePosition;
   values: Record<string, string>;
   tags: string[];
@@ -53,7 +53,7 @@ export interface INote extends INoteType {
 }
 
 export interface INoteIdAndPosition {
-  noteId?: string;
+  noteId?: number;
   position: { startLine: number };
 }
 

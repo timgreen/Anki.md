@@ -1,16 +1,16 @@
 - position:
     startLine: 5
-  noteId: "1"
+  noteId: 1
 - position:
     startLine: 13
 - position:
     startLine: 21
-  noteId: "2"
+  noteId: 2
 - position:
     startLine: 25
 - position:
     startLine: 29
-  noteId: "3"
+  noteId: 3
 - position:
     startLine: 31
 - position:
