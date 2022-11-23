@@ -2,10 +2,9 @@
 
 ## [0.4.6](https://github.com/timgreen/Anki.md/compare/cli/v0.4.5...cli/v0.4.6) (2022-11-23)
 
-
 ### Features
 
-* Command to remove note ids. ([92d51d9](https://github.com/timgreen/Anki.md/commit/92d51d9b92624460e3dd7ac5ec0c99ca2b49aa30))
+- Command to remove note ids. ([92d51d9](https://github.com/timgreen/Anki.md/commit/92d51d9b92624460e3dd7ac5ec0c99ca2b49aa30))
 
 ## [0.4.5](https://github.com/timgreen/Anki.md/compare/cli/v0.4.4...cli/v0.4.5) (2022-11-23)
 
