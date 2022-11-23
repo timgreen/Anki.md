@@ -16,7 +16,7 @@ $ npm install -g @anki.md/cli
 $ ankimd COMMAND
 running command...
 $ ankimd (--version)
-@anki.md/cli/0.4.5 linux-x64 node-v18.12.0
+@anki.md/cli/0.4.6 linux-x64 node-v18.12.0
 $ ankimd --help [COMMAND]
 USAGE
   $ ankimd COMMAND
@@ -31,7 +31,8 @@ USAGE
 
 - [`ankimd autocomplete [SHELL]`](#ankimd-autocomplete-shell)
 - [`ankimd help [COMMAND]`](#ankimd-help-command)
-- [`ankimd sync FILE`](#ankimd-sync-file)
+- [`ankimd rmids FILES`](#ankimd-rmids-files)
+- [`ankimd sync FILES`](#ankimd-sync-files)
 
 ## `ankimd autocomplete [SHELL]`
 
@@ -82,21 +83,43 @@ DESCRIPTION
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.19/src/commands/help.ts)_
 
-## `ankimd sync FILE`
+## `ankimd rmids FILES`
+
+Remove the note IDs.
+
+```
+USAGE
+  $ ankimd rmids [FILES]
+
+ARGUMENTS
+  FILES  Markdown files
+
+DESCRIPTION
+  Remove the note IDs.
+
+EXAMPLES
+  $ ankimd rmids deckA.md
+
+  $ ankimd rmids deckA.md deckB.md
+```
+
+_See code: [dist/commands/rmids.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.4.6/packages/cli/src/commands/rmids.ts)_
+
+## `ankimd sync FILES`
 
 Sync to Anki Desktop via AnkiConnect.
 
 ```
 USAGE
-  $ ankimd sync [FILE] [--math native|svg] [--update-model-templates] [--save-note-ids]
+  $ ankimd sync [FILES] [--math native|svg] [--update-model-templates] [--save-note-ids]
 
 ARGUMENTS
-  FILE  Markdown files
+  FILES  Markdown files
 
 FLAGS
   --math=<option>           [default: native] render math equations as SVG or use Anki native mathjax support.
                             <options: native|svg>
-  --[no-]save-note-ids      save the note id in markdown after sync.
+  --[no-]save-note-ids      save the note IDs in markdown after sync.
                             It will be used to update note instead insert on next sync
   --update-model-templates  update the card templates for the existing note models.
 
@@ -109,6 +132,6 @@ EXAMPLES
   $ ankimd sync deckA.md deckB.md
 ```
 
-_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/@anki.md/cli@0.4.5/packages/cli/src/commands/sync.ts)_
+_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.4.6/packages/cli/src/commands/sync.ts)_
 
 <!-- commandsstop -->
