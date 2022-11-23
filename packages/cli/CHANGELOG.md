@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.5](https://github.com/timgreen/Anki.md/compare/cli/v0.4.4...cli/v0.4.5) (2022-11-23)
+
+### Features
+
+- Flag to skip save note ids. ([4449bd6](https://github.com/timgreen/Anki.md/commit/4449bd6b8172ee36676a98958eb32425bb7ee26d))
+- Save noteIds after sync. ([0fe5a4d](https://github.com/timgreen/Anki.md/commit/0fe5a4d84c2e0169d58c0cecae1be36a316c4812))
+
 ## [0.4.4](https://github.com/timgreen/Anki.md/compare/cli-v0.4.3...cli/v0.4.4) (2022-11-22)
 
 ### Features
