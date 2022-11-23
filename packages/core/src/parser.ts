@@ -13,7 +13,7 @@ import { select, selectAll } from "unist-util-select";
 import { isUri } from "valid-url";
 import YAML from "yaml";
 
-import { rehypeAddHighlightCss } from "./lib/rehype-add-highlight-css";
+import { HighlightHelper } from "./lib/highlight";
 import { rehypeAnkiMathjax } from "./lib/rehype-anki-mathjax";
 import { remarkTagLink, TagLink } from "./lib/remark-tag-link";
 import {
@@ -74,7 +74,6 @@ export class Parser {
       .use(remarkRehype)
       .use(this.#config.useSvgMathjax ? rehypeMathjax : rehypeAnkiMathjax)
       .use(rehypeHighlight)
-      .use(rehypeAddHighlightCss)
       .run(mdast);
 
     return unified().use(rehypeStringify).stringify(rehypeAst);
@@ -313,6 +312,8 @@ export class Parser {
         noteMds.map((it) => this.toNote(it, frontmatterConfig, dirpath)),
       )
     ).filter((n) => !!n) as Array<INote>;
+
+    HighlightHelper.injectCss(frontmatterConfig);
 
     return {
       deckName: frontmatterConfig?.deckName || Parser.DEFAULT_DECK_NAME,

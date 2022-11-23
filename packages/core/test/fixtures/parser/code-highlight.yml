@@ -1,4 +1,24 @@
 deckName: Default
+frontmatterConfig:
+  models:
+    "Custom-Note-Model":
+      inOrderFields:
+        - Front
+        - Back
+      templates:
+        "CardName 1":
+          Front: "front 1 {{Front}}"
+          Back: "back 1 {{Back}} {{Extra}}"
+        "CardName 2":
+          Front: "front 2 {{Front}} {{Extra}}"
+          Back: "back 2 {{Back}}"
+      highlight: true
+      css: |-
+        // frontmatter css
+
+        /* @Anki.md: CONTENT BELOW IS MANAGED BY @Anki.md, DO NOT EDIT. */
+        @import url(https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/github-dark.min.css)
+
 notes:
   - modelName: Basic
     inOrderFields: [Front, Back]
@@ -11,8 +31,8 @@ notes:
     tags: []
     medias: {}
     position:
-      startLine: 1
-      endLine: 6
+      startLine: 19
+      endLine: 24
 
   - modelName: Basic
     inOrderFields: [Front, Back]
@@ -21,9 +41,24 @@ notes:
       Back: |-
         <pre><code class="hljs language-bash"><span class="hljs-built_in">ls</span> <span class="hljs-built_in">dir</span>
         <span class="hljs-built_in">echo</span> <span class="hljs-string">"xxx"</span> > /dev/null
-        </code></pre><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/github-dark.min.css">
+        </code></pre>
     tags: []
     medias: {}
     position:
-      startLine: 8
-      endLine: 13
+      startLine: 26
+      endLine: 31
+
+  - modelName: Custom-Note-Model
+    inOrderFields: [Front, Back]
+    values:
+      Front: |-
+        <div></div>
+      Back: |-
+        <pre><code class="hljs language-bash"><span class="hljs-built_in">ls</span> <span class="hljs-built_in">dir</span>
+        <span class="hljs-built_in">echo</span> <span class="hljs-string">"xxx"</span> > /dev/null
+        </code></pre>
+    tags: []
+    medias: {}
+    position:
+      startLine: 33
+      endLine: 42

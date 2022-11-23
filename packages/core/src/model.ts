@@ -9,11 +9,21 @@ export interface NoteModel {
   inOrderFields: FieldName[];
   css?: string;
   templates: ModelTemplates;
+  /**
+   * Whether enable the code syntax highlight or not.
+   *
+   * - True means yes and use default css.
+   * - String means yes and use the given css (the string value is either a file path or a url).
+   */
+  highlight?: boolean | string;
 }
 
 export interface IFrontmatterConfig {
   deckName?: string;
   models?: Record<ModelName, NoteModel>;
+  /**
+   * Global tags for the notes in the deck.
+   */
   tags?: string[];
 }
 
