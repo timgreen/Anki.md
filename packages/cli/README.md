@@ -16,7 +16,7 @@ $ npm install -g @anki.md/cli
 $ ankimd COMMAND
 running command...
 $ ankimd (--version)
-@anki.md/cli/0.4.4 linux-x64 node-v18.12.0
+@anki.md/cli/0.4.4 linux-x64 node-v18.12.1
 $ ankimd --help [COMMAND]
 USAGE
   $ ankimd COMMAND
