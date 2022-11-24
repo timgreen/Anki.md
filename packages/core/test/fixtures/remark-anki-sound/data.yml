@@ -1,0 +1,45 @@
+- i: "[sound:audio.mp3]"
+  o: |-
+    <p><anki-sound resource="audio.mp3" /></p>
+
+- i: "[[sound:audio.mp3]]"
+  o: |-
+    <p>[<anki-sound resource="audio.mp3" />]</p>
+
+# no space allowed after ':'
+- i: "[sound: audio.mp3]"
+  o: |-
+    <p>[sound: audio.mp3]</p>
+
+# space inside resource name
+- i: "[sound:a u d i o.mp3]"
+  o: |-
+    <p><anki-sound resource="a u d i o.mp3" /></p>
+
+- i: "before [sound:audio.mp3] after"
+  o: |-
+    <p>before <anki-sound resource="audio.mp3" /> after</p>
+
+- i: "## [sound:audio.mp3]"
+  o: |-
+    <h2><anki-sound resource="audio.mp3" /></h2>
+
+- i: "text _[sound:audio.mp3]_"
+  o: |-
+    <p>text <em><anki-sound resource="audio.mp3" /></em></p>
+
+# no newline allowed
+- i: "[sound:au\ndio.mp3]"
+  o: |-
+    <p>[sound:au
+    dio.mp3]</p>
+
+# wrong tag
+- i: "[sOund:a.mp3]"
+  o: |-
+    <p>[sOund:a.mp3]</p>
+
+# no close ']'
+- i: "[sound:au"
+  o: |-
+    <p>[sound:au</p>
