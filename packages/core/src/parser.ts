@@ -1,4 +1,3 @@
-import { fastHashCode } from "fast-hash-code";
 import * as path from "path";
 import rehypeHighlight from "rehype-highlight";
 import rehypeMathjax from "rehype-mathjax";
@@ -16,6 +15,7 @@ import YAML from "yaml";
 import { HighlightHelper } from "./lib/highlight";
 import { rehypeAnkiMathjax } from "./lib/rehype-anki-mathjax";
 import { remarkTagLink, TagLink } from "./lib/remark-tag-link";
+import { normalizedFilename } from "./lib/util";
 import {
   BASIC_MODEL,
   IDeck,
@@ -31,8 +31,6 @@ import type {
   FrontmatterContent,
   Heading,
   Image,
-  Resource,
-  Alternative,
   Root as MdastRoot,
 } from "mdast";
 
@@ -95,26 +93,6 @@ export class Parser {
     }
   }
 
-  /**
-   * According to https://docs.ankiweb.net/importing.html#importing-media
-   * Do not put subdirectories in the media folder, or some features will not work.
-   *
-   * Use normalized filename instead to avoid collisions when flattening all the media files.
-   */
-  private static normalizedFilename(resource: Resource & Alternative): string {
-    const hash = fastHashCode(
-      JSON.stringify({
-        url: resource.url,
-        alt: resource.alt,
-        title: resource.title,
-      }),
-      {
-        forcePositive: true,
-      },
-    );
-    return `${hash}-${resource.url.split("/").at(-1)}`;
-  }
-
   private static processAndExtraMedias(
     nodes: Array<Content>,
     dirpath?: string,
@@ -124,12 +102,12 @@ export class Parser {
       selectAll("image", node).forEach((i) => {
         const image = i as Image;
         if (isUri(image.url)) {
-          const filename = Parser.normalizedFilename(image);
+          const filename = normalizedFilename(image);
           medias[filename] = { url: image.url };
           image.url = filename;
         } else {
           const absPath = path.resolve(dirpath || path.resolve(), image.url);
-          const filename = Parser.normalizedFilename({
+          const filename = normalizedFilename({
             ...image,
             url: path.relative(dirpath || path.resolve(), absPath),
           });
