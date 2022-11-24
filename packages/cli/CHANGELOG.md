@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.7](https://github.com/timgreen/Anki.md/compare/cli/v0.4.6...cli/v0.4.7) (2022-11-24)
+
+### Features
+
+- **sync:** Flag to update model styling. ([7a9614f](https://github.com/timgreen/Anki.md/commit/7a9614f255035b4f137a49b46f7c3a57cbe618eb))
+
 ## [0.4.6](https://github.com/timgreen/Anki.md/compare/cli/v0.4.5...cli/v0.4.6) (2022-11-23)
 
 ### Features

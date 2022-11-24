@@ -16,7 +16,7 @@ $ npm install -g @anki.md/cli
 $ ankimd COMMAND
 running command...
 $ ankimd (--version)
-@anki.md/cli/0.4.6 linux-x64 node-v18.12.0
+@anki.md/cli/0.4.7 linux-x64 node-v18.12.0
 $ ankimd --help [COMMAND]
 USAGE
   $ ankimd COMMAND
@@ -103,7 +103,7 @@ EXAMPLES
   $ ankimd rmids deckA.md deckB.md
 ```
 
-_See code: [dist/commands/rmids.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.4.6/packages/cli/src/commands/rmids.ts)_
+_See code: [dist/commands/rmids.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.4.7/packages/cli/src/commands/rmids.ts)_
 
 ## `ankimd sync FILES`
 
@@ -111,7 +111,8 @@ Sync to Anki Desktop via AnkiConnect.
 
 ```
 USAGE
-  $ ankimd sync [FILES] [--math native|svg] [--update-model-templates] [--save-note-ids]
+  $ ankimd sync [FILES] [--math native|svg] [--update-model-templates] [--update-model-styling]
+    [--save-note-ids]
 
 ARGUMENTS
   FILES  Markdown files
@@ -121,6 +122,7 @@ FLAGS
                             <options: native|svg>
   --[no-]save-note-ids      save the note IDs in markdown after sync.
                             It will be used to update note instead insert on next sync
+  --update-model-styling    update the styling for the existing note models.
   --update-model-templates  update the card templates for the existing note models.
 
 DESCRIPTION
@@ -132,6 +134,6 @@ EXAMPLES
   $ ankimd sync deckA.md deckB.md
 ```
 
-_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.4.6/packages/cli/src/commands/sync.ts)_
+_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.4.7/packages/cli/src/commands/sync.ts)_
 
 <!-- commandsstop -->
