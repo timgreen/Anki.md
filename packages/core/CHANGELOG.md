@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.2](https://github.com/timgreen/Anki.md/compare/core/v0.8.1...core/v0.8.2) (2022-11-24)
+
+
+### Features
+
+* Audio support `[sound:a.mp3]`. ([55333ba](https://github.com/timgreen/Anki.md/commit/55333ba038ac9235f5b9cd2a885d5be72bdcfbff))
+
 ## [0.8.1](https://github.com/timgreen/Anki.md/compare/core/v0.8.0...core/v0.8.1) (2022-11-23)
 
 ### Bug Fixes
