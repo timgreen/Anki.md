@@ -15,6 +15,7 @@ import YAML from "yaml";
 import { HighlightHelper } from "./lib/highlight";
 import { rehypeAnkiMathjax } from "./lib/rehype-anki-mathjax";
 import { remarkTagLink, TagLink } from "./lib/remark-tag-link";
+import { remarkAnkiSound, AnkiSound } from "./lib/remark-anki-sound";
 import { normalizedFilename } from "./lib/util";
 import {
   BASIC_MODEL,
@@ -31,6 +32,7 @@ import type {
   FrontmatterContent,
   Heading,
   Image,
+  Text as MdastText,
   Root as MdastRoot,
 } from "mdast";
 
@@ -98,6 +100,7 @@ export class Parser {
     dirpath?: string,
   ): Record<MediaName, MediaInfo> {
     const medias: Record<MediaName, MediaInfo> = {};
+    // images
     for (const node of nodes) {
       selectAll("image", node).forEach((i) => {
         const image = i as Image;
@@ -114,6 +117,31 @@ export class Parser {
           medias[filename] = { absPath };
           image.url = filename;
         }
+      });
+    }
+    // sounds
+    for (const node of nodes) {
+      selectAll("ankiSound", node).forEach((s) => {
+        const ankiSound = s as AnkiSound;
+        if (isUri(ankiSound.url)) {
+          const filename = normalizedFilename(ankiSound);
+          medias[filename] = { url: ankiSound.url };
+          ankiSound.url = filename;
+        } else {
+          const absPath = path.resolve(
+            dirpath || path.resolve(),
+            ankiSound.url,
+          );
+          const filename = normalizedFilename({
+            url: path.relative(dirpath || path.resolve(), absPath),
+          });
+          medias[filename] = { absPath };
+          ankiSound.url = filename;
+        }
+
+        const text = s as MdastText;
+        text.type = "text";
+        text.value = `[sound:${ankiSound.url}]`;
       });
     }
 
@@ -268,6 +296,7 @@ export class Parser {
       .use(remarkParse)
       .use(remarkFrontmatter, ["yaml"])
       .use(remarkTagLink)
+      .use(remarkAnkiSound)
       .use(remarkMath)
       .parse(content);
     const frontmatterConfig = Parser.parseFrontmatter(mdast);
