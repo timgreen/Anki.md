@@ -28,6 +28,9 @@ export default class Sync extends Command {
     "update-model-templates": Flags.boolean({
       description: "update the card templates for the existing note models.",
     }),
+    "update-model-styling": Flags.boolean({
+      description: "update the styling for the existing note models.",
+    }),
     "save-note-ids": Flags.boolean({
       description:
         "save the note IDs in markdown after sync. \nIt will be used to update note instead insert on next sync",
@@ -50,6 +53,7 @@ export default class Sync extends Command {
       const deck = await parser.parse(content, path.dirname(input));
       const noteIds = await ankiConnectSync(deck, {
         updateModelTemplates: flags["update-model-templates"],
+        updateModelStyling: flags["update-model-styling"],
       });
 
       if (flags["save-note-ids"]) {
