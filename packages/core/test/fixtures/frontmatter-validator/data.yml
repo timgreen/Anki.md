@@ -1,0 +1,169 @@
+- n: empty is valid
+  i: {}
+  o:
+    valid: true
+
+- n: only deckName is OK
+  i:
+    deckName: deck name
+  o:
+    valid: true
+
+- n: typo is not OK
+  i:
+    DeckName: typo in key
+  o:
+    valid: false
+    errors:
+      - instancePath: ""
+        keyword: additionalProperties
+        message: must NOT have additional properties
+        params:
+          additionalProperty: DeckName
+        schemaPath: "#/additionalProperties"
+
+- n: valid models
+  i:
+    models:
+      "Custom Note Model":
+        inOrderFields:
+          - Front
+          - Back
+          - Extra
+        templates:
+          "CardName 1":
+            Front: "front 1 {{Front}}"
+            Back: "back 1 {{Back}} {{Extra}}"
+          "CardName 2":
+            Front: "front 2 {{Front}} {{Extra}}"
+            Back: "back 2 {{Back}}"
+        css: ""
+
+      "Second Custom Note Model":
+        css: "custom css"
+        inOrderFields:
+          - Field1
+          - Field2
+          - Field3
+        templates:
+          "CardName 1":
+            Front: "front 1 {{Field1}}"
+            Back: "back 1 {{Field2}} {{Field3}}"
+          "CardName 2":
+            Front: "front 2 {{Field1}} {{Field2}}"
+            Back: "back 2 {{Field3}}"
+  o:
+    valid: true
+
+- n: valid models
+  i:
+    models:
+      "Custom Note Model":
+        inOrderFields:
+          - Front
+          - Back
+          - Extra
+        templates:
+          "CardName 1":
+            Front: "front 1 {{Front}}"
+            Back: "back 1 {{Back}} {{Extra}}"
+          "CardName 2":
+            Front: "front 2 {{Front}} {{Extra}}"
+            Back: "back 2 {{Back}}"
+        css: ""
+
+      "Second Custom Note Model":
+        css: "custom css"
+        inOrderFields:
+          - Field1
+          - Field2
+          - Field3
+        templates:
+          "CardName 1":
+            Front: "front 1 {{Field1}}"
+            Back: "back 1 {{Field2}} {{Field3}}"
+          "CardName 2":
+            Front: "front 2 {{Field1}} {{Field2}}"
+            Back: "back 2 {{Field3}}"
+  o:
+    valid: true
+
+- n: missing required field "inOrderFields" in models
+  i:
+    models:
+      "Custom Note Model":
+        templates:
+          "CardName 1":
+            Front: "front 1 {{Front}}"
+            Back: "back 1 {{Back}} {{Extra}}"
+          "CardName 2":
+            Front: "front 2 {{Front}} {{Extra}}"
+            Back: "back 2 {{Back}}"
+        css: ""
+
+      "Second Custom Note Model":
+        css: "custom css"
+        inOrderFields:
+          - Field1
+          - Field2
+          - Field3
+        templates:
+          "CardName 1":
+            Front: "front 1 {{Field1}}"
+            Back: "back 1 {{Field2}} {{Field3}}"
+          "CardName 2":
+            Front: "front 2 {{Field1}} {{Field2}}"
+            Back: "back 2 {{Field3}}"
+  o:
+    valid: false
+    errors:
+      - instancePath: "/models/Custom Note Model"
+        keyword: required
+        message: must have required property 'inOrderFields'
+        params:
+          missingProperty: inOrderFields
+        schemaPath: "#/required"
+
+- n: missing required field "Front" in templates
+  i:
+    models:
+      "Custom Note Model":
+        inOrderFields:
+          - Front
+          - Back
+          - Extra
+        templates:
+          "CardName 1":
+            Back: "back 1 {{Back}} {{Extra}}"
+        css: ""
+  o:
+    valid: false
+    errors:
+      - instancePath: "/models/Custom Note Model/templates/CardName 1"
+        keyword: required
+        message: must have required property 'Front'
+        params:
+          missingProperty: Front
+        schemaPath: "#/definitions/ModelTemplates/additionalProperties/required"
+
+- n: missing required field "Back" in templates
+  i:
+    models:
+      "Custom Note Model":
+        inOrderFields:
+          - Front
+          - Back
+          - Extra
+        templates:
+          "CardName 2":
+            Front: "front 2 {{Front}} {{Extra}}"
+        css: ""
+  o:
+    valid: false
+    errors:
+      - instancePath: "/models/Custom Note Model/templates/CardName 2"
+        keyword: required
+        message: must have required property 'Back'
+        params:
+          missingProperty: Back
+        schemaPath: "#/definitions/ModelTemplates/additionalProperties/required"
