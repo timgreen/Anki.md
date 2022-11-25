@@ -167,3 +167,22 @@
         params:
           missingProperty: Back
         schemaPath: "#/definitions/ModelTemplates/additionalProperties/required"
+
+- n: empty inOrderFields is not OK.
+  i:
+    models:
+      "Custom Note Model":
+        inOrderFields: []
+        templates:
+          "CardName 1":
+            Front: "front 1 {{Front}}"
+            Back: "back 1 {{Back}} {{Extra}}"
+  o:
+    valid: false
+    errors:
+      - instancePath: "/models/Custom Note Model/inOrderFields"
+        keyword: minItems
+        message: must NOT have fewer than 1 items
+        params:
+          limit: 1
+        schemaPath: "#/properties/inOrderFields/minItems"

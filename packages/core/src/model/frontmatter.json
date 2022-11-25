@@ -9,7 +9,7 @@
       "additionalProperties": false,
       "properties": {
         "deckName": {
-          "description": "The container deck for the notes in the file. \n\n- Default to \"Default\" if not specified.\n- Use \"::\" to create nested decks. e.g. \"a::b::c\".",
+          "description": "The container deck for the notes in the file.\n\n- Default to \"Default\" if not specified.\n- Use \"::\" to create nested decks. e.g. \"a::b::c\".",
           "type": "string"
         },
         "models": {
@@ -58,10 +58,11 @@
           "type": ["boolean", "string"]
         },
         "inOrderFields": {
-          "description": "Ordered field names.\n\nAt least one field name is required.",
+          "description": "Ordered field names.",
           "items": {
             "$ref": "#/definitions/FieldName"
           },
+          "minItems": 1,
           "type": "array"
         },
         "templates": {

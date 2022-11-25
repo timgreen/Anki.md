@@ -9,7 +9,7 @@ export interface NoteModel {
   /**
    * Ordered field names.
    *
-   * At least one field name is required.
+   * @minItems 1
    */
   inOrderFields: FieldName[];
   /**
