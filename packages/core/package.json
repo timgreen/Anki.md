@@ -11,7 +11,8 @@
   "sideEffects": false,
   "scripts": {
     "build": "tsup",
-    "test": "jest"
+    "test": "jest",
+    "gen-json-schema": "ts-json-schema-generator -f 'tsconfig.json' --path src/model/frontmatter.ts --type IFrontmatterConfig > src/model/frontmatter.json && prettier --write src/model/frontmatter.json"
   },
   "repository": {
     "type": "git",
@@ -28,7 +29,9 @@
     "@types/jest": "^28.1.6",
     "@types/valid-url": "^1.0.3",
     "jest": "^29.3.1",
+    "prettier": "^2.8.0",
     "ts-jest": "^29.0.3",
+    "ts-json-schema-generator": "^1.1.2",
     "tsup": "^6.5.0"
   },
   "dependencies": {
