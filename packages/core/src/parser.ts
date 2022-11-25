@@ -14,8 +14,8 @@ import YAML from "yaml";
 
 import { HighlightHelper } from "./lib/highlight";
 import { rehypeAnkiMathjax } from "./lib/rehype-anki-mathjax";
+import { AnkiSound, remarkAnkiSound } from "./lib/remark-anki-sound";
 import { remarkTagLink, TagLink } from "./lib/remark-tag-link";
-import { remarkAnkiSound, AnkiSound } from "./lib/remark-anki-sound";
 import { normalizedFilename } from "./lib/util";
 import {
   BASIC_MODEL,
