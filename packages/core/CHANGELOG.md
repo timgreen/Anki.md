@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.9.0](https://github.com/timgreen/Anki.md/compare/core/v0.8.2...core/v0.9.0) (2022-11-25)
+
+### ⚠ BREAKING CHANGES
+
+- **model:** export models as model.\* now.
+
+### Features
+
+- **parser:** Exit on invalid frontmatter. ([4f873dc](https://github.com/timgreen/Anki.md/commit/4f873dcfbf02e26e3560c8101d6af5810ce95fc9))
+
+### Code Refactoring
+
+- **model:** Split into files. ([3c8e82c](https://github.com/timgreen/Anki.md/commit/3c8e82ce24c91260e0cdd21e1e09effd3dcf77d0))
+
 ## [0.8.2](https://github.com/timgreen/Anki.md/compare/core/v0.8.1...core/v0.8.2) (2022-11-24)
 
 ### Features
