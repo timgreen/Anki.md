@@ -1,0 +1,70 @@
+{
+  "$ref": "#/definitions/IFrontmatterConfig",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "FieldName": {
+      "type": "string"
+    },
+    "IFrontmatterConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "deckName": {
+          "type": "string"
+        },
+        "models": {
+          "additionalProperties": {
+            "$ref": "#/definitions/NoteModel"
+          },
+          "type": "object"
+        },
+        "tags": {
+          "description": "Global tags for the notes in the deck.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ModelTemplates": {
+      "additionalProperties": {
+        "additionalProperties": false,
+        "properties": {
+          "Back": {
+            "type": "string"
+          },
+          "Front": {
+            "type": "string"
+          }
+        },
+        "required": ["Front", "Back"],
+        "type": "object"
+      },
+      "type": "object"
+    },
+    "NoteModel": {
+      "additionalProperties": false,
+      "properties": {
+        "css": {
+          "type": "string"
+        },
+        "highlight": {
+          "description": "Whether enable the code syntax highlight or not.\n\n- True means yes and use default css.\n- String means yes and use the given css (the string value is either a file path or a url).",
+          "type": ["boolean", "string"]
+        },
+        "inOrderFields": {
+          "items": {
+            "$ref": "#/definitions/FieldName"
+          },
+          "type": "array"
+        },
+        "templates": {
+          "$ref": "#/definitions/ModelTemplates"
+        }
+      },
+      "required": ["inOrderFields", "templates"],
+      "type": "object"
+    }
+  }
+}

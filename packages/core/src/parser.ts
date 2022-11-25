@@ -14,8 +14,8 @@ import YAML from "yaml";
 
 import { HighlightHelper } from "./lib/highlight";
 import { rehypeAnkiMathjax } from "./lib/rehype-anki-mathjax";
+import { AnkiSound, remarkAnkiSound } from "./lib/remark-anki-sound";
 import { remarkTagLink, TagLink } from "./lib/remark-tag-link";
-import { remarkAnkiSound, AnkiSound } from "./lib/remark-anki-sound";
 import { normalizedFilename } from "./lib/util";
 import {
   BASIC_MODEL,
@@ -25,6 +25,7 @@ import {
   INotePosition,
   MediaInfo,
   MediaName,
+  validateFrontmatterConfig,
 } from "./model";
 
 import type {
@@ -278,7 +279,13 @@ export class Parser {
   ): IFrontmatterConfig | undefined {
     const yamlConfig = (select("yaml", mdast) as FrontmatterContent)?.value;
     if (yamlConfig) {
-      return YAML.parse(yamlConfig);
+      const config = YAML.parse(yamlConfig);
+      if (validateFrontmatterConfig(config)) {
+        return config;
+      } else {
+        console.error(validateFrontmatterConfig.errors);
+        process.exit();
+      }
     }
   }
 

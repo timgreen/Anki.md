@@ -1,9 +1,6 @@
 import { NoteTypes } from "@autoanki/anki-connect";
-import {
-  FieldName,
-  ModelName,
-  ModelTemplates,
-} from "@autoanki/anki-connect/dist/model";
+import { FieldName, ModelTemplates } from "@autoanki/anki-connect/dist/model";
+import { IFrontmatterConfig } from "./frontmatter";
 
 export interface NoteModel {
   inOrderFields: FieldName[];
@@ -16,15 +13,6 @@ export interface NoteModel {
    * - String means yes and use the given css (the string value is either a file path or a url).
    */
   highlight?: boolean | string;
-}
-
-export interface IFrontmatterConfig {
-  deckName?: string;
-  models?: Record<ModelName, NoteModel>;
-  /**
-   * Global tags for the notes in the deck.
-   */
-  tags?: string[];
 }
 
 export interface IDeck {
