@@ -25,6 +25,7 @@ import {
   INotePosition,
   MediaInfo,
   MediaName,
+  validateFrontmatterConfig,
 } from "./model";
 
 import type {
@@ -278,7 +279,13 @@ export class Parser {
   ): IFrontmatterConfig | undefined {
     const yamlConfig = (select("yaml", mdast) as FrontmatterContent)?.value;
     if (yamlConfig) {
-      return YAML.parse(yamlConfig);
+      const config = YAML.parse(yamlConfig);
+      if (validateFrontmatterConfig(config)) {
+        return config;
+      } else {
+        console.error(validateFrontmatterConfig.errors);
+        process.exit();
+      }
     }
   }
 
