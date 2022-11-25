@@ -9,12 +9,14 @@
       "additionalProperties": false,
       "properties": {
         "deckName": {
+          "description": "The container deck for the notes in the file. \n\n- Default to \"Default\" if not specified.\n- Use \"::\" to create nested decks. e.g. \"a::b::c\".",
           "type": "string"
         },
         "models": {
           "additionalProperties": {
             "$ref": "#/definitions/NoteModel"
           },
+          "description": "Define the custom NoteModel for the notes in the file.\n\nOverride the following default NoteModels are not allowed:\n- \"Basic\"\n- \"Basic (and reversed card)\"\n- \"Basic (optional reversed card)\"\n- \"Basic (type in the answer)\"\n- \"Cloze\"",
           "type": "object"
         },
         "tags": {
@@ -45,8 +47,10 @@
     },
     "NoteModel": {
       "additionalProperties": false,
+      "description": "Represents a note model.",
       "properties": {
         "css": {
+          "description": "Note model styling.",
           "type": "string"
         },
         "highlight": {
@@ -54,13 +58,15 @@
           "type": ["boolean", "string"]
         },
         "inOrderFields": {
+          "description": "Ordered field names.\n\nAt least one field name is required.",
           "items": {
             "$ref": "#/definitions/FieldName"
           },
           "type": "array"
         },
         "templates": {
-          "$ref": "#/definitions/ModelTemplates"
+          "$ref": "#/definitions/ModelTemplates",
+          "description": "Card templates for the note model."
         }
       },
       "required": ["inOrderFields", "templates"],

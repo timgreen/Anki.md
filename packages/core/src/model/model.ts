@@ -2,9 +2,23 @@ import { NoteTypes } from "@autoanki/anki-connect";
 import { FieldName, ModelTemplates } from "@autoanki/anki-connect/dist/model";
 import { IFrontmatterConfig } from "./frontmatter";
 
+/**
+ * Represents a note model.
+ */
 export interface NoteModel {
+  /**
+   * Ordered field names.
+   *
+   * At least one field name is required.
+   */
   inOrderFields: FieldName[];
+  /**
+   * Note model styling.
+   */
   css?: string;
+  /**
+   * Card templates for the note model.
+   */
   templates: ModelTemplates;
   /**
    * Whether enable the code syntax highlight or not.
