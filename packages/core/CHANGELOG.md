@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.10.0](https://github.com/timgreen/Anki.md/compare/core/v0.9.0...core/v0.10.0) (2022-11-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* Use only string for `highlight`.
+
+### Features
+
+* Not allow overriding default models. ([2b1a799](https://github.com/timgreen/Anki.md/commit/2b1a799fb9a822a53bd8f32ff096e81e97d8645c)), closes [#41](https://github.com/timgreen/Anki.md/issues/41)
+
+
+### Code Refactoring
+
+* Use only string for `highlight`. ([1e3f484](https://github.com/timgreen/Anki.md/commit/1e3f48410d1c757b7f4dec60f0fdb97d6c163327))
+
 ## [0.9.0](https://github.com/timgreen/Anki.md/compare/core/v0.8.2...core/v0.9.0) (2022-11-25)
 
 ### ⚠ BREAKING CHANGES
