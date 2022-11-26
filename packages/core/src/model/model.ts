@@ -23,10 +23,18 @@ export interface NoteModel {
   /**
    * Whether enable the code syntax highlight or not.
    *
-   * - True means yes and use default css.
-   * - String means yes and use the given css (the string value is either a file path or a url).
+   * - null or "" means don't enable code syntax highlighting.
+   * - "dark" means use the default dark css.
+   * - other string value will be treated as file path or url pointing to a css.
+   *
+   * @example
+   *   "dark"
+   * @example
+   *   "light"
+   * @example
+   *   "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/github-dark.min.css"
    */
-  highlight?: boolean | string;
+  highlight?: string;
 }
 
 export interface IDeck {

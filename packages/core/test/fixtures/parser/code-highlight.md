@@ -11,7 +11,7 @@ models:
       "CardName 2":
         Front: "front 2 {{Front}} {{Extra}}"
         Back: "back 2 {{Back}}"
-    highlight: true
+    highlight: dark
     css: |
       // frontmatter css
 ---

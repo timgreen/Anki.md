@@ -61,8 +61,13 @@
           "type": "string"
         },
         "highlight": {
-          "description": "Whether enable the code syntax highlight or not.\n\n- True means yes and use default css.\n- String means yes and use the given css (the string value is either a file path or a url).",
-          "type": ["boolean", "string"]
+          "description": "Whether enable the code syntax highlight or not.\n\n- null or \"\" means don't enable code syntax highlighting.\n- \"dark\" means use the default dark css.\n- other string value will be treated as file path or url pointing to a css.",
+          "examples": [
+            "dark",
+            "light",
+            "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/github-dark.min.css"
+          ],
+          "type": "string"
         },
         "inOrderFields": {
           "description": "Ordered field names.",
