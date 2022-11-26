@@ -2,11 +2,10 @@
 
 ## [0.4.8](https://github.com/timgreen/Anki.md/compare/cli/v0.4.7...cli/v0.4.8) (2022-11-26)
 
-
 ### Features
 
-* Audio support [sound:a.mp3]. ([593b79b](https://github.com/timgreen/Anki.md/commit/593b79bb58aaf1ae8b89442aca23442812606aeb))
-* validate frontmatter. ([593b79b](https://github.com/timgreen/Anki.md/commit/593b79bb58aaf1ae8b89442aca23442812606aeb))
+- Audio support [sound:a.mp3]. ([593b79b](https://github.com/timgreen/Anki.md/commit/593b79bb58aaf1ae8b89442aca23442812606aeb))
+- validate frontmatter. ([593b79b](https://github.com/timgreen/Anki.md/commit/593b79bb58aaf1ae8b89442aca23442812606aeb))
 
 ## [0.4.7](https://github.com/timgreen/Anki.md/compare/cli/v0.4.6...cli/v0.4.7) (2022-11-24)
 
