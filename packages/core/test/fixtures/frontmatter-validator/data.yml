@@ -186,3 +186,173 @@
         params:
           limit: 1
         schemaPath: "#/properties/inOrderFields/minItems"
+
+- n: override default models - Basic - not OK
+  i:
+    models:
+      "Basic":
+        inOrderFields:
+          - Front
+          - Back
+          - Extra
+        templates:
+          "CardName 1":
+            Front: "front 1 {{Front}}"
+            Back: "back 1 {{Back}} {{Extra}}"
+        css: ""
+  o:
+    valid: false
+    errors:
+      - instancePath: "/models"
+        keyword: pattern
+        message:
+          must match pattern "^(?!(Basic|Basic \(and reversed card\)|Basic \(optional
+          reversed card\)|Basic \(type in the answer\)|Cloze)$)\w.*"
+        params:
+          pattern:
+            "^(?!(Basic|Basic \\(and reversed card\\)|Basic \\(optional reversed
+            card\\)|Basic \\(type in the answer\\)|Cloze)$)\\w.*"
+        propertyName: Basic
+        schemaPath: "#/properties/models/propertyNames/pattern"
+      - instancePath: "/models"
+        keyword: propertyNames
+        message: property name must be valid
+        params:
+          propertyName: Basic
+        schemaPath: "#/properties/models/propertyNames"
+
+- n: override default models - Basic (and reversed card) - not OK
+  i:
+    models:
+      "Basic (and reversed card)":
+        inOrderFields:
+          - Front
+          - Back
+          - Extra
+        templates:
+          "CardName 1":
+            Front: "front 1 {{Front}}"
+            Back: "back 1 {{Back}} {{Extra}}"
+        css: ""
+  o:
+    valid: false
+    errors:
+      - instancePath: "/models"
+        keyword: pattern
+        message:
+          must match pattern "^(?!(Basic|Basic \(and reversed card\)|Basic \(optional
+          reversed card\)|Basic \(type in the answer\)|Cloze)$)\w.*"
+        params:
+          pattern:
+            "^(?!(Basic|Basic \\(and reversed card\\)|Basic \\(optional reversed
+            card\\)|Basic \\(type in the answer\\)|Cloze)$)\\w.*"
+        propertyName: Basic (and reversed card)
+        schemaPath: "#/properties/models/propertyNames/pattern"
+      - instancePath: "/models"
+        keyword: propertyNames
+        message: property name must be valid
+        params:
+          propertyName: Basic (and reversed card)
+        schemaPath: "#/properties/models/propertyNames"
+
+- n: override default models - Basic (optional reversed card) - not OK
+  i:
+    models:
+      "Basic (optional reversed card)":
+        inOrderFields:
+          - Front
+          - Back
+          - Extra
+        templates:
+          "CardName 1":
+            Front: "front 1 {{Front}}"
+            Back: "back 1 {{Back}} {{Extra}}"
+        css: ""
+  o:
+    valid: false
+    errors:
+      - instancePath: "/models"
+        keyword: pattern
+        message:
+          must match pattern "^(?!(Basic|Basic \(and reversed card\)|Basic \(optional
+          reversed card\)|Basic \(type in the answer\)|Cloze)$)\w.*"
+        params:
+          pattern:
+            "^(?!(Basic|Basic \\(and reversed card\\)|Basic \\(optional reversed
+            card\\)|Basic \\(type in the answer\\)|Cloze)$)\\w.*"
+        propertyName: Basic (optional reversed card)
+        schemaPath: "#/properties/models/propertyNames/pattern"
+      - instancePath: "/models"
+        keyword: propertyNames
+        message: property name must be valid
+        params:
+          propertyName: Basic (optional reversed card)
+        schemaPath: "#/properties/models/propertyNames"
+
+- n: override default models - Basic (type in the answer) - not OK
+  i:
+    models:
+      "Basic (type in the answer)":
+        inOrderFields:
+          - Front
+          - Back
+          - Extra
+        templates:
+          "CardName 1":
+            Front: "front 1 {{Front}}"
+            Back: "back 1 {{Back}} {{Extra}}"
+        css: ""
+  o:
+    valid: false
+    errors:
+      - instancePath: "/models"
+        keyword: pattern
+        message:
+          must match pattern "^(?!(Basic|Basic \(and reversed card\)|Basic \(optional
+          reversed card\)|Basic \(type in the answer\)|Cloze)$)\w.*"
+        params:
+          pattern:
+            "^(?!(Basic|Basic \\(and reversed card\\)|Basic \\(optional reversed
+            card\\)|Basic \\(type in the answer\\)|Cloze)$)\\w.*"
+        propertyName: Basic (type in the answer)
+        schemaPath: "#/properties/models/propertyNames/pattern"
+      - instancePath: "/models"
+        keyword: propertyNames
+        message: property name must be valid
+        params:
+          propertyName: Basic (type in the answer)
+        schemaPath: "#/properties/models/propertyNames"
+
+- n: override default models - Cloze - not OK
+  i:
+    models:
+      "Cloze":
+        inOrderFields:
+          - Front
+          - Back
+          - Extra
+        templates:
+          "CardName 1":
+            Front: "front 1 {{Front}}"
+            Back: "back 1 {{Back}} {{Extra}}"
+        css: ""
+  o:
+    valid: false
+    errors:
+      - instancePath: "/models"
+        keyword: pattern
+        message:
+          must match pattern "^(?!(Basic|Basic \(and reversed card\)|Basic \(optional
+          reversed card\)|Basic \(type in the answer\)|Cloze)$)\w.*"
+        params:
+          pattern:
+            "^(?!(Basic|Basic \\(and reversed card\\)|Basic \\(optional reversed
+            card\\)|Basic \\(type in the answer\\)|Cloze)$)\\w.*"
+        propertyName: Cloze
+        schemaPath: "#/properties/models/propertyNames/pattern"
+      - instancePath: "/models"
+        keyword: propertyNames
+        message: property name must be valid
+        params:
+          propertyName: Cloze
+        schemaPath: "#/properties/models/propertyNames"

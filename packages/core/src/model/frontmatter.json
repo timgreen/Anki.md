@@ -9,18 +9,25 @@
       "additionalProperties": false,
       "properties": {
         "deckName": {
-          "description": "The container deck for the notes in the file.\n\n- Default to \"Default\" if not specified.\n- Use \"::\" to create nested decks. e.g. \"a::b::c\".",
+          "default": "Default",
+          "description": "The container deck for the notes in the file.",
+          "examples": ["deckA", "a::b::c"],
           "type": "string"
         },
         "models": {
           "additionalProperties": {
             "$ref": "#/definitions/NoteModel"
           },
-          "description": "Define the custom NoteModel for the notes in the file.\n\nOverride the following default NoteModels are not allowed:\n- \"Basic\"\n- \"Basic (and reversed card)\"\n- \"Basic (optional reversed card)\"\n- \"Basic (type in the answer)\"\n- \"Cloze\"",
+          "description": "Define the custom NoteModel for the notes in the file.",
+          "propertyNames": {
+            "description": "The name of the note model.\n\nOverride the following default NoteModels are not allowed:\n- \"Basic\"\n- \"Basic (and reversed card)\"\n- \"Basic (optional reversed card)\"\n- \"Basic (type in the answer)\"\n- \"Cloze\"",
+            "pattern": "^(?!(Basic|Basic \\(and reversed card\\)|Basic \\(optional reversed card\\)|Basic \\(type in the answer\\)|Cloze)$)\\w.*"
+          },
           "type": "object"
         },
         "tags": {
           "description": "Global tags for the notes in the deck.",
+          "examples": ["global-tag-1"],
           "items": {
             "type": "string"
           },
