@@ -13,6 +13,7 @@ export default class Sync extends Command {
   static examples = [
     "<%= config.bin %> <%= command.id %> deckA.md",
     "<%= config.bin %> <%= command.id %> deckA.md deckB.md",
+    "<%= config.bin %> <%= command.id %> deckA.md https://example.com/foo/deckB.md",
   ];
 
   static args = [
