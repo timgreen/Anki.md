@@ -1,4 +1,3 @@
-import * as path from "path";
 import rehypeHighlight from "rehype-highlight";
 import rehypeMathjax from "rehype-mathjax";
 import rehypeStringify from "rehype-stringify";
@@ -9,14 +8,13 @@ import remarkRehype from "remark-rehype";
 import { unified } from "unified";
 import { remove } from "unist-util-remove";
 import { select, selectAll } from "unist-util-select";
-import { isUri } from "valid-url";
 import YAML from "yaml";
 
 import { HighlightHelper } from "./lib/highlight";
 import { rehypeAnkiMathjax } from "./lib/rehype-anki-mathjax";
 import { AnkiSound, remarkAnkiSound } from "./lib/remark-anki-sound";
 import { remarkTagLink, TagLink } from "./lib/remark-tag-link";
-import { normalizedFilename } from "./lib/util";
+import { normalize } from "./lib/util";
 import {
   BASIC_MODEL,
   IDeck,
@@ -29,13 +27,11 @@ import {
 } from "./model";
 
 import type {
-  Alternative,
   Content,
   FrontmatterContent,
   Heading,
   Image,
   Text as MdastText,
-  Resource,
   Root as MdastRoot,
 } from "mdast";
 
@@ -104,27 +100,19 @@ export class Parser {
   ): Record<MediaName, MediaInfo> {
     const medias: Record<MediaName, MediaInfo> = {};
 
-    function process(resource: Resource & Alternative) {
-      if (isUri(resource.url)) {
-        const filename = normalizedFilename(resource);
-        medias[filename] = { url: resource.url };
-        resource.url = filename;
-      } else {
-        const absPath = path.resolve(dirpath || path.resolve(), resource.url);
-        const filename = normalizedFilename({
-          ...resource,
-          url: path.relative(dirpath || path.resolve(), absPath),
-        });
-        medias[filename] = { absPath };
-        resource.url = filename;
-      }
-    }
-
     for (const node of nodes) {
-      selectAll("image", node).forEach((i) => process(i as Image));
+      selectAll("image", node).forEach((i) => {
+        const image = i as Image;
+        const [filename, media] = normalize(image, dirpath);
+        image.url = filename;
+        medias[filename] = media;
+      });
       selectAll("ankiSound", node).forEach((s) => {
         const ankiSound = s as AnkiSound;
-        process(ankiSound);
+        const [filename, media] = normalize(ankiSound, dirpath);
+        ankiSound.url = filename;
+        medias[filename] = media;
+
         const text = s as MdastText;
         text.type = "text";
         text.value = `[sound:${ankiSound.url}]`;
