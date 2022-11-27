@@ -1,0 +1,45 @@
+deckName: Default
+notes:
+  - modelName: Basic
+    inOrderFields: [Front, Back]
+    values:
+      Front: " Image: remote url"
+      Back: |-
+        <p><img src="1365243335-overview.png" alt="remote image"></p>
+    tags: []
+    medias:
+      "1365243335-overview.png":
+        url: https://raw.githubusercontent.com/timgreen/Anki.md/main/docs/overview.png
+    position:
+      startLine: 1
+      endLine: 3
+
+  - modelName: Basic
+    inOrderFields: [Front, Back]
+    values:
+      Front: " Image: local (same directory)"
+      Back: |-
+        <p><img src="1194032663-local.png" alt="local image">
+        <img src="1194032663-local.png" alt="local image"></p>
+    tags: []
+    medias:
+      "1194032663-local.png":
+        url: https://example.com/foo/local.png
+    position:
+      startLine: 5
+      endLine: 8
+
+  - modelName: Basic
+    inOrderFields: [Front, Back]
+    values:
+      Front: " Image: local (sub directory)"
+      Back: |-
+        <p><img src="1313339270-local.png" alt="local image">
+        <img src="1313339270-local.png" alt="local image"></p>
+    tags: []
+    medias:
+      "1313339270-local.png":
+        url: https://example.com/foo/sub/local.png
+    position:
+      startLine: 10
+      endLine: 13

@@ -21,3 +21,24 @@ describe("Parser fixtures", () => {
       });
     });
 });
+
+describe("Remote url", () => {
+  const parser = new Parser({});
+
+  const dir = "./test/fixtures/parser";
+  const files = fs.readdirSync(dir);
+  files
+    .filter((f) => f.endsWith(".md"))
+    .forEach((mdInputFile) => {
+      const ymlFile = mdInputFile.replace(/\.md$/, ".remote.yml");
+      if (fs.existsSync(`${dir}/${ymlFile}`)) {
+        it(mdInputFile, async () => {
+          const mdInput = String(fs.readFileSync(`${dir}/${mdInputFile}`));
+          const json = YAML.parse(String(fs.readFileSync(`${dir}/${ymlFile}`)));
+          expect(
+            await parser.parse(mdInput, "https://example.com/foo/"),
+          ).toEqual(json);
+        });
+      }
+    });
+});

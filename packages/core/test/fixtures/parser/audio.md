@@ -10,3 +10,7 @@
 # #card mp3 in subdir
 
 [sound:sub/audio.mp3]
+
+# #card remote mp3
+
+[sound:https://example.com/remote/audio.mp3]

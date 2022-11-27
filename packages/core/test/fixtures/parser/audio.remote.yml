@@ -5,11 +5,11 @@ notes:
     values:
       Front: " one mp3"
       Back: |-
-        <p>[sound:251055473-audio.mp3]</p>
+        <p>[sound:1522075751-audio.mp3]</p>
     tags: []
     medias:
-      "251055473-audio.mp3":
-        absPath: /<test>/audio.mp3
+      "1522075751-audio.mp3":
+        url: https://example.com/foo/audio.mp3
     position:
       startLine: 1
       endLine: 3
@@ -19,14 +19,14 @@ notes:
     values:
       Front: " multiple mp3"
       Back: |-
-        <p>[sound:50719930-audio1.mp3]
-        [sound:938223611-audio2.mp3]</p>
+        <p>[sound:797642884-audio1.mp3]
+        [sound:1685146565-audio2.mp3]</p>
     tags: []
     medias:
-      "50719930-audio1.mp3":
-        absPath: /<test>/audio1.mp3
-      "938223611-audio2.mp3":
-        absPath: /<test>/audio2.mp3
+      "797642884-audio1.mp3":
+        url: https://example.com/foo/audio1.mp3
+      "1685146565-audio2.mp3":
+        url: https://example.com/foo/audio2.mp3
     position:
       startLine: 5
       endLine: 8
@@ -36,11 +36,11 @@ notes:
     values:
       Front: " mp3 in subdir"
       Back: |-
-        <p>[sound:825710882-audio.mp3]</p>
+        <p>[sound:181872920-audio.mp3]</p>
     tags: []
     medias:
-      "825710882-audio.mp3":
-        absPath: /<test>/sub/audio.mp3
+      "181872920-audio.mp3":
+        url: https://example.com/foo/sub/audio.mp3
     position:
       startLine: 10
       endLine: 12

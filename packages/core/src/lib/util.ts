@@ -32,6 +32,13 @@ export function normalize(
   if (isUri(resource.url)) {
     const filename = normalizedFilename(resource);
     return [filename, { url: resource.url }];
+  } else if (dirpath && isUri(dirpath)) {
+    const url = new URL(resource.url, dirpath).toString();
+    const filename = normalizedFilename({
+      ...resource,
+      url,
+    });
+    return [filename, { url }];
   } else {
     const absPath = path.resolve(dirpath || path.resolve(), resource.url);
     const filename = normalizedFilename({
