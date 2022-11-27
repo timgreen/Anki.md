@@ -16,7 +16,7 @@ $ npm install -g @anki.md/cli
 $ ankimd COMMAND
 running command...
 $ ankimd (--version)
-@anki.md/cli/0.4.8 linux-x64 node-v18.12.1
+@anki.md/cli/0.4.9 linux-x64 node-v18.12.1
 $ ankimd --help [COMMAND]
 USAGE
   $ ankimd COMMAND
@@ -32,7 +32,7 @@ USAGE
 - [`ankimd autocomplete [SHELL]`](#ankimd-autocomplete-shell)
 - [`ankimd help [COMMAND]`](#ankimd-help-command)
 - [`ankimd rmids FILES`](#ankimd-rmids-files)
-- [`ankimd sync FILES`](#ankimd-sync-files)
+- [`ankimd sync MARKDOWNS`](#ankimd-sync-markdowns)
 
 ## `ankimd autocomplete [SHELL]`
 
@@ -103,19 +103,19 @@ EXAMPLES
   $ ankimd rmids deckA.md deckB.md
 ```
 
-_See code: [dist/commands/rmids.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.4.8/packages/cli/src/commands/rmids.ts)_
+_See code: [dist/commands/rmids.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.4.9/packages/cli/src/commands/rmids.ts)_
 
-## `ankimd sync FILES`
+## `ankimd sync MARKDOWNS`
 
 Sync to Anki Desktop via AnkiConnect.
 
 ```
 USAGE
-  $ ankimd sync [FILES] [--math native|svg] [--update-model-templates] [--update-model-styling]
+  $ ankimd sync [MARKDOWNS] [--math native|svg] [--update-model-templates] [--update-model-styling]
     [--save-note-ids]
 
 ARGUMENTS
-  FILES  Markdown files
+  MARKDOWNS  Markdown files
 
 FLAGS
   --math=<option>           [default: native] render math equations as SVG or use Anki native mathjax support.
@@ -134,6 +134,6 @@ EXAMPLES
   $ ankimd sync deckA.md deckB.md
 ```
 
-_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.4.8/packages/cli/src/commands/sync.ts)_
+_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.4.9/packages/cli/src/commands/sync.ts)_
 
 <!-- commandsstop -->

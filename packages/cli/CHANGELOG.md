@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.9](https://github.com/timgreen/Anki.md/compare/cli/v0.4.8...cli/v0.4.9) (2022-11-27)
+
+### Features
+
+- Support remote urls. ([69136ec](https://github.com/timgreen/Anki.md/commit/69136ecbe648631a46e30d7f28785907619d36b1))
+
 ## [0.4.8](https://github.com/timgreen/Anki.md/compare/cli/v0.4.7...cli/v0.4.8) (2022-11-26)
 
 ### Features
