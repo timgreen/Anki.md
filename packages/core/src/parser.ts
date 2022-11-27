@@ -29,11 +29,13 @@ import {
 } from "./model";
 
 import type {
+  Alternative,
   Content,
   FrontmatterContent,
   Heading,
   Image,
   Text as MdastText,
+  Resource,
   Root as MdastRoot,
 } from "mdast";
 
@@ -101,45 +103,28 @@ export class Parser {
     dirpath?: string,
   ): Record<MediaName, MediaInfo> {
     const medias: Record<MediaName, MediaInfo> = {};
-    // images
-    for (const node of nodes) {
-      selectAll("image", node).forEach((i) => {
-        const image = i as Image;
-        if (isUri(image.url)) {
-          const filename = normalizedFilename(image);
-          medias[filename] = { url: image.url };
-          image.url = filename;
-        } else {
-          const absPath = path.resolve(dirpath || path.resolve(), image.url);
-          const filename = normalizedFilename({
-            ...image,
-            url: path.relative(dirpath || path.resolve(), absPath),
-          });
-          medias[filename] = { absPath };
-          image.url = filename;
-        }
-      });
+
+    function process(resource: Resource & Alternative) {
+      if (isUri(resource.url)) {
+        const filename = normalizedFilename(resource);
+        medias[filename] = { url: resource.url };
+        resource.url = filename;
+      } else {
+        const absPath = path.resolve(dirpath || path.resolve(), resource.url);
+        const filename = normalizedFilename({
+          ...resource,
+          url: path.relative(dirpath || path.resolve(), absPath),
+        });
+        medias[filename] = { absPath };
+        resource.url = filename;
+      }
     }
-    // sounds
+
     for (const node of nodes) {
+      selectAll("image", node).forEach((i) => process(i as Image));
       selectAll("ankiSound", node).forEach((s) => {
         const ankiSound = s as AnkiSound;
-        if (isUri(ankiSound.url)) {
-          const filename = normalizedFilename(ankiSound);
-          medias[filename] = { url: ankiSound.url };
-          ankiSound.url = filename;
-        } else {
-          const absPath = path.resolve(
-            dirpath || path.resolve(),
-            ankiSound.url,
-          );
-          const filename = normalizedFilename({
-            url: path.relative(dirpath || path.resolve(), absPath),
-          });
-          medias[filename] = { absPath };
-          ankiSound.url = filename;
-        }
-
+        process(ankiSound);
         const text = s as MdastText;
         text.type = "text";
         text.value = `[sound:${ankiSound.url}]`;
