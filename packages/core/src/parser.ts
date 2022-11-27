@@ -282,9 +282,6 @@ export class Parser {
       const config = YAML.parse(yamlConfig);
       if (validateFrontmatterConfig(config)) {
         return config;
-      } else {
-        console.error(validateFrontmatterConfig.errors);
-        process.exit();
       }
     }
   }
