@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.10.1](https://github.com/timgreen/Anki.md/compare/core/v0.10.0...core/v0.10.1) (2022-11-27)
+
+### Features
+
+- Support remote url. ([479e9af](https://github.com/timgreen/Anki.md/commit/479e9af4ed5e7a2dd94d4e9703bf764a39ff78a2))
+
 ## [0.10.0](https://github.com/timgreen/Anki.md/compare/core/v0.9.0...core/v0.10.0) (2022-11-26)
 
 ### ⚠ BREAKING CHANGES
