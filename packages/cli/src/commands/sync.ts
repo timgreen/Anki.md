@@ -1,7 +1,9 @@
 import { ankiConnectSync, Parser, updateNoteId } from "@anki.md/core";
 import { Command, Flags } from "@oclif/core";
 import * as fs from "fs";
+import fetch from "node-fetch";
 import * as path from "path";
+import { isUri } from "valid-url";
 
 export default class Sync extends Command {
   static description = "Sync to Anki Desktop via AnkiConnect.";
@@ -14,7 +16,7 @@ export default class Sync extends Command {
   ];
 
   static args = [
-    { name: "files", required: true, description: "Markdown files" },
+    { name: "markdowns", required: true, description: "Markdown files" },
   ];
 
   static flags = {
@@ -49,23 +51,33 @@ export default class Sync extends Command {
 
     for (const input of argv) {
       this.log(input);
-      const content = String(fs.readFileSync(input));
-      const deck = await parser.parse(content, path.dirname(input));
+      const isRemote = isUri(input);
+      const content = isRemote
+        ? await (await fetch(input)).text()
+        : String(fs.readFileSync(input));
+      const deck = await parser.parse(
+        content,
+        isRemote ? input : path.dirname(input),
+      );
       const noteIds = await ankiConnectSync(deck, {
         updateModelTemplates: flags["update-model-templates"],
         updateModelStyling: flags["update-model-styling"],
       });
 
       if (flags["save-note-ids"]) {
-        // TODO: check if the source if readonly or remote.
-        noteIds.forEach((noteId, index) => {
-          if (noteId) {
-            deck.notes[index].noteId = noteId;
+        if (isRemote) {
+          // TODO: warning about skip save note ids for remote files.
+        } else {
+          // TODO: check if the source if readonly.
+          noteIds.forEach((noteId, index) => {
+            if (noteId) {
+              deck.notes[index].noteId = noteId;
+            }
+          });
+          const updatedContent = updateNoteId(content, deck.notes);
+          if (content != updatedContent) {
+            fs.writeFileSync(input, updatedContent);
           }
-        });
-        const updatedContent = updateNoteId(content, deck.notes);
-        if (content != updatedContent) {
-          fs.writeFileSync(input, updatedContent);
         }
       }
     }
