@@ -3,9 +3,7 @@ import Ajv, { ErrorObject } from "ajv";
 import { IFrontmatterConfig } from "./frontmatter";
 import schema from "./frontmatter.json";
 
-const ajv = new Ajv({
-  allowUnionTypes: true,
-});
+const ajv = new Ajv();
 
 const validateConfig = ajv.compile<IFrontmatterConfig>(schema);
 
