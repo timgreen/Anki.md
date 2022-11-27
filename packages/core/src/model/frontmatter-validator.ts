@@ -1,11 +1,7 @@
-import Ajv, { ErrorObject } from "ajv";
+import { ErrorObject } from "ajv";
 
 import { IFrontmatterConfig } from "./frontmatter";
-import schema from "./frontmatter.json";
-
-const ajv = new Ajv();
-
-const validateConfig = ajv.compile<IFrontmatterConfig>(schema);
+import validateConfig from "./validate_frontmatter.cjs";
 
 export class FrontmatterConfigError extends Error {
   constructor(public errors: ErrorObject[]) {

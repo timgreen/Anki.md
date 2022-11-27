@@ -10,6 +10,7 @@
   "type": "module",
   "sideEffects": false,
   "scripts": {
+    "prebuild": "ajv compile -s src/model/frontmatter.json -o src/model/validate_frontmatter.cjs",
     "build": "tsup",
     "test": "jest",
     "gen-json-schema": "ts-json-schema-generator -f 'tsconfig.json' --path src/model/frontmatter.ts --type IFrontmatterConfig > src/model/frontmatter.json && prettier --write src/model/frontmatter.json"
@@ -28,6 +29,7 @@
     "@babel/preset-env": "^7.18.10",
     "@types/jest": "^28.1.6",
     "@types/valid-url": "^1.0.3",
+    "ajv-cli": "^5.0.0",
     "jest": "^29.3.1",
     "prettier": "^2.8.0",
     "ts-jest": "^29.0.3",
