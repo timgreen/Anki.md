@@ -30,7 +30,7 @@
   "devDependencies": {
     "@oclif/test": "^2.2.10",
     "@types/chai": "^4",
-    "@types/mocha": "^9.0.0",
+    "@types/mocha": "^10.0.1",
     "@types/node": "^16.18.3",
     "@types/valid-url": "^1.0.3",
     "chai": "^4",
