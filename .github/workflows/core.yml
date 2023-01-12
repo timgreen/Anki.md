@@ -6,7 +6,7 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  core-test:
     runs-on: ubuntu-latest
 
     strategy:
