@@ -11,7 +11,6 @@ The markdown format for Anki cards.
 ## Tools
 
 - CLI: [**`ankimd`**](packages/cli)
-- [ ] Obsidian Integration: TBD
 
 ### Actions
 
