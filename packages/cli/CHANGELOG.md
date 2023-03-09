@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.5.0](https://github.com/timgreen/Anki.md/compare/cli/v0.4.9...cli/v0.5.0) (2023-03-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* Default behaviour for media sync changed to skip the existing.
+
+### Features
+
+* `sync` option `overwrite-existing-medias` ([ec5c7c8](https://github.com/timgreen/Anki.md/commit/ec5c7c8d0b698f461082c2abf1c417649e6d301f))
+
 ## [0.4.9](https://github.com/timgreen/Anki.md/compare/cli/v0.4.8...cli/v0.4.9) (2022-11-27)
 
 ### Features
