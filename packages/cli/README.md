@@ -16,7 +16,7 @@ $ npm install -g @anki.md/cli
 $ ankimd COMMAND
 running command...
 $ ankimd (--version)
-@anki.md/cli/0.4.9 linux-x64 node-v18.14.2
+@anki.md/cli/0.5.0 linux-x64 node-v18.14.2
 $ ankimd --help [COMMAND]
 USAGE
   $ ankimd COMMAND
@@ -103,7 +103,7 @@ EXAMPLES
   $ ankimd rmids deckA.md deckB.md
 ```
 
-_See code: [dist/commands/rmids.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.4.9/packages/cli/src/commands/rmids.ts)_
+_See code: [dist/commands/rmids.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.5.0/packages/cli/src/commands/rmids.ts)_
 
 ## `ankimd sync MARKDOWNS`
 
@@ -112,18 +112,19 @@ Sync to Anki Desktop via AnkiConnect.
 ```
 USAGE
   $ ankimd sync MARKDOWNS [--math native|svg] [--update-model-templates] [--update-model-styling]
-    [--save-note-ids]
+    [--save-note-ids] [--overwrite-existing-medias]
 
 ARGUMENTS
   MARKDOWNS  Markdown files
 
 FLAGS
-  --math=<option>           [default: native] render math equations as SVG or use Anki native mathjax support.
-                            <options: native|svg>
-  --[no-]save-note-ids      save the note IDs in markdown after sync.
-                            It will be used to update note instead insert on next sync
-  --update-model-styling    update the styling for the existing note models.
-  --update-model-templates  update the card templates for the existing note models.
+  --math=<option>              [default: native] render math equations as SVG or use Anki native mathjax support.
+                               <options: native|svg>
+  --overwrite-existing-medias  Replace the existing medias with the same name during sync.
+  --[no-]save-note-ids         save the note IDs in markdown after sync.
+                               It will be used to update note instead insert on next sync
+  --update-model-styling       update the styling for the existing note models.
+  --update-model-templates     update the card templates for the existing note models.
 
 DESCRIPTION
   Sync to Anki Desktop via AnkiConnect.
@@ -136,6 +137,6 @@ EXAMPLES
   $ ankimd sync deckA.md https://example.com/foo/deckB.md
 ```
 
-_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.4.9/packages/cli/src/commands/sync.ts)_
+_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.5.0/packages/cli/src/commands/sync.ts)_
 
 <!-- commandsstop -->
