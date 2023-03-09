@@ -16,7 +16,7 @@ $ npm install -g @anki.md/cli
 $ ankimd COMMAND
 running command...
 $ ankimd (--version)
-@anki.md/cli/0.4.9 linux-x64 node-v18.12.1
+@anki.md/cli/0.4.9 linux-x64 node-v18.14.2
 $ ankimd --help [COMMAND]
 USAGE
   $ ankimd COMMAND
@@ -30,7 +30,7 @@ USAGE
 <!-- commands -->
 
 - [`ankimd autocomplete [SHELL]`](#ankimd-autocomplete-shell)
-- [`ankimd help [COMMAND]`](#ankimd-help-command)
+- [`ankimd help [COMMANDS]`](#ankimd-help-commands)
 - [`ankimd rmids FILES`](#ankimd-rmids-files)
 - [`ankimd sync MARKDOWNS`](#ankimd-sync-markdowns)
 
@@ -61,18 +61,18 @@ EXAMPLES
   $ ankimd autocomplete --refresh-cache
 ```
 
-_See code: [@oclif/plugin-autocomplete](https://github.com/oclif/plugin-autocomplete/blob/v1.3.6/src/commands/autocomplete/index.ts)_
+_See code: [@oclif/plugin-autocomplete](https://github.com/oclif/plugin-autocomplete/blob/v2.1.4/src/commands/autocomplete/index.ts)_
 
-## `ankimd help [COMMAND]`
+## `ankimd help [COMMANDS]`
 
 Display help for ankimd.
 
 ```
 USAGE
-  $ ankimd help [COMMAND] [-n]
+  $ ankimd help [COMMANDS] [-n]
 
 ARGUMENTS
-  COMMAND  Command to show help for.
+  COMMANDS  Command to show help for.
 
 FLAGS
   -n, --nested-commands  Include all nested commands in the output.
@@ -81,7 +81,7 @@ DESCRIPTION
   Display help for ankimd.
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.19/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.2.7/src/commands/help.ts)_
 
 ## `ankimd rmids FILES`
 
@@ -89,7 +89,7 @@ Remove the note IDs.
 
 ```
 USAGE
-  $ ankimd rmids [FILES]
+  $ ankimd rmids FILES
 
 ARGUMENTS
   FILES  Markdown files
@@ -111,7 +111,7 @@ Sync to Anki Desktop via AnkiConnect.
 
 ```
 USAGE
-  $ ankimd sync [MARKDOWNS] [--math native|svg] [--update-model-templates] [--update-model-styling]
+  $ ankimd sync MARKDOWNS [--math native|svg] [--update-model-templates] [--update-model-styling]
     [--save-note-ids]
 
 ARGUMENTS
@@ -132,6 +132,8 @@ EXAMPLES
   $ ankimd sync deckA.md
 
   $ ankimd sync deckA.md deckB.md
+
+  $ ankimd sync deckA.md https://example.com/foo/deckB.md
 ```
 
 _See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.4.9/packages/cli/src/commands/sync.ts)_
