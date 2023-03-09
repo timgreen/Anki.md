@@ -27,6 +27,7 @@ ${noteType.inOrderFields
 export interface SyncConfig {
   updateModelTemplates?: boolean;
   updateModelStyling?: boolean;
+  overwriteExistingMedias?: boolean;
   origin?: ApiOrigin;
 }
 
@@ -124,8 +125,22 @@ export async function ankiConnectSync(
   }
 
   // store medias
+  const skipMediaNames: Set<string> = new Set(
+    config?.overwriteExistingMedias
+      ? []
+      : await invoke({
+          action: "getMediaFilesNames",
+          version: 6,
+          request: { pattern: "" },
+          origin: config?.origin,
+        }),
+  );
+
   for (const note of deck.notes) {
     for (const mediaName in note.medias) {
+      if (skipMediaNames.has(mediaName)) {
+        continue;
+      }
       const media = note.medias[mediaName];
       await invoke({
         action: "storeMediaFile",
