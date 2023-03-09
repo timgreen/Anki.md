@@ -10,7 +10,7 @@ The markdown format for Anki cards.
 
 ## Tools
 
-- CLI: [**`ankimd`**](packages/cli)
+- CLI: [**`ankimd`**](packages/cli) [![Version](https://img.shields.io/npm/v/@anki.md/cli.svg)](https://npmjs.org/package/@anki.md/cli)
 
 ### Actions
 
