@@ -16,7 +16,7 @@ $ npm install -g @anki.md/cli
 $ ankimd COMMAND
 running command...
 $ ankimd (--version)
-@anki.md/cli/0.5.0 linux-x64 node-v18.14.2
+@anki.md/cli/0.5.1 linux-x64 node-v18.14.2
 $ ankimd --help [COMMAND]
 USAGE
   $ ankimd COMMAND
@@ -30,6 +30,10 @@ USAGE
 <!-- commands -->
 
 - [`ankimd autocomplete [SHELL]`](#ankimd-autocomplete-shell)
+- [`ankimd connect deckNames`](#ankimd-connect-decknames)
+- [`ankimd connect getProfiles`](#ankimd-connect-getprofiles)
+- [`ankimd connect loadProfile NAME`](#ankimd-connect-loadprofile-name)
+- [`ankimd connect sync`](#ankimd-connect-sync)
 - [`ankimd help [COMMANDS]`](#ankimd-help-commands)
 - [`ankimd rmids FILES`](#ankimd-rmids-files)
 - [`ankimd sync MARKDOWNS`](#ankimd-sync-markdowns)
@@ -62,6 +66,69 @@ EXAMPLES
 ```
 
 _See code: [@oclif/plugin-autocomplete](https://github.com/oclif/plugin-autocomplete/blob/v2.1.4/src/commands/autocomplete/index.ts)_
+
+## `ankimd connect deckNames`
+
+Gets the complete list of deck names for the current user.
+
+```
+USAGE
+  $ ankimd connect deckNames
+
+DESCRIPTION
+  Gets the complete list of deck names for the current user.
+
+EXAMPLES
+  $ ankimd connect deckNames
+```
+
+## `ankimd connect getProfiles`
+
+Retrieve the list of profiles.
+
+```
+USAGE
+  $ ankimd connect getProfiles
+
+DESCRIPTION
+  Retrieve the list of profiles.
+
+EXAMPLES
+  $ ankimd connect getProfiles
+```
+
+## `ankimd connect loadProfile NAME`
+
+Selects the profile specified in request.
+
+```
+USAGE
+  $ ankimd connect loadProfile NAME
+
+ARGUMENTS
+  NAME  Profile name
+
+DESCRIPTION
+  Selects the profile specified in request.
+
+EXAMPLES
+  $ ankimd connect loadProfile profile1
+```
+
+## `ankimd connect sync`
+
+Synchronizes the local Anki collections with AnkiWeb.
+
+```
+USAGE
+  $ ankimd connect sync
+
+DESCRIPTION
+  Synchronizes the local Anki collections with AnkiWeb.
+
+EXAMPLES
+  $ ankimd connect sync
+```
 
 ## `ankimd help [COMMANDS]`
 
@@ -103,7 +170,7 @@ EXAMPLES
   $ ankimd rmids deckA.md deckB.md
 ```
 
-_See code: [dist/commands/rmids.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.5.0/packages/cli/src/commands/rmids.ts)_
+_See code: [dist/commands/rmids.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.5.1/packages/cli/src/commands/rmids.ts)_
 
 ## `ankimd sync MARKDOWNS`
 
@@ -137,6 +204,6 @@ EXAMPLES
   $ ankimd sync deckA.md https://example.com/foo/deckB.md
 ```
 
-_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.5.0/packages/cli/src/commands/sync.ts)_
+_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.5.1/packages/cli/src/commands/sync.ts)_
 
 <!-- commandsstop -->
