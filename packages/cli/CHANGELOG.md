@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/timgreen/Anki.md/compare/cli/v0.5.0...cli/v0.5.1) (2023-03-09)
+
+### Features
+
+- First AnkiConnect wrapper cmd `deskNames` ([5ce43d9](https://github.com/timgreen/Anki.md/commit/5ce43d92085af8c108cd66ba77ff6e86df5b3c55)), closes [#11](https://github.com/timgreen/Anki.md/issues/11)
+- More wrapper commands for AnkiConnect ([d802a1f](https://github.com/timgreen/Anki.md/commit/d802a1fc5e4d98697cb5b67344b562710790b539)), closes [#11](https://github.com/timgreen/Anki.md/issues/11)
+
 ## [0.5.0](https://github.com/timgreen/Anki.md/compare/cli/v0.4.9...cli/v0.5.0) (2023-03-09)
 
 ### ⚠ BREAKING CHANGES
