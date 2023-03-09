@@ -2,10 +2,9 @@
 
 ## [0.10.2](https://github.com/timgreen/Anki.md/compare/core/v0.10.1...core/v0.10.2) (2023-03-09)
 
-
 ### Features
 
-* Option to skip existing medias ([ddc90e4](https://github.com/timgreen/Anki.md/commit/ddc90e4aac28b0e4e99105d8f3ea3c78c6bbf031))
+- Option to skip existing medias ([ddc90e4](https://github.com/timgreen/Anki.md/commit/ddc90e4aac28b0e4e99105d8f3ea3c78c6bbf031))
 
 ## [0.10.1](https://github.com/timgreen/Anki.md/compare/core/v0.10.0...core/v0.10.1) (2022-11-27)
 
