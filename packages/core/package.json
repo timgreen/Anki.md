@@ -37,7 +37,7 @@
     "tsup": "^6.5.0"
   },
   "dependencies": {
-    "@autoanki/anki-connect": "^0.1.0",
+    "@autoanki/anki-connect": "^0.1.2",
     "ajv": "^8.11.2",
     "fast-hash-code": "^2.1.0",
     "rehype-highlight": "^6.0.0",
