@@ -42,6 +42,12 @@ export default class Sync extends Command {
       allowNo: true,
       aliases: ["save-note-id"],
     }),
+    "overwrite-existing-medias": Flags.boolean({
+      description:
+        "Replace the existing medias with the same name during sync.",
+      default: false,
+      required: false,
+    }),
   };
 
   public async run(): Promise<void> {
@@ -63,6 +69,7 @@ export default class Sync extends Command {
       const noteIds = await ankiConnectSync(deck, {
         updateModelTemplates: flags["update-model-templates"],
         updateModelStyling: flags["update-model-styling"],
+        overwriteExistingMedias: flags["overwrite-existing-medias"],
       });
 
       if (flags["save-note-ids"]) {

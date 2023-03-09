@@ -18,7 +18,7 @@
     "/oclif.manifest.json"
   ],
   "dependencies": {
-    "@anki.md/core": "^0.10.1",
+    "@anki.md/core": "^0.10.2",
     "@oclif/core": "^2.0.3",
     "@oclif/plugin-autocomplete": "^2.1.2",
     "@oclif/plugin-help": "^5",
