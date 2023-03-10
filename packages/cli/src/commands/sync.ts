@@ -1,4 +1,10 @@
-import { ankiConnectSync, Parser, updateNoteId } from "@anki.md/core";
+import {
+  ankiConnectSync,
+  Parser,
+  updateNoteId,
+  Reporter,
+  model,
+} from "@anki.md/core";
 import { Args, Command, Flags } from "@oclif/core";
 import * as fs from "fs";
 import fetch from "node-fetch";
@@ -58,6 +64,81 @@ export default class Sync extends Command {
     });
 
     const spinnies = new Spinnies();
+    var mediaCount = 0;
+    var modelCount = 0;
+    var notesUpdatedCount = 0;
+    const reporter: Reporter = {
+      startModelCreation: () => {
+        spinnies.add("modelCreation", { text: "Creating Models", indent: 2 });
+      },
+      endModelCreation: () => {
+        spinnies.succeed("modelCreation", {
+          text: `Created ${modelCount} Models`,
+        });
+        if (!modelCount) {
+          spinnies.remove("modelCreation");
+        }
+      },
+      createdModel: (modelName: string) => {
+        modelCount++;
+        spinnies.add(`model-${modelName}`, {
+          text: `Created ${modelName}`,
+          indent: 4,
+        });
+        spinnies.update("modelCreation", {
+          text: `Creating Models: ${modelCount}`,
+        });
+        spinnies.succeed(`model-${modelName}`);
+      },
+      updatedModelTemplates: (modelName: string) => {
+        // TODO
+      },
+      updatedModelStyling: (modelName: string) => {
+        // TODO
+      },
+      startStoreMedia: () => {
+        spinnies.add("storeMedia", { text: "Storing Medias", indent: 2 });
+        spinnies.add("media", { text: "", indent: 4 });
+      },
+      endStoreMedia: () => {
+        spinnies.remove("media");
+        spinnies.succeed("storeMedia", { text: `Stored ${mediaCount} Medias` });
+        if (!mediaCount) {
+          spinnies.remove("storeMedia");
+        }
+      },
+      storingMedia: (mediaName: string, mediaInfo: model.MediaInfo) => {
+        mediaCount++;
+        spinnies.update("storeMedia", {
+          text: `Storing Medias: ${mediaCount}`,
+        });
+        spinnies.update("media", {
+          text: mediaInfo.absPath || mediaInfo.url || mediaName,
+        });
+      },
+      startNotes: () => {
+        spinnies.add("notes", { text: "Notes", indent: 2 });
+        spinnies.add("noteUpdate", { text: "", indent: 4 });
+      },
+      endNotes: (newInserted: number) => {
+        spinnies.remove("noteUpdate");
+        spinnies.succeed("notes", {
+          text: `Notes: ${notesUpdatedCount} updated ${newInserted} inserted`,
+        });
+      },
+      increaseUpdatedNote: (total: number) => {
+        notesUpdatedCount++;
+        spinnies.update("noteUpdate", {
+          text: `Updateing ${notesUpdatedCount}/${total}`,
+        });
+      },
+      insertingNotes: (total: number) => {
+        spinnies.update("notes", {
+          text: `Notes: ${notesUpdatedCount} updated`,
+        });
+        spinnies.update("noteUpdate", { text: `Inserting ${total}` });
+      },
+    };
 
     for (const input of argv as string[]) {
       spinnies.add(input, {
@@ -72,11 +153,15 @@ export default class Sync extends Command {
         content,
         isRemote ? input : path.dirname(input),
       );
-      const noteIds = await ankiConnectSync(deck, {
-        updateModelTemplates: flags["update-model-templates"],
-        updateModelStyling: flags["update-model-styling"],
-        overwriteExistingMedias: flags["overwrite-existing-medias"],
-      });
+      const noteIds = await ankiConnectSync(
+        deck,
+        {
+          updateModelTemplates: flags["update-model-templates"],
+          updateModelStyling: flags["update-model-styling"],
+          overwriteExistingMedias: flags["overwrite-existing-medias"],
+        },
+        reporter,
+      );
 
       if (flags["save-note-ids"]) {
         if (isRemote) {
