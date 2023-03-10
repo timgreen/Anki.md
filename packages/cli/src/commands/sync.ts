@@ -1,8 +1,9 @@
 import { ankiConnectSync, Parser, updateNoteId } from "@anki.md/core";
-import { Command, Flags, Args } from "@oclif/core";
+import { Args, Command, Flags } from "@oclif/core";
 import * as fs from "fs";
 import fetch from "node-fetch";
 import * as path from "path";
+import Spinnies from "spinnies";
 import { isUri } from "valid-url";
 
 export default class Sync extends Command {
@@ -56,8 +57,13 @@ export default class Sync extends Command {
       useSvgMathjax: flags.math === "svg",
     });
 
+    const spinnies = new Spinnies();
+
     for (const input of argv as string[]) {
-      this.log(input);
+      spinnies.add(input, {
+        text: "Syncing " + input,
+      });
+
       const isRemote = isUri(input);
       const content = isRemote
         ? await (await fetch(input)).text()
@@ -88,6 +94,8 @@ export default class Sync extends Command {
           }
         }
       }
+
+      spinnies.succeed(input, { text: "Done " + input });
     }
   }
 }
