@@ -154,7 +154,7 @@ export async function ankiConnectSync(
       : await invoke({
           action: "getMediaFilesNames",
           version: 6,
-          request: { pattern: "" },
+          request: { pattern: "*" },
           origin: config?.origin,
         }),
   );
