@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.2](https://github.com/timgreen/Anki.md/compare/cli/v0.6.1...cli/v0.6.2) (2023-03-10)
+
+
+### Bug Fixes
+
+* **skip media:** Bump core to 0.10.4 ([fcde0f0](https://github.com/timgreen/Anki.md/commit/fcde0f033857562416c0db0e41996040ee19096d))
+
 ## [0.6.1](https://github.com/timgreen/Anki.md/compare/cli/v0.6.0...cli/v0.6.1) (2023-03-10)
 
 ### Features
