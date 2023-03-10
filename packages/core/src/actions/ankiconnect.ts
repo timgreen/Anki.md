@@ -5,7 +5,7 @@ import {
   ApiOrigin,
 } from "@autoanki/anki-connect";
 
-import { IDeck, INoteType } from "../model";
+import { IDeck, INoteType, MediaInfo } from "../model";
 
 function createDefaultCardTemplateForNoteType(
   noteType: INoteType,
@@ -31,9 +31,25 @@ export interface SyncConfig {
   origin?: ApiOrigin;
 }
 
+export interface Reporter {
+  startModelCreation: () => void;
+  endModelCreation: () => void;
+  createdModel: (modelName: string) => void;
+  updatedModelTemplates: (modelName: string) => void;
+  updatedModelStyling: (modelName: string) => void;
+  startStoreMedia: () => void;
+  endStoreMedia: () => void;
+  storingMedia: (mediaName: string, mediaInfo: MediaInfo) => void;
+  startNotes: () => void;
+  endNotes: (newInserted: number) => void;
+  increaseUpdatedNote: (total: number) => void;
+  insertingNotes: (total: number) => void;
+}
+
 export async function ankiConnectSync(
   deck: IDeck,
   config?: SyncConfig,
+  reporter?: Reporter,
 ): Promise<Array<NoteTypes.NoteId | undefined>> {
   await invoke({
     action: "createDeck",
@@ -54,6 +70,7 @@ export async function ankiConnectSync(
     existingModelNames.add(modelName);
   }
 
+  reporter?.startModelCreation();
   // createModel defined in the frontmatter
   const models = deck.frontmatterConfig?.models || {};
   for (const modelName in models) {
@@ -74,6 +91,7 @@ export async function ankiConnectSync(
         },
         origin: config?.origin,
       });
+      reporter?.createdModel(modelName);
       existingModelNames.add(modelName);
     } else {
       if (config?.updateModelTemplates) {
@@ -88,6 +106,7 @@ export async function ankiConnectSync(
           },
           origin: config?.origin,
         });
+        reporter?.updatedModelTemplates(modelName);
       }
       if (config?.updateModelStyling && model.css) {
         await invoke({
@@ -101,6 +120,7 @@ export async function ankiConnectSync(
           },
           origin: config?.origin,
         });
+        reporter?.updatedModelStyling(modelName);
       }
     }
   }
@@ -120,11 +140,14 @@ export async function ankiConnectSync(
         },
         origin: config?.origin,
       });
+      reporter?.createdModel(note.modelName);
       existingModelNames.add(note.modelName);
     }
   }
+  reporter?.endModelCreation();
 
   // store medias
+  reporter?.startStoreMedia();
   const skipMediaNames: Set<string> = new Set(
     config?.overwriteExistingMedias
       ? []
@@ -142,6 +165,7 @@ export async function ankiConnectSync(
         continue;
       }
       const media = note.medias[mediaName];
+      reporter?.storingMedia(mediaName, media);
       await invoke({
         action: "storeMediaFile",
         version: 6,
@@ -154,7 +178,9 @@ export async function ankiConnectSync(
       });
     }
   }
+  reporter?.endStoreMedia();
 
+  reporter?.startNotes();
   const notesToUpdate = deck.notes.filter((note) => note.noteId);
   const notesToInsert = deck.notes.filter((note) => !note.noteId);
 
@@ -170,8 +196,10 @@ export async function ankiConnectSync(
       },
       origin: config?.origin,
     });
+    reporter?.increaseUpdatedNote(notesToUpdate.length);
   }
 
+  reporter?.insertingNotes(notesToInsert.length);
   const newNoteIds = await invoke({
     action: "addNotes",
     version: 6,
@@ -190,6 +218,7 @@ export async function ankiConnectSync(
       notesToInsert[index].noteId = newNoteId;
     }
   });
+  reporter?.endNotes(newNoteIds.filter((id) => !!id).length);
 
   return deck.notes.map((n) => n.noteId);
 }
