@@ -16,7 +16,7 @@ $ npm install -g @anki.md/cli
 $ ankimd COMMAND
 running command...
 $ ankimd (--version)
-@anki.md/cli/0.6.0 linux-x64 node-v18.14.2
+@anki.md/cli/0.6.1 linux-x64 node-v18.14.2
 $ ankimd --help [COMMAND]
 USAGE
   $ ankimd COMMAND
@@ -31,6 +31,7 @@ USAGE
 
 - [`ankimd autocomplete [SHELL]`](#ankimd-autocomplete-shell)
 - [`ankimd connect deckNames`](#ankimd-connect-decknames)
+- [`ankimd connect getMediaFilesNames [PATTERN]`](#ankimd-connect-getmediafilesnames-pattern)
 - [`ankimd connect getProfiles`](#ankimd-connect-getprofiles)
 - [`ankimd connect loadProfile NAME`](#ankimd-connect-loadprofile-name)
 - [`ankimd connect sync`](#ankimd-connect-sync)
@@ -83,6 +84,29 @@ DESCRIPTION
 
 EXAMPLES
   $ ankimd connect deckNames
+```
+
+## `ankimd connect getMediaFilesNames [PATTERN]`
+
+Gets the names of media files matched the pattern. Returning all names by default.
+
+```
+USAGE
+  $ ankimd connect getMediaFilesNames [PATTERN] [--json]
+
+ARGUMENTS
+  PATTERN  Pattern
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  Gets the names of media files matched the pattern. Returning all names by default.
+
+EXAMPLES
+  $ ankimd connect getMediaFilesNames getMediaFilesNames
+
+  $ ankimd connect getMediaFilesNames getMediaFilesNames pattern
 ```
 
 ## `ankimd connect getProfiles`
@@ -176,7 +200,7 @@ EXAMPLES
   $ ankimd rmids deckA.md deckB.md
 ```
 
-_See code: [dist/commands/rmids.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.6.0/packages/cli/src/commands/rmids.ts)_
+_See code: [dist/commands/rmids.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.6.1/packages/cli/src/commands/rmids.ts)_
 
 ## `ankimd sync MARKDOWNS`
 
@@ -210,6 +234,6 @@ EXAMPLES
   $ ankimd sync deckA.md https://example.com/foo/deckB.md
 ```
 
-_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.6.0/packages/cli/src/commands/sync.ts)_
+_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.6.1/packages/cli/src/commands/sync.ts)_
 
 <!-- commandsstop -->
