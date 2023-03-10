@@ -16,7 +16,7 @@ $ npm install -g @anki.md/cli
 $ ankimd COMMAND
 running command...
 $ ankimd (--version)
-@anki.md/cli/0.5.1 linux-x64 node-v18.14.2
+@anki.md/cli/0.6.0 linux-x64 node-v18.14.2
 $ ankimd --help [COMMAND]
 USAGE
   $ ankimd COMMAND
@@ -73,7 +73,10 @@ Gets the complete list of deck names for the current user.
 
 ```
 USAGE
-  $ ankimd connect deckNames
+  $ ankimd connect deckNames [--json]
+
+GLOBAL FLAGS
+  --json  Format output as json.
 
 DESCRIPTION
   Gets the complete list of deck names for the current user.
@@ -88,7 +91,10 @@ Retrieve the list of profiles.
 
 ```
 USAGE
-  $ ankimd connect getProfiles
+  $ ankimd connect getProfiles [--json]
+
+GLOBAL FLAGS
+  --json  Format output as json.
 
 DESCRIPTION
   Retrieve the list of profiles.
@@ -170,7 +176,7 @@ EXAMPLES
   $ ankimd rmids deckA.md deckB.md
 ```
 
-_See code: [dist/commands/rmids.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.5.1/packages/cli/src/commands/rmids.ts)_
+_See code: [dist/commands/rmids.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.6.0/packages/cli/src/commands/rmids.ts)_
 
 ## `ankimd sync MARKDOWNS`
 
@@ -204,6 +210,6 @@ EXAMPLES
   $ ankimd sync deckA.md https://example.com/foo/deckB.md
 ```
 
-_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.5.1/packages/cli/src/commands/sync.ts)_
+_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.6.0/packages/cli/src/commands/sync.ts)_
 
 <!-- commandsstop -->
