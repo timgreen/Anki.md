@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.4](https://github.com/timgreen/Anki.md/compare/core/v0.10.3...core/v0.10.4) (2023-03-10)
+
+
+### Bug Fixes
+
+* Correctly skip the existing medias ([983f700](https://github.com/timgreen/Anki.md/commit/983f700a9c962d6bd6f922c4fc167baa4fadee89))
+
 ## [0.10.3](https://github.com/timgreen/Anki.md/compare/core/v0.10.2...core/v0.10.3) (2023-03-10)
 
 ### Features

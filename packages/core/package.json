@@ -1,6 +1,6 @@
 {
   "name": "@anki.md/core",
-  "version": "0.10.3",
+  "version": "0.10.4",
   "description": "Anki.md core library.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
