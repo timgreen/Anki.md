@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.1](https://github.com/timgreen/Anki.md/compare/cli/v0.6.0...cli/v0.6.1) (2023-03-10)
+
+### Features
+
+- `connect getMediaFilesNames` ([56190e6](https://github.com/timgreen/Anki.md/commit/56190e64e373a1237078d70d19fad8bf97049382))
+- More spinners for `sync` command ([09c212a](https://github.com/timgreen/Anki.md/commit/09c212a265b99c2a07c85318ada04d9ed5ff8cd9))
+
 ## [0.6.0](https://github.com/timgreen/Anki.md/compare/cli/v0.5.1...cli/v0.6.0) (2023-03-10)
 
 ### ⚠ BREAKING CHANGES
