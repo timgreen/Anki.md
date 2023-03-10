@@ -113,7 +113,7 @@ export default class Sync extends Command {
           text: `Storing Medias: ${mediaCount}`,
         });
         spinnies.update("media", {
-          text: mediaInfo.absPath || mediaInfo.url || mediaName,
+          text: `${mediaName}: ${mediaInfo.absPath || mediaInfo.url}`,
         });
       },
       startNotes: () => {
