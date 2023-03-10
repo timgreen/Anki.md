@@ -38,7 +38,7 @@ export default class Sync extends Command {
     "save-note-ids": Flags.boolean({
       description:
         "save the note IDs in markdown after sync. \nIt will be used to update note instead insert on next sync",
-      default: true,
+      default: false,
       required: false,
       allowNo: true,
       aliases: ["save-note-id"],
