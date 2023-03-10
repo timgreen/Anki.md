@@ -48,7 +48,9 @@ jobs:
         if: steps.release.outputs.pr
         # Use personal access token to trigger workflows.
         # See https://help.github.com/en/actions/reference/events-that-trigger-workflows#triggering-new-workflows-using-a-personal-access-token
-        run: git push https://${GITHUB_ACTOR}:${{ secrets.ANKIMD_GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.ANKIMD_GITHUB_TOKEN }}
 
       # The logic below handles the npm publication:
       - uses: actions/checkout@v3
