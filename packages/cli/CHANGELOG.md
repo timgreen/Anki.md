@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.6.0](https://github.com/timgreen/Anki.md/compare/cli/v0.5.1...cli/v0.6.0) (2023-03-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* default to not save the note id
+
+### Features
+
+* Default to not save the note id ([cbf02f6](https://github.com/timgreen/Anki.md/commit/cbf02f64589bc3c92288a3ae11e96a45776cd0a7))
+* Introduce simple spinner for sync ([55c77e7](https://github.com/timgreen/Anki.md/commit/55c77e70f0accc17d891f4d888a9ecfb2d9daf8d))
+* Support json output for connect wrapper ([eb74d2b](https://github.com/timgreen/Anki.md/commit/eb74d2bd948b8cf83cb5857b16c9a89951437a5c))
+
 ## [0.5.1](https://github.com/timgreen/Anki.md/compare/cli/v0.5.0...cli/v0.5.1) (2023-03-09)
 
 ### Features
