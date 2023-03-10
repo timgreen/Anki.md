@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.10.3](https://github.com/timgreen/Anki.md/compare/core/v0.10.2...core/v0.10.3) (2023-03-10)
+
+### Features
+
+- Report details during the sync ([33b9446](https://github.com/timgreen/Anki.md/commit/33b9446c514401629abf878e68d72d76aa0baa91))
+
 ## [0.10.2](https://github.com/timgreen/Anki.md/compare/core/v0.10.1...core/v0.10.2) (2023-03-09)
 
 ### Features
