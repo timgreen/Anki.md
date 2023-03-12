@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import {
   ankiConnectSync,
   Parser,
@@ -69,11 +70,11 @@ export default class Sync extends Command {
     var notesUpdatedCount = 0;
     const reporter: Reporter = {
       startModelCreation: () => {
-        spinnies.add("modelCreation", { text: "Creating Models", indent: 2 });
+        spinnies.add("modelCreation", { text: "model:", indent: 2 });
       },
       endModelCreation: () => {
         spinnies.succeed("modelCreation", {
-          text: `Created ${modelCount} Models`,
+          text: `${chalk.reset("model:")} ${chalk.green(`+${modelCount}`)}`,
         });
         if (!modelCount) {
           spinnies.remove("modelCreation");
@@ -82,13 +83,13 @@ export default class Sync extends Command {
       createdModel: (modelName: string) => {
         modelCount++;
         spinnies.add(`model-${modelName}`, {
-          text: `Created ${modelName}`,
+          text: chalk.reset(modelName),
           indent: 4,
+          status: "succeed",
         });
         spinnies.update("modelCreation", {
-          text: `Creating Models: ${modelCount}`,
+          text: `model: ${chalk.green(`+${modelCount}}`)}`,
         });
-        spinnies.succeed(`model-${modelName}`);
       },
       updatedModelTemplates: (modelName: string) => {
         // TODO
@@ -97,12 +98,14 @@ export default class Sync extends Command {
         // TODO
       },
       startStoreMedia: () => {
-        spinnies.add("storeMedia", { text: "Storing Medias", indent: 2 });
+        spinnies.add("storeMedia", { text: "media:", indent: 2 });
         spinnies.add("media", { text: "", indent: 4 });
       },
       endStoreMedia: () => {
         spinnies.remove("media");
-        spinnies.succeed("storeMedia", { text: `Stored ${mediaCount} Medias` });
+        spinnies.succeed("storeMedia", {
+          text: `${chalk.reset("media: ")} ${chalk.green(`+${mediaCount}`)}`,
+        });
         if (!mediaCount) {
           spinnies.remove("storeMedia");
         }
@@ -110,39 +113,43 @@ export default class Sync extends Command {
       storingMedia: (mediaName: string, mediaInfo: model.MediaInfo) => {
         mediaCount++;
         spinnies.update("storeMedia", {
-          text: `Storing Medias: ${mediaCount}`,
+          text: `media: ${chalk.green(`+${mediaCount}`)}`,
         });
         spinnies.update("media", {
-          text: `${mediaName}: ${mediaInfo.absPath || mediaInfo.url}`,
+          text: `${mediaName} ${chalk.gray(
+            `<= ${mediaInfo.absPath || mediaInfo.url}`,
+          )}`,
         });
       },
       startNotes: () => {
-        spinnies.add("notes", { text: "Notes", indent: 2 });
+        spinnies.add("notes", { text: "note:", indent: 2 });
         spinnies.add("noteUpdate", { text: "", indent: 4 });
       },
       endNotes: (newInserted: number) => {
         spinnies.remove("noteUpdate");
         spinnies.succeed("notes", {
-          text: `Notes: ${notesUpdatedCount} updated ${newInserted} inserted`,
+          text: `${chalk.reset("notes:")} ${chalk.green(
+            `+${newInserted}`,
+          )} ${chalk.yellow(`~${notesUpdatedCount}`)}`,
         });
       },
       increaseUpdatedNote: (total: number) => {
         notesUpdatedCount++;
         spinnies.update("noteUpdate", {
-          text: `Updateing ${notesUpdatedCount}/${total}`,
+          text: `updateing ${chalk.yellow(notesUpdatedCount)}/${total}`,
         });
       },
       insertingNotes: (total: number) => {
         spinnies.update("notes", {
-          text: `Notes: ${notesUpdatedCount} updated`,
+          text: `note: ${chalk.yellow(`~${notesUpdatedCount}`)}`,
         });
-        spinnies.update("noteUpdate", { text: `Inserting ${total}` });
+        spinnies.update("noteUpdate", { text: `inserting ${total}` });
       },
     };
 
     for (const input of argv as string[]) {
       spinnies.add(input, {
-        text: "Syncing " + input,
+        text: chalk.bold(input),
       });
 
       const isRemote = isUri(input);
@@ -180,7 +187,7 @@ export default class Sync extends Command {
         }
       }
 
-      spinnies.succeed(input, { text: "Done " + input });
+      spinnies.succeed(input, { text: chalk.reset(input) });
     }
   }
 }

@@ -25,6 +25,7 @@
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-not-found": "^2.3.17",
     "@oclif/plugin-warn-if-update-available": "^2.0.23",
+    "chalk": "^5.2.0",
     "node-fetch": "^3.3.0",
     "ora": "^6.1.2",
     "spinnies": "^0.5.1",
