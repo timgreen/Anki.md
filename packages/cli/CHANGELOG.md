@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.6.3](https://github.com/timgreen/Anki.md/compare/cli/v0.6.2...cli/v0.6.3) (2023-03-12)
+
+### Features
+
+- Add color to the output ([ced955e](https://github.com/timgreen/Anki.md/commit/ced955e096d545ffd4d7fab67af17a51ea576b44)), closes [#12](https://github.com/timgreen/Anki.md/issues/12)
+
 ## [0.6.2](https://github.com/timgreen/Anki.md/compare/cli/v0.6.1...cli/v0.6.2) (2023-03-10)
 
 ### Bug Fixes
