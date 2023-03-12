@@ -1,6 +1,6 @@
 {
   "name": "@anki.md/cli",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "Anki.md CLI.",
   "author": " @timgreen",
   "bin": {
