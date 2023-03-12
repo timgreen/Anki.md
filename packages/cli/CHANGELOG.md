@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.4](https://github.com/timgreen/Anki.md/compare/cli/v0.6.3...cli/v0.6.4) (2023-03-12)
+
+### Features
+
+- **connect:** FindNotes ([2e00764](https://github.com/timgreen/Anki.md/commit/2e0076477ab7e1b877833558e293cef81cbbd21d))
+- **connect:** NotesInfo ([10178a3](https://github.com/timgreen/Anki.md/commit/10178a36dc6c0f8d9e2c6bc8b6ff8446f0fa78bc))
+
 ## [0.6.3](https://github.com/timgreen/Anki.md/compare/cli/v0.6.2...cli/v0.6.3) (2023-03-12)
 
 ### Features
