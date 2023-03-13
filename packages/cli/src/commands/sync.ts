@@ -91,7 +91,7 @@ export default class Sync extends Command {
       endStoreMedia: () => {
         spinnies.remove("media");
         spinnies.succeed("storeMedia", {
-          text: `${chalk.reset("media: ")} ${chalk.green(`+${mediaCount}`)}`,
+          text: `${chalk.reset("media:")} ${chalk.green(`+${mediaCount}`)}`,
         });
         if (!mediaCount) {
           spinnies.remove("storeMedia");
