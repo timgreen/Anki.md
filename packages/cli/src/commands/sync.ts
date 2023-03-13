@@ -110,7 +110,10 @@ export default class Sync extends Command {
       },
       startNotes: () => {
         spinnies.add("notes", { text: "note:", indent: 2 });
-        spinnies.add("noteUpdate", { text: "", indent: 4 });
+        spinnies.add("noteUpdate", {
+          text: "fetching existing notes",
+          indent: 4,
+        });
       },
       endNotes: (newInserted: number) => {
         spinnies.remove("noteUpdate");
