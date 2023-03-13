@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.11.0](https://github.com/timgreen/Anki.md/compare/core/v0.10.4...core/v0.11.0) (2023-03-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* report & skip unmodified notes
+* drop the support of noteId in the parser
+
+### Features
+
+* Drop the support of noteId in the parser ([17640ee](https://github.com/timgreen/Anki.md/commit/17640eef622a4773d202bd2be269b81559302e25)), closes [#34](https://github.com/timgreen/Anki.md/issues/34)
+* Report & skip unmodified notes ([cc6f50e](https://github.com/timgreen/Anki.md/commit/cc6f50edc065241c1e4029af557cda97a72e5d4d))
+* Update notes without noteid ([82f0e24](https://github.com/timgreen/Anki.md/commit/82f0e2448560db112e561698a393f74eeb51262c)), closes [#34](https://github.com/timgreen/Anki.md/issues/34)
+
 ## [0.10.4](https://github.com/timgreen/Anki.md/compare/core/v0.10.3...core/v0.10.4) (2023-03-10)
 
 ### Bug Fixes
