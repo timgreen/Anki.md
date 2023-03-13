@@ -73,11 +73,6 @@ export interface INote extends INoteType {
   medias: Record<MediaName, MediaInfo>;
 }
 
-export interface INoteIdAndPosition {
-  noteId?: NoteTypes.NoteId;
-  position: { startLine: number };
-}
-
 export const BASIC_MODEL: INoteType = {
   modelName: "Basic",
   inOrderFields: ["Front", "Back"],

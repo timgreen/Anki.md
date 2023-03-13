@@ -122,35 +122,6 @@ export class Parser {
     return medias;
   }
 
-  /**
-   * NoteId is token at the end of card heading with format:
-   * `\s+\^[1-9][0-9]*$`
-   *
-   * @returns nodeId, if present
-   */
-  private static extractNoteId(heading: Heading): number | undefined {
-    const lastText = heading.children.at(-1);
-    if (!lastText || lastText.type !== "text") {
-      return;
-    }
-
-    const matches = lastText.value.match(/\s+\^([1-9][0-9]*)$/);
-    if (matches && matches.length >= 2) {
-      const nodeId = parseInt(matches[1], 10);
-      lastText.value = lastText.value.substring(
-        0,
-        lastText.value.length - matches[0].length,
-      );
-      if (!lastText.value) {
-        heading.children = heading.children.slice(
-          0,
-          heading.children.length - 1,
-        );
-      }
-      return nodeId;
-    }
-  }
-
   private async toNote(
     nodes: Array<Content>,
     frontmatterConfig?: IFrontmatterConfig,
@@ -177,7 +148,6 @@ export class Parser {
       return;
     }
 
-    const noteId = Parser.extractNoteId(heading);
     // TODO: remove the surrounding spaces as well.
     remove(heading, (n) => n.type === "tagLink");
 
@@ -193,7 +163,6 @@ export class Parser {
 
       return {
         ...BASIC_MODEL,
-        noteId,
         position,
         values: {
           Front: front,
@@ -233,7 +202,6 @@ export class Parser {
     return {
       modelName: Parser.extractCustomModelName(cardTag)!!,
       inOrderFields: fields.map((f) => f.name),
-      noteId,
       position,
       values: fields.reduce(
         (record, f) => {
