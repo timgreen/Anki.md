@@ -181,6 +181,38 @@ export async function ankiConnectSync(
   reporter?.endStoreMedia();
 
   reporter?.startNotes();
+  // fetch all the notes in the target deck
+  const noteIdsInDeck = await invoke({
+    action: "findNotes",
+    version: 6,
+    request: { query: `deck:"${deck.deckName}"` },
+  });
+  const notesInDeck = await invoke({
+    action: "notesInfo",
+    version: 6,
+    request: {
+      notes: noteIdsInDeck,
+    },
+  });
+  // map the existing notes from model + first field to noteId.
+  const noteIdMap = new Map<string, number>();
+  for (const n of notesInDeck) {
+    noteIdMap.set(
+      `${n.modelName}|${
+        Object.values(n.fields).find((f) => f.order === 0)!.value
+      }`,
+      n.noteId,
+    );
+  }
+  // assign the existing noteIds.
+  for (var n of deck.notes) {
+    const key = `${n.modelName}|${n.values[n.inOrderFields[0]]}`;
+    const noteId = noteIdMap.get(key);
+    if (noteId) {
+      n.noteId = noteId;
+    }
+  }
+
   const notesToUpdate = deck.notes.filter((note) => note.noteId);
   const notesToInsert = deck.notes.filter((note) => !note.noteId);
 
