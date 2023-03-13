@@ -1,11 +1,11 @@
 import {
+  ApiOrigin,
   invoke,
   ModelTypes,
   NoteTypes,
-  ApiOrigin,
 } from "@autoanki/anki-connect";
 
-import { IDeck, INoteType, MediaInfo } from "../model";
+import { IDeck, INote, INoteType, MediaInfo } from "../model";
 
 function createDefaultCardTemplateForNoteType(
   noteType: INoteType,
@@ -22,6 +22,47 @@ ${noteType.inOrderFields
   .map((f) => `{{${f}}}`)
   .join("<br>")}`,
   };
+}
+
+function arraysEqual(arr1: string[], arr2: string[]): boolean {
+  if (arr1.length !== arr2.length) {
+    return false;
+  }
+  let sortedArr1 = arr1.slice().sort();
+  let sortedArr2 = arr2.slice().sort();
+  for (let i = 0; i < sortedArr1.length; i++) {
+    if (sortedArr1[i] !== sortedArr2[i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function checkIsModified(
+  existingNote: NoteTypes.NoteInfo | undefined,
+  newNote: INote,
+): boolean {
+  if (!existingNote) {
+    return true;
+  }
+  if (newNote.modelName !== existingNote.modelName) {
+    return true;
+  }
+  if (!arraysEqual(existingNote.tags, newNote.tags)) {
+    return true;
+  }
+  if (
+    !arraysEqual(Object.keys(existingNote.fields), Object.keys(newNote.values))
+  ) {
+    return true;
+  }
+  for (const field of Object.keys(existingNote.fields)) {
+    if (existingNote.fields[field].value !== newNote.values[field]) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 export interface SyncConfig {
@@ -42,6 +83,7 @@ export interface Reporter {
   storingMedia: (mediaName: string, mediaInfo: MediaInfo) => void;
   startNotes: () => void;
   endNotes: (newInserted: number) => void;
+  unmodifiedNotes: (count: number) => void;
   increaseUpdatedNote: (total: number) => void;
   insertingNotes: (total: number) => void;
 }
@@ -195,25 +237,33 @@ export async function ankiConnectSync(
     },
   });
   // map the existing notes from model + first field to noteId.
-  const noteIdMap = new Map<string, number>();
+  const noteIdMap = new Map<string, NoteTypes.NoteInfo>();
   for (const n of notesInDeck) {
     noteIdMap.set(
       `${n.modelName}|${
         Object.values(n.fields).find((f) => f.order === 0)!.value
       }`,
-      n.noteId,
+      n,
     );
   }
   // assign the existing noteIds.
   for (var n of deck.notes) {
     const key = `${n.modelName}|${n.values[n.inOrderFields[0]]}`;
-    const noteId = noteIdMap.get(key);
+    const existingNote = noteIdMap.get(key);
+    const noteId = existingNote?.noteId;
     if (noteId) {
       n.noteId = noteId;
+      n.modified = checkIsModified(existingNote, n);
     }
   }
 
-  const notesToUpdate = deck.notes.filter((note) => note.noteId);
+  const unmodifiedNotes = deck.notes.filter(
+    (note) => note.noteId && !note.modified,
+  );
+  reporter?.unmodifiedNotes(unmodifiedNotes.length);
+  const notesToUpdate = deck.notes.filter(
+    (note) => note.noteId && note.modified,
+  );
   const notesToInsert = deck.notes.filter((note) => !note.noteId);
 
   for (const note of notesToUpdate) {

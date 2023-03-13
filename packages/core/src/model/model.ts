@@ -67,6 +67,7 @@ export interface INotePosition {
 }
 export interface INote extends INoteType {
   noteId?: number;
+  modified?: boolean;
   position: INotePosition;
   values: Record<string, string>;
   tags: string[];
