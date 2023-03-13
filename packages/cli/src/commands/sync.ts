@@ -1,11 +1,5 @@
 import chalk from "chalk";
-import {
-  ankiConnectSync,
-  Parser,
-  updateNoteId,
-  Reporter,
-  model,
-} from "@anki.md/core";
+import { ankiConnectSync, Parser, Reporter, model } from "@anki.md/core";
 import { Args, Command, Flags } from "@oclif/core";
 import * as fs from "fs";
 import fetch from "node-fetch";
@@ -42,14 +36,6 @@ export default class Sync extends Command {
     "update-model-styling": Flags.boolean({
       description: "update the styling for the existing note models.",
     }),
-    "save-note-ids": Flags.boolean({
-      description:
-        "save the note IDs in markdown after sync. \nIt will be used to update note instead insert on next sync",
-      default: false,
-      required: false,
-      allowNo: true,
-      aliases: ["save-note-id"],
-    }),
     "overwrite-existing-medias": Flags.boolean({
       description:
         "Replace the existing medias with the same name during sync.",
@@ -68,6 +54,7 @@ export default class Sync extends Command {
     var mediaCount = 0;
     var modelCount = 0;
     var notesUpdatedCount = 0;
+    var notesUnmodifiedCount = 0;
     const reporter: Reporter = {
       startModelCreation: () => {
         spinnies.add("modelCreation", { text: "model:", indent: 2 });
@@ -130,7 +117,15 @@ export default class Sync extends Command {
         spinnies.succeed("notes", {
           text: `${chalk.reset("notes:")} ${chalk.green(
             `+${newInserted}`,
-          )} ${chalk.yellow(`~${notesUpdatedCount}`)}`,
+          )} ${chalk.yellow(`~${notesUpdatedCount}`)} ${chalk.reset(
+            `=${notesUnmodifiedCount}`,
+          )}`,
+        });
+      },
+      unmodifiedNotes: (count: number) => {
+        notesUnmodifiedCount = count;
+        spinnies.update("notes", {
+          text: `note: ${chalk.reset(`=${notesUnmodifiedCount}`)}`,
         });
       },
       increaseUpdatedNote: (total: number) => {
@@ -141,7 +136,9 @@ export default class Sync extends Command {
       },
       insertingNotes: (total: number) => {
         spinnies.update("notes", {
-          text: `note: ${chalk.yellow(`~${notesUpdatedCount}`)}`,
+          text: `note: ${chalk.yellow(`~${notesUpdatedCount}`)} ${chalk.reset(
+            `=${notesUnmodifiedCount}`,
+          )}`,
         });
         spinnies.update("noteUpdate", { text: `inserting ${total}` });
       },
@@ -169,23 +166,6 @@ export default class Sync extends Command {
         },
         reporter,
       );
-
-      if (flags["save-note-ids"]) {
-        if (isRemote) {
-          // TODO: warning about skip save note ids for remote files.
-        } else {
-          // TODO: check if the source if readonly.
-          noteIds.forEach((noteId, index) => {
-            if (noteId) {
-              deck.notes[index].noteId = noteId;
-            }
-          });
-          const updatedContent = updateNoteId(content, deck.notes);
-          if (content != updatedContent) {
-            fs.writeFileSync(input, updatedContent);
-          }
-        }
-      }
 
       spinnies.succeed(input, { text: chalk.reset(input) });
     }
