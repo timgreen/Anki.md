@@ -12,13 +12,11 @@ digraph G {
     RP [label="Models", shape=cylinder];
   }
   subgraph cluster_o {
-    label="Output";
+    label="Target";
     style="dotted";
-    AnkiPkg [label="<deck>.apkg", shape=note];
     AnkiDesktop [label="", image="Anki-icon.png", shape=none];
   }
 
   MD -> RP [label="parse"];
-  RP -> AnkiPkg [label="generate"];
-  RP -> AnkiDesktop [label="via Anki Connect"];
+  RP -> AnkiDesktop [label="sync"];
 }

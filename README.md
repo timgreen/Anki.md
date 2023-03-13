@@ -14,8 +14,8 @@ The markdown format for Anki cards.
 
 ### Actions
 
-- 🔄 [WIP] Sync: md -> Anki Desktop (via [Anki Connect](https://ankiweb.net/shared/info/2055492159))
-- ➡️ [TODO] Convert: md -> deck apkg
+- 🔄 `sync`: md -> Anki Desktop (via [Anki Connect](https://ankiweb.net/shared/info/2055492159))
+- ➡️ `connect`: [Anki Connect](https://github.com/FooSoft/anki-connect#supported-actions) wrapper
 
 ## Features
 
