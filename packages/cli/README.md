@@ -16,7 +16,7 @@ $ npm install -g @anki.md/cli
 $ ankimd COMMAND
 running command...
 $ ankimd (--version)
-@anki.md/cli/0.6.4 linux-x64 node-v18.14.2
+@anki.md/cli/0.7.0 linux-x64 node-v18.14.2
 $ ankimd --help [COMMAND]
 USAGE
   $ ankimd COMMAND
@@ -38,7 +38,6 @@ USAGE
 - [`ankimd connect notesInfo NOTEIDS`](#ankimd-connect-notesinfo-noteids)
 - [`ankimd connect sync`](#ankimd-connect-sync)
 - [`ankimd help [COMMANDS]`](#ankimd-help-commands)
-- [`ankimd rmids FILES`](#ankimd-rmids-files)
 - [`ankimd sync MARKDOWNS`](#ankimd-sync-markdowns)
 
 ## `ankimd autocomplete [SHELL]`
@@ -226,28 +225,6 @@ DESCRIPTION
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.2.8/src/commands/help.ts)_
 
-## `ankimd rmids FILES`
-
-Remove the note IDs.
-
-```
-USAGE
-  $ ankimd rmids FILES
-
-ARGUMENTS
-  FILES  Markdown files
-
-DESCRIPTION
-  Remove the note IDs.
-
-EXAMPLES
-  $ ankimd rmids deckA.md
-
-  $ ankimd rmids deckA.md deckB.md
-```
-
-_See code: [dist/commands/rmids.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.6.4/packages/cli/src/commands/rmids.ts)_
-
 ## `ankimd sync MARKDOWNS`
 
 Sync to Anki Desktop via AnkiConnect.
@@ -255,7 +232,7 @@ Sync to Anki Desktop via AnkiConnect.
 ```
 USAGE
   $ ankimd sync MARKDOWNS [--math native|svg] [--update-model-templates] [--update-model-styling]
-    [--save-note-ids] [--overwrite-existing-medias]
+    [--overwrite-existing-medias]
 
 ARGUMENTS
   MARKDOWNS  Markdown files
@@ -264,8 +241,6 @@ FLAGS
   --math=<option>              [default: native] render math equations as SVG or use Anki native mathjax support.
                                <options: native|svg>
   --overwrite-existing-medias  Replace the existing medias with the same name during sync.
-  --[no-]save-note-ids         save the note IDs in markdown after sync.
-                               It will be used to update note instead insert on next sync
   --update-model-styling       update the styling for the existing note models.
   --update-model-templates     update the card templates for the existing note models.
 
@@ -280,6 +255,6 @@ EXAMPLES
   $ ankimd sync deckA.md https://example.com/foo/deckB.md
 ```
 
-_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.6.4/packages/cli/src/commands/sync.ts)_
+_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.7.0/packages/cli/src/commands/sync.ts)_
 
 <!-- commandsstop -->
