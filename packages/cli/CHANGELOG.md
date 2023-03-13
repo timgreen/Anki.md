@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.7.0](https://github.com/timgreen/Anki.md/compare/cli/v0.6.4...cli/v0.7.0) (2023-03-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* stop matching noteId & report unmodified
+
+### Features
+
+* Stop matching noteId & report unmodified ([8226956](https://github.com/timgreen/Anki.md/commit/82269562bb30b638f6ef4451091c6aac4eb8bf6e))
+
 ## [0.6.4](https://github.com/timgreen/Anki.md/compare/cli/v0.6.3...cli/v0.6.4) (2023-03-12)
 
 ### Features
