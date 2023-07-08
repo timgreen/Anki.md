@@ -16,7 +16,7 @@ $ npm install -g @anki.md/cli
 $ ankimd COMMAND
 running command...
 $ ankimd (--version)
-@anki.md/cli/0.7.1 linux-x64 node-v18.16.1
+@anki.md/cli/0.7.2 linux-x64 node-v18.16.1
 $ ankimd --help [COMMAND]
 USAGE
   $ ankimd COMMAND
@@ -257,6 +257,6 @@ EXAMPLES
   $ ankimd sync deckA.md https://example.com/foo/deckB.md
 ```
 
-_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.7.1/packages/cli/src/commands/sync.ts)_
+_See code: [dist/commands/sync.ts](https://github.com/timgreen/Anki.md/blob/cli/v0.7.2/packages/cli/src/commands/sync.ts)_
 
 <!-- commandsstop -->
