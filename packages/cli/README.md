@@ -16,7 +16,7 @@ $ npm install -g @anki.md/cli
 $ ankimd COMMAND
 running command...
 $ ankimd (--version)
-@anki.md/cli/0.7.1 linux-x64 node-v18.14.2
+@anki.md/cli/0.7.1 linux-x64 node-v18.16.1
 $ ankimd --help [COMMAND]
 USAGE
   $ ankimd COMMAND
@@ -49,7 +49,7 @@ USAGE
   $ ankimd autocomplete [SHELL] [-r]
 
 ARGUMENTS
-  SHELL  shell type
+  SHELL  (zsh|bash|powershell) Shell type
 
 FLAGS
   -r, --refresh-cache  Refresh cache (ignores displaying instructions)
@@ -64,10 +64,12 @@ EXAMPLES
 
   $ ankimd autocomplete zsh
 
+  $ ankimd autocomplete powershell
+
   $ ankimd autocomplete --refresh-cache
 ```
 
-_See code: [@oclif/plugin-autocomplete](https://github.com/oclif/plugin-autocomplete/blob/v2.1.5/src/commands/autocomplete/index.ts)_
+_See code: [@oclif/plugin-autocomplete](https://github.com/oclif/plugin-autocomplete/blob/v2.3.1/src/commands/autocomplete/index.ts)_
 
 ## `ankimd connect deckNames`
 
@@ -223,7 +225,7 @@ DESCRIPTION
   Display help for ankimd.
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.2.8/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.2.11/src/commands/help.ts)_
 
 ## `ankimd sync MARKDOWNS`
 

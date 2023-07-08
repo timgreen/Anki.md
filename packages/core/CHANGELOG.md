@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.11.1](https://github.com/timgreen/Anki.md/compare/core/v0.11.0...core/v0.11.1) (2023-07-08)
+
+### Features
+
+- Support raw html in markdown ([c852eea](https://github.com/timgreen/Anki.md/commit/c852eeacaa6d0d2db95ac3e44bd68513bc3bd445))
+
 ## [0.11.0](https://github.com/timgreen/Anki.md/compare/core/v0.10.4...core/v0.11.0) (2023-03-13)
 
 ### ⚠ BREAKING CHANGES
