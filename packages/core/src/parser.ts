@@ -5,6 +5,7 @@ import remarkFrontmatter from "remark-frontmatter";
 import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
+import rehypeRaw from "rehype-raw";
 import { unified } from "unified";
 import { remove } from "unist-util-remove";
 import { select, selectAll } from "unist-util-select";
@@ -70,7 +71,8 @@ export class Parser {
     remove(mdast, "tagLink");
 
     const rehypeAst: any = await unified()
-      .use(remarkRehype)
+      .use(remarkRehype, { allowDangerousHtml: true })
+      .use(rehypeRaw)
       .use(this.#config.useSvgMathjax ? rehypeMathjax : rehypeAnkiMathjax)
       .use(rehypeHighlight)
       .run(mdast);

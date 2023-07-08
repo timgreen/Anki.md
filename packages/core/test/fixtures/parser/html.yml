@@ -1,0 +1,35 @@
+deckName: Default
+notes:
+  - modelName: Basic
+    inOrderFields: [Front, Back]
+    values:
+      Front: "Note 1 "
+      Back: |-
+        <p>p</p>
+    tags: []
+    medias: {}
+    position:
+      startLine: 1
+      endLine: 3
+  - modelName: Basic
+    inOrderFields: [Front, Back]
+    values:
+      Front: " \n<span>\nNote 2\n</span>"
+      Back: |-
+        <p>n2 text</p>
+    tags: []
+    medias: {}
+    position:
+      startLine: 5
+      endLine: 7
+  - modelName: Basic
+    inOrderFields: [Front, Back]
+    values:
+      Front: " Note 3"
+      Back: |-
+        <p><svg></svg></p>
+    tags: []
+    medias: {}
+    position:
+      startLine: 9
+      endLine: 11
