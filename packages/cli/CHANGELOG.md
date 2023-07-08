@@ -2,10 +2,9 @@
 
 ## [0.7.2](https://github.com/timgreen/Anki.md/compare/cli/v0.7.1...cli/v0.7.2) (2023-07-08)
 
-
 ### Features
 
-* Html support, bump core to 0.11.1 ([1792f63](https://github.com/timgreen/Anki.md/commit/1792f63c186d1bbb6c79881963c5e4940ff495d3))
+- Html support, bump core to 0.11.1 ([1792f63](https://github.com/timgreen/Anki.md/commit/1792f63c186d1bbb6c79881963c5e4940ff495d3))
 
 ## [0.7.1](https://github.com/timgreen/Anki.md/compare/cli/v0.7.0...cli/v0.7.1) (2023-03-14)
 
