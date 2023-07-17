@@ -51,7 +51,7 @@
     "remark-rehype": "^10.1.0",
     "unified": "^10.1.2",
     "unist-util-remove": "^4.0.0",
-    "unist-util-select": "^4.0.1",
+    "unist-util-select": "^5.0.0",
     "valid-url": "^1.0.9",
     "yaml": "^2.1.3"
   },
