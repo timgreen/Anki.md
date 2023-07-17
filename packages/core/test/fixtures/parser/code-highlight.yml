@@ -51,8 +51,7 @@ notes:
   - modelName: Custom-Note-Model
     inOrderFields: [Front, Back]
     values:
-      Front: |-
-        <div></div>
+      Front: ""
       Back: |-
         <pre><code class="hljs language-bash"><span class="hljs-built_in">ls</span> <span class="hljs-built_in">dir</span>
         <span class="hljs-built_in">echo</span> <span class="hljs-string">"xxx"</span> > /dev/null
