@@ -14,7 +14,7 @@ jobs:
           command: manifest
 
       # Credits: https://github.com/remarkablemark/release-please-extra-files-demo/blob/master/.github/workflows/release-please.yml
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         if: steps.release.outputs.pr
         with:
           ref: ${{ fromJson(steps.release.outputs.pr).headBranchName }}
@@ -54,7 +54,7 @@ jobs:
           branch: ${{ fromJson(steps.release.outputs.pr).headBranchName }}
 
       # The logic below handles the npm publication:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         # these if statements ensure that a publication only occurs when
         # a new release is created:
         if: >
