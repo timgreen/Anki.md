@@ -41,7 +41,7 @@
     "chai": "^4",
     "eslint": "^8.29.0",
     "eslint-config-oclif": "^5",
-    "eslint-config-oclif-typescript": "^2.0.1",
+    "eslint-config-oclif-typescript": "^3.0.1",
     "mocha": "^10",
     "oclif": "^3",
     "shx": "^0.3.3",
