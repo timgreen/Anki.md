@@ -22,7 +22,7 @@
     "@autoanki/anki-connect": "^0.1.2",
     "@oclif/core": "^3.0.6",
     "@oclif/plugin-autocomplete": "^2.1.2",
-    "@oclif/plugin-help": "^5",
+    "@oclif/plugin-help": "^6",
     "@oclif/plugin-not-found": "^3.0.1",
     "@oclif/plugin-warn-if-update-available": "^2.0.23",
     "chalk": "^5.2.0",
