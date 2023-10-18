@@ -24,7 +24,7 @@
     "@oclif/plugin-autocomplete": "^2.1.2",
     "@oclif/plugin-help": "^6",
     "@oclif/plugin-not-found": "^3.0.1",
-    "@oclif/plugin-warn-if-update-available": "^2.0.23",
+    "@oclif/plugin-warn-if-update-available": "^3.0.1",
     "chalk": "^5.2.0",
     "node-fetch": "^3.3.0",
     "ora": "^7.0.0",
