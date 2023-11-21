@@ -18,7 +18,7 @@ jobs:
         if: steps.release.outputs.pr
         with:
           ref: ${{ fromJson(steps.release.outputs.pr).headBranchName }}
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         if: steps.release.outputs.pr
         with:
           node-version: "18.x"
@@ -61,7 +61,7 @@ jobs:
           steps.release.outputs['packages/core--release_created'] ||
           steps.release.outputs['packages/cli--release_created']
       - name: Setup .npmrc file to publish to npm
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: "18.x"
           registry-url: "https://registry.npmjs.org"
