@@ -32,7 +32,7 @@
     "valid-url": "^1.0.9"
   },
   "devDependencies": {
-    "@oclif/test": "^3.0.2",
+    "@oclif/test": "^4.0.3",
     "@types/chai": "^4",
     "@types/mocha": "^10.0.1",
     "@types/node": "^20.1.1",
