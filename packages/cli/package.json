@@ -20,7 +20,7 @@
   "dependencies": {
     "@anki.md/core": "0.11.1",
     "@autoanki/anki-connect": "^0.1.2",
-    "@oclif/core": "^3.0.6",
+    "@oclif/core": "^4.0.8",
     "@oclif/plugin-autocomplete": "^3.0.1",
     "@oclif/plugin-help": "^6",
     "@oclif/plugin-not-found": "^3.0.1",
