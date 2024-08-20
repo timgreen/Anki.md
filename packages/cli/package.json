@@ -35,7 +35,7 @@
     "@oclif/test": "^3.0.2",
     "@types/chai": "^4",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^20.1.1",
+    "@types/node": "^22.4.1",
     "@types/spinnies": "^0.5.0",
     "@types/valid-url": "^1.0.3",
     "chai": "^5",
